@@ -59,5 +59,22 @@ p{margin:0 0 1.15em}h1,h2,h3{margin-top:0}
 @media(max-width:700px){.publication-header{padding-top:30px}.publication-header h1{font-size:31px;margin-bottom:23px}.publication-authors{font-size:16px}.publication-affiliations{font-size:14px;column-gap:12px}.publication-venue{font-size:19px;margin:22px 0 15px}.teaser{padding-top:24px;padding-bottom:35px}.teaser-row h2{font-size:16px}.teaser-row h2 span{display:inline-block;margin-left:5px}.teaser-visual{height:72px}.teaser-visual svg{height:70px}.context-strip{gap:6px}.context-strip b{font-size:16px}.context-piece{padding:7px;font-size:10px}.article-section,.section-shaded,.article-section.section-shaded{padding-top:40px;padding-bottom:43px}.section-title{font-size:27px}.figure-comparison{gap:7px}.figure-comparison>div{padding:7px}.figure-comparison span{font-size:12px}.method-flow{display:grid;grid-template-columns:1fr;gap:5px}.method-flow>span{text-align:center;transform:rotate(90deg)}.method-flow>div{padding:5px}.example-grid{grid-template-columns:1fr;gap:23px}.case-content{padding:18px 15px}.case-intro h3{font-size:21px}.demo-stage{padding:11px 8px}.chart-header{font-size:8px}.step-controls{gap:4px}.step-button{padding:6px 8px;font-size:11px}.step-narrative{display:block}.step-tag{margin-bottom:7px}.next-button{margin-top:10px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.teaser-guided{animation:none;stroke-dashoffset:0}}
 @media(max-width:700px){.case-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:0}.case-tab{font-size:12px;line-height:1.25;padding:9px 4px;white-space:normal}.case-tab + .case-tab{border-left:0}}
-.source-figure{max-width:960px;margin:0 auto}.source-figure img{display:block;width:100%;height:auto;background:#fff;border:1px solid #e5e5e5}.source-figure figcaption{font-size:14px;color:#666;line-height:1.5;text-align:center;margin-top:11px}.source-figure a:hover img{border-color:#209cee}.paper-embed{display:block;width:100%;height:780px;border:1px solid #d7d7d7;background:#fff}@media(max-width:700px){.paper-embed{height:560px}}
+.source-figure{max-width:960px;margin:0 auto}.source-figure img{display:block;width:100%;height:auto;background:#fff;border:1px solid #e5e5e5}.source-figure figcaption{font-size:14px;color:#666;line-height:1.5;text-align:center;margin-top:11px}.source-figure a:hover img{border-color:#209cee}
 #method .wide-container{width:min(100% - 40px,1160px)}#method .source-figure{max-width:1160px}@media(max-width:700px){.source-figure>a{display:block;overflow-x:auto;border:1px solid #e5e5e5}.source-figure img{width:900px;max-width:none;border:0}.source-figure figcaption:after{content:"Swipe the figure to inspect each component.";display:block;color:#777;font-size:12px;margin-top:3px}}
+.publication-header{padding-bottom:42px}
+.research-copy h3{font:700 21px/1.35 'Google Sans','Noto Sans',sans-serif;margin:32px 0 16px}
+.research-copy p{line-height:1.7}
+#method .source-figure,.results-figure{margin-top:30px;margin-bottom:36px}
+.results-figure figcaption{text-align:left}
+.table-scroll{overflow-x:auto;margin-top:25px;padding-bottom:8px}
+.table-scroll:focus-visible{outline:2px solid var(--link);outline-offset:4px}
+.paper-results-table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+.paper-results-table caption{text-align:left;color:#666;line-height:1.55;margin-bottom:16px;font-size:14px}
+.paper-results-table th,.paper-results-table td{padding:10px 8px;text-align:right;white-space:nowrap}
+.paper-results-table th:first-child{text-align:left}
+.paper-results-table thead{border-top:2px solid #555;border-bottom:1px solid #aaa}
+.paper-results-table tbody tr{border-bottom:1px solid #e8e8e8}
+.paper-results-table tbody th{font-weight:400}
+.paper-results-table .our-method{border-top:1px solid #aaa;border-bottom:2px solid #555;background:#f5f5f5}
+.paper-results-table .our-method th{font-weight:700}
+@media(max-width:700px){.results-figure figcaption:after{content:"Swipe to read all columns, or open the full-resolution table."}.research-copy h3{font-size:20px}.paper-results-table{font-size:12px}}

@@ -45,12 +45,21 @@
     </section>
 
     <section id="method" class="article-section">
+      <div class="article-container research-copy">
+        <h2 class="section-title">Scenario-level guidance</h2>
+        <p>An additional challenge is that contextual text may describe not only smooth trend continuation, but also event-driven deviations such as policy interventions, outages, or abrupt demand shifts. Capturing such cases requires future-oriented hypotheses that can guide a numerical forecaster without asking an LLM to directly output numbers. It also requires a mechanism for translating coarse textual expectations into localized constraints when abrupt changes are likely.</p>
+        <h3>Hierarchical contextual reasoning</h3>
+        <p>In this work, we propose SCENARIODIFF, a hierarchical contextual reasoning framework for MTSF. The key idea is to organize contextual information into three complementary levels of guidance, each serving a different role in guiding the forecast. First, a frozen Historical Context Agent compresses raw documents into stepwise context summaries aligned with the observed history, grounding the model in document-level evidence. Second, a frozen Scenario Agent synthesizes the historical series and these summaries into a scenario description, which serves as a qualitative prior over the forecast horizon. Third, an Anchor Guidance Agent converts the available context into sparse anchor points, providing time-localized guidance for future regions where abrupt changes are likely. This hierarchy separates past evidence, future hypotheses, and local trajectory constraints, making contextual influence more explicit and modular than implicit fusion.</p>
+      </div>
       <div class="wide-container">
-        <h2 class="section-title center">ScenarioDiff overview</h2>
         <figure class="source-figure">
           <a href="assets/scenariodiff-method.png" target="_blank" rel="noopener noreferrer" aria-label="Open Figure 2 from the paper at full resolution"><img src="assets/scenariodiff-method.png" alt="Original paper Figure 2 showing time series and observed documents, three guidance agents, the scenario-guided diffusion backbone, anchor blended sampling, and the final forecast." loading="lazy" width="1864" height="1016"></a>
           <figcaption>Fig. 2: SCENARIODIFF overview. <a href="assets/scenariodiff-method.png" target="_blank" rel="noopener noreferrer">Open full-resolution figure</a>.</figcaption>
         </figure>
+      </div>
+      <div class="article-container research-copy">
+        <h3>Multimodal Diffusion Transformer and Anchor Blended Sampling</h3>
+        <p>We instantiate the forecaster as a Multimodal Diffusion Transformer, which models future trajectories through iterative denoising conditioned on the structured signals produced by the agents. The stepwise context summaries and scenario description guide the base diffusion process, allowing the model to combine numerical history with scenario-level textual evidence without asking LLMs to directly output numerical forecasts. To make anchor points actionable, we introduce Anchor Blended Sampling, an inference-time refinement procedure that locally edits anchor-relevant regions using a distance-to-band objective while preserving non-anchor regions through blended diffusion. Thus, anchor points act as soft local constraints rather than hard overrides, encouraging event-consistent trajectories without retraining the base forecaster.</p>
       </div>
     </section>
 
@@ -90,11 +99,34 @@
       </div>
     </section>
 
-    <section id="paper" class="article-section section-shaded">
+    <section id="results" class="article-section">
+      <div class="article-container research-copy">
+        <h2 class="section-title">Results</h2>
+        <h3>Main results on Time-MMD</h3>
+        <p>Table I reports average MSE and MAE over prediction horizons across the five Time-MMD domains. Overall, SCENARIODIFF achieves the strongest horizon-level performance, with the largest number of MSE/MAE wins across horizons and domains. The gains are most evident in event-driven domains, especially Economy and Security, while SCENARIODIFF also shows competitive performance on Traffic. These results suggest that noisy documents become more effective for forecasting when transformed into explicit scenario-level signals, rather than fused as unstructured text. Compared with numerical-only and LLM-prior baselines, SCENARIODIFF benefits from using LLM agents for contextual reasoning instead of direct numerical prediction. The agents extract historical evidence, generate scenario descriptions, and produce anchor points that guide a dedicated probabilistic forecaster. This separation of historical context, scenario-level guidance, and anchor-based refinement leads to stronger performance when text contains actionable event signals.</p>
+      </div>
       <div class="wide-container">
-        <h2 class="section-title center">Full paper</h2>
-        <p class="section-intro"><a href="assets/scenariodiff-paper.pdf" target="_blank" rel="noopener noreferrer">Open the original paper PDF</a></p>
-        <iframe class="paper-embed" src="assets/scenariodiff-paper.pdf" title="Full original ScenarioDiff ICDM 2026 paper" loading="lazy"></iframe>
+        <figure class="source-figure results-figure">
+          <a href="assets/scenariodiff-results.png" target="_blank" rel="noopener noreferrer" aria-label="Open the complete original Table I at full resolution"><img src="assets/scenariodiff-results.png" alt="Complete Table I from the paper: MSE and MAE for all 20 models across Economy, Energy, Security, Social Good, and Traffic. ScenarioDiff records 13 horizon-level first-place results and four first places after averaging over horizons." loading="lazy" width="1792" height="964"></a>
+          <figcaption>Table I: Overall results on Time-MMD. The best, runner-up, and third-best mean results are highlighted in red, blue, and bold, respectively. Hor. 1st counts the number of first-place results over all horizon-domain-metric entries, while Ovr. 1st counts first-place results after averaging over horizons within each domain and metric. <a href="assets/scenariodiff-results.png" target="_blank" rel="noopener noreferrer">Open full-resolution table</a>.</figcaption>
+        </figure>
+      </div>
+      <div class="article-container research-copy">
+        <h3>Probabilistic forecasting</h3>
+        <p>Table II reports CRPS for representative diffusion-based probabilistic forecasting models. SCENARIODIFF achieves the best event-domain average CRPS, indicating that hierarchical scenario guidance can also improve predictive distributions when textual evidence is informative. The improvement is not uniform across all domains, as strong numerical or diffusion-based baselines remain competitive in some settings. This domain-dependent behavior supports our main motivation: scenario-level guidance is most beneficial when external text provides actionable signals about future dynamics.</p>
+        <div class="table-scroll" role="region" aria-label="Table II: probabilistic forecasting results" tabindex="0">
+          <table class="paper-results-table">
+            <caption>Table II: Average CRPS over prediction horizons for representative diffusion-based probabilistic forecasting models. We additionally report the average over event-driven domains, where textual scenarios provide actionable future signals.</caption>
+            <thead><tr><th scope="col">Model</th><th scope="col">Econ.</th><th scope="col">Ener.</th><th scope="col">Sec.</th><th scope="col">Soc.</th><th scope="col">Traf.</th><th scope="col">Event Avg.</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">CSDI</th><td>0.231</td><td>0.138</td><td>0.805</td><td>0.109</td><td>0.043</td><td>0.392</td></tr>
+              <tr><th scope="row">TMDM</th><td>0.190</td><td>0.099</td><td>0.511</td><td>0.156</td><td>0.030</td><td>0.267</td></tr>
+              <tr><th scope="row">NSDiff</th><td>0.317</td><td>0.104</td><td>0.852</td><td>0.375</td><td>0.064</td><td>0.424</td></tr>
+              <tr><th scope="row">TimeDiff</th><td>0.436</td><td>0.197</td><td>0.883</td><td>0.266</td><td>0.251</td><td>0.506</td></tr>
+              <tr class="our-method"><th scope="row">SCENARIODIFF</th><td>0.094</td><td>0.112</td><td>0.584</td><td>0.189</td><td>0.036</td><td>0.263</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   </main>

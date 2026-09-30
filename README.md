@@ -1,10 +1,10 @@
 # ScenarioDiff research demo
 
-A static project page for [ScenarioDiff](https://arxiv.org/abs/2608.17164). It uses the paper's original abstract and Figure 2, embeds the complete paper PDF, and includes an 86-second text-led film, three short video loops, and an interactive explorer.
+A static project page for [ScenarioDiff](https://arxiv.org/abs/2608.17164), organized as an academic article: original abstract, method, video, illustrative applications, interactive demo, and results. The Paper button links to the PDF. The page includes an 86-second text-led film and three short video loops.
 
 The FPT Long Châu, FPT Smart City, and FPT × E.ON application stories use **fictional briefs and synthetic forecast values** to illustrate the workflow. They are not trained-model outputs or claims of deployment. The complete paper is available at [`assets/scenariodiff-paper.pdf`](assets/scenariodiff-paper.pdf).
 
-The abstract is copied verbatim from that PDF. The method image is a 4× resolution crop of Figure 2 on page 4; visitors can open it at full size, and mobile users can scroll across it.
+The abstract is copied verbatim from that PDF. Method prose uses three complete original paragraphs from the Introduction; Results reproduces the complete Main Results subsection (V-B). Figure 2 (page 4) and Table I (page 7) are cropped from the original PDF at 4× resolution. Table II is transcribed in full as an HTML table. Visitors can open the source crops at full size, and mobile users can scroll across them.
 
 ## Preview
 
