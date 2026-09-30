@@ -1,8 +1,10 @@
 # ScenarioDiff research demo
 
-A static, presentation-ready research story for [ScenarioDiff](https://arxiv.org/abs/2608.17164): a scenario-level guidance framework for multimodal time series forecasting. The page includes an 86-second text-led film, three short video loops, and an interactive explorer.
+A static project page for [ScenarioDiff](https://arxiv.org/abs/2608.17164). It uses the paper's original abstract and Figure 2, embeds the complete paper PDF, and includes an 86-second text-led film, three short video loops, and an interactive explorer.
 
-The FPT Long Châu, FPT Smart City, and FPT × E.ON application stories use **fictional briefs and synthetic forecast values** to illustrate the workflow. They are not trained-model outputs or claims of deployment. Measured results on the page come from the paper's Time-MMD experiments.
+The FPT Long Châu, FPT Smart City, and FPT × E.ON application stories use **fictional briefs and synthetic forecast values** to illustrate the workflow. They are not trained-model outputs or claims of deployment. The complete paper is available at [`assets/scenariodiff-paper.pdf`](assets/scenariodiff-paper.pdf).
+
+The abstract is copied verbatim from that PDF. The method image is a 4× resolution crop of Figure 2 on page 4; visitors can open it at full size, and mobile users can scroll across it.
 
 ## Preview
 
