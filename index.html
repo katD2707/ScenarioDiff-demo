@@ -3,97 +3,115 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f8f5">
-  <meta name="description" content="ScenarioDiff turns documents and time series into scenario-guided probabilistic forecasts. Explore the ICDM 2026 research and an illustrative interactive demo.">
-  <meta property="og:title" content="ScenarioDiff — Forecast beyond the curve">
-  <meta property="og:description" content="A visual research story about evidence, scenarios, anchors, and diffusion forecasting.">
+  <meta name="description" content="ScenarioDiff: a scenario-level guidance framework for multimodal time series forecasting. ICDM 2026 research project page, video, and illustrative demo.">
+  <meta property="og:title" content="ScenarioDiff: A Scenario-level Guidance Framework for Multimodal Time Series Forecasting">
+  <meta property="og:description" content="A research project page with a video and illustrative examples of scenario-guided forecasting.">
   <meta property="og:image" content="assets/poster.jpg">
-  <title>ScenarioDiff — Forecast beyond the curve</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>ScenarioDiff: Scenario-level Guidance for Time Series Forecasting</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="ScenarioDiff home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Scenario<span>Diff</span></a>
-    <nav aria-label="Main navigation"><a href="#idea">The idea</a><a href="#film">Film</a><a href="#explore">Explore</a><a href="#results">Results</a></nav>
-    <a class="header-paper" href="https://arxiv.org/abs/2608.17164" target="_blank" rel="noopener noreferrer">Read paper <span aria-hidden="true">↗</span></a>
+  <a class="skip-link" href="#abstract">Skip to content</a>
+
+  <header class="publication-header">
+    <div class="wide-container">
+      <h1>SCENARIODIFF: A Scenario-level Guidance Framework for Multimodal Time Series Forecasting</h1>
+      <p class="publication-authors">
+        <span>Tuan-Binh Tran<sup>1</sup></span>,
+        <span>Dat Nguyen-Cong<sup>2</sup></span>,
+        <span>Duc-Trong Le<sup>3</sup></span>,
+        <span>Thanh Trung Huynh<sup>1</sup></span>,
+        <span>Tung Kieu<sup>4</sup></span>
+      </p>
+      <p class="publication-affiliations"><span><sup>1</sup>VinUniversity</span><span><sup>2</sup>FPT Software AI Center</span><span><sup>3</sup>VNU University of Engineering and Technology</span><span><sup>4</sup>Aalborg University</span></p>
+      <p class="publication-venue">ICDM 2026</p>
+      <div class="publication-links">
+        <a href="https://arxiv.org/abs/2608.17164" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">▤</span> Paper</a>
+        <a href="https://github.com/ttb06/ScenarioDiff" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">◉</span> Code</a>
+        <a href="#video"><span aria-hidden="true">▶</span> Video</a>
+        <a href="#interactive"><span aria-hidden="true">↗</span> Interactive Demo</a>
+      </div>
+    </div>
   </header>
 
-  <main id="main">
-    <section class="hero section-shell" id="top">
-      <div class="hero-copy reveal">
-        <div class="eyebrow"><span class="eyebrow-dot"></span> ICDM 2026 · Research demo</div>
-        <h1>Forecast <em>beyond</em><br>the curve<span class="period">.</span></h1>
-        <p class="hero-lead">The next shift may appear in a report before it appears in a chart. ScenarioDiff turns those early clues into a scenario, then guides a diffusion forecaster toward plausible futures.</p>
-        <div class="hero-actions"><a class="button button-primary" href="#film"><span class="play-icon" aria-hidden="true">▶</span> Watch the film</a><a class="button button-ghost" href="#explore">Explore the demo <span aria-hidden="true">↘</span></a></div>
-        <div class="paper-title">SCENARIODIFF: A Scenario-level Guidance Framework for Multimodal Time Series Forecasting</div>
-        <div class="hero-authors">Tuan-Binh Tran · Dat Nguyen-Cong · Duc-Trong Le · Thanh Trung Huynh · Tung Kieu</div>
-        <div class="hero-links"><a href="https://arxiv.org/abs/2608.17164" target="_blank" rel="noopener noreferrer">Paper ↗</a><a href="https://github.com/ttb06/ScenarioDiff" target="_blank" rel="noopener noreferrer">Code ↗</a><span>VinUniversity · FPT Software AI Center · VNU UET · Aalborg University</span></div>
+  <main>
+    <section class="teaser wide-container" aria-label="ScenarioDiff at a glance">
+      <div class="teaser-row">
+        <h2>Numerical history: <span class="ok">✓ Captures familiar patterns</span> <span class="no">✕ Can miss emerging events</span></h2>
+        <div class="teaser-visual"><svg viewBox="0 0 960 90" role="img" aria-label="Illustrative historical curve and flat continuation"><path class="teaser-axis" d="M0 68H960"/><path class="teaser-history" d="M7 61 C72 56 100 62 157 51 S250 58 314 42 S418 50 485 40"/><path class="teaser-origin" d="M492 8V78"/><path class="teaser-baseline" d="M492 40 C630 39 767 36 950 33"/></svg></div>
       </div>
-      <div class="hero-art reveal" aria-label="Illustration: written signals guide a rising forecast trajectory">
-        <div class="art-topline"><span><b class="live-dot"></b> SIGNAL / 01</span><span>FORECAST HORIZON ↗</span></div>
-        <div class="art-title">The curve does not know<br>what the headlines know.</div>
-        <svg class="hero-chart" viewBox="0 0 620 430" role="img" aria-label="Illustrative historic series and scenario-guided forecast">
-          <defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b6eff" stop-opacity=".24"/><stop offset="1" stop-color="#3b6eff" stop-opacity="0"/></linearGradient><linearGradient id="line" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4e7bff"/><stop offset="1" stop-color="#4de5ce"/></linearGradient></defs>
-          <g class="grid"><path d="M35 80H595M35 155H595M35 230H595M35 305H595M35 380H595"/></g>
-          <path class="horizon-fill" d="M312 378V41H595V378Z"/>
-          <path class="history-line" d="M35 292 C56 300 74 278 94 285 S131 254 151 265 S187 247 205 257 S245 238 263 249 S294 238 312 242"/>
-          <path class="baseline-line" d="M312 242 C360 245 405 234 452 230 S548 227 595 223"/>
-          <path class="forecast-area" d="M312 242 C355 228 376 200 410 188 S453 137 488 138 S538 117 595 119 L595 378H312Z"/>
-          <path class="forecast-line" d="M312 242 C355 228 376 200 410 188 S453 137 488 138 S538 117 595 119"/>
-          <path class="origin-line" d="M312 46V378"/>
-          <circle cx="488" cy="138" r="7" fill="#fb775e" stroke="#fff" stroke-width="3"/>
-          <text x="35" y="411">OBSERVED HISTORY</text><text x="332" y="411">POSSIBLE FUTURE</text>
-        </svg>
-        <div class="art-note note-one"><span class="note-icon">✦</span><div><b>New signal</b><small>Demand may shift next week</small></div></div>
-        <div class="art-note note-two"><span class="note-icon coral">⌁</span><div><b>Scenario + anchors</b><small>Guide the trajectory locally</small></div></div>
-        <div class="art-bottom"><span>HISTORY</span><span class="line-key"><i></i> ScenarioDiff</span><span class="line-key muted"><i></i> History-only</span></div>
+      <div class="teaser-row">
+        <h2>Context agents: <span class="ok">✓ Read reports and logs</span> <span class="ok">✓ Build an explicit scenario</span></h2>
+        <div class="teaser-visual context-strip" aria-label="Illustrative flow from a report to a scenario and anchor bands"><span class="context-piece">“Demand signal in local reports”</span><b>→</b><span class="context-piece">“Near-term rise, then easing”</span><b>→</b><span class="context-piece">Sparse anchor intervals</span></div>
       </div>
-      <div class="hero-scroll" aria-hidden="true">SCROLL TO EXPLORE <span>↓</span></div>
+      <div class="teaser-row">
+        <h2>ScenarioDiff: <span class="ok">✓ Scenario-guided diffusion</span> <span class="ok">✓ Local anchor refinement</span></h2>
+        <div class="teaser-visual"><svg viewBox="0 0 960 90" role="img" aria-label="Illustrative scenario-guided forecast responds to a future event"><path class="teaser-axis" d="M0 68H960"/><path class="teaser-history" d="M7 61 C72 56 100 62 157 51 S250 58 314 42 S418 50 485 40"/><path class="teaser-origin" d="M492 8V78"/><rect x="688" y="11" width="38" height="28" rx="3" class="teaser-anchor"/><rect x="853" y="28" width="38" height="22" rx="3" class="teaser-anchor"/><path class="teaser-guided" d="M492 40 C582 39 630 23 705 25 S795 43 870 40 S922 38 950 34"/></svg></div>
+      </div>
+      <p class="teaser-caption">Conceptual animation with synthetic values. The company use cases below are illustrations of the research workflow.</p>
     </section>
 
-    <section class="problem section-shell" id="idea">
-      <div class="section-label reveal">01 / THE PROBLEM</div>
-      <div class="problem-grid"><h2 class="reveal">A forecast can miss the event <span>hiding in plain sight.</span></h2><div class="problem-body reveal"><p>A traffic series may look steady while a road closure is announced. Medicine sales may look routine while a local outbreak is taking shape. These clues live in documents, news, and logs, often scattered across time.</p><p>ScenarioDiff gives each clue a job: ground the past, describe a possible future, or guide a short part of the forecast.</p></div></div>
-      <div class="evidence-strip reveal" aria-label="Three types of inputs"><span><i>01</i> Historical values</span><b>+</b><span><i>02</i> Documents &amp; reports</span><b>→</b><span class="accent"><i>03</i> Scenario-guided forecast</span></div>
-    </section>
-
-    <section class="method section-shell" id="method">
-      <div class="section-label reveal">02 / HOW IT WORKS</div>
-      <div class="section-heading reveal"><h2>From evidence<br>to a future you can <em>inspect.</em></h2><p>Three focused agents prepare explicit guidance. A diffusion model generates trajectories; anchor blending then refines only the event-relevant regions.</p></div>
-      <div class="method-grid">
-        <article class="method-card reveal"><div class="method-head"><span>01</span><span class="method-glyph">≋</span></div><h3>Read the evidence</h3><p>The Historical Context Agent filters noisy documents into summaries aligned with observed steps.</p><div class="card-visual document-visual"><span>REPORT / LOG</span><i></i><i></i><i class="short"></i><strong>Signal found ↗</strong></div></article>
-        <article class="method-card reveal"><div class="method-head"><span>02</span><span class="method-glyph">✳</span></div><h3>Describe the scenario</h3><p>The Scenario Agent turns the history and evidence into a qualitative view of the forecast horizon.</p><div class="card-visual scenario-visual"><span>IF THE SIGNAL PERSISTS</span><strong>“A near-term rise, followed by stabilization.”</strong></div></article>
-        <article class="method-card reveal"><div class="method-head"><span>03</span><span class="method-glyph">⌖</span></div><h3>Place sparse anchors</h3><p>The Anchor Guidance Agent proposes plausible value intervals at a few event-relevant future steps.</p><div class="card-visual anchor-visual"><span>TIME →</span><div class="anchor-track"><i></i><i></i><i></i></div><strong>Soft, local guidance</strong></div></article>
-        <article class="method-card method-card-dark reveal"><div class="method-head"><span>04</span><span class="method-glyph">↝</span></div><h3>Shape the forecast</h3><p>The Multimodal Diffusion Transformer generates possible paths. Anchor Blended Sampling adjusts local regions without retraining.</p><div class="card-visual diffusion-visual"><svg viewBox="0 0 260 70" aria-hidden="true"><path d="M0 45 C45 42 67 55 106 38 S169 34 260 12"/><path d="M0 43 C45 48 64 40 106 44 S172 23 260 18"/><path d="M0 44 C45 41 72 48 106 39 S175 25 260 13"/></svg><strong>Many plausible futures</strong></div></article>
-      </div>
-      <p class="method-note reveal">All agent outputs use only information available before the forecast starts. The paper evaluates the method on Time-MMD; the applications below are illustrative.</p>
-    </section>
-
-    <section class="film-section section-shell" id="film">
-      <div class="section-label reveal">03 / THE FILM</div>
-      <div class="section-heading reveal"><h2>Watch the idea<br>come to life<span class="period">.</span></h2><p>Three fictional business situations show how the same research workflow can translate an early signal into a forecast story.</p></div>
-      <div class="film-frame reveal"><video controls playsinline preload="metadata" poster="assets/poster.jpg" aria-label="ScenarioDiff illustrated research demo video"><source src="assets/scenariodiff-demo.mp4" type="video/mp4">Your browser does not support embedded video. <a href="assets/scenariodiff-demo.mp4">Download the MP4</a>.</video></div>
-      <div class="film-meta reveal"><span>ILLUSTRATIVE · ENGLISH CAPTIONS · ABOUT 90 SECONDS</span><a href="assets/scenariodiff-demo.mp4" download>Download film ↗</a></div>
-      <div class="loop-grid reveal" aria-label="Short illustrative animation loops">
-        <div><video autoplay muted loop playsinline preload="none" aria-label="Animated pharmacy demand example"><source src="assets/pharmacy-loop.mp4" type="video/mp4"></video><span>FPT LONG CHÂU <b>Pharmacy demand ↗</b></span></div>
-        <div><video autoplay muted loop playsinline preload="none" aria-label="Animated smart city traffic example"><source src="assets/traffic-loop.mp4" type="video/mp4"></video><span>FPT SMART CITY <b>Urban traffic ↗</b></span></div>
-        <div><video autoplay muted loop playsinline preload="none" aria-label="Animated energy demand example"><source src="assets/energy-loop.mp4" type="video/mp4"></video><span>FPT × E.ON <b>Energy load ↗</b></span></div>
+    <section id="abstract" class="section-shaded">
+      <div class="article-container">
+        <h2 class="section-title center">Abstract</h2>
+        <p class="abstract-text">Textual context such as news, reports, and logs can signal changes before they appear in a numerical time series. ScenarioDiff organizes this context into three levels of guidance: stepwise historical evidence, a qualitative forecast scenario, and sparse future anchor intervals. A multimodal diffusion forecaster uses the historical summaries and scenario description to generate future trajectories. Anchor Blended Sampling then locally refines event-relevant regions without retraining the model. On the Time-MMD benchmark, the clearest gains occur in event-driven domains where external documents contain useful clues about future changes.</p>
       </div>
     </section>
 
-    <section class="explore section-shell" id="explore">
-      <div class="section-label reveal">04 / INTERACTIVE EXPLORER</div>
-      <div class="section-heading reveal"><h2>One method.<br><em>Different worlds.</em></h2><p>Choose a situation, then step through the evidence, scenario, anchors, and illustrative forecast.</p></div>
-      <p class="disclosure reveal"><b>Illustrative simulation.</b> All briefs and values in this explorer are fictional. The lines show the mechanism; they are not outputs from a trained ScenarioDiff checkpoint or claims of deployment.</p>
-      <div class="demo-shell reveal">
-        <div class="case-tabs" role="tablist" aria-label="Illustrative applications"><button class="case-tab active" type="button" role="tab" id="tab-pharmacy" aria-controls="case-panel" aria-selected="true" data-case="pharmacy"><span>01</span> FPT Long Châu <small>Pharmacy demand</small></button><button class="case-tab" type="button" role="tab" id="tab-traffic" aria-controls="case-panel" aria-selected="false" tabindex="-1" data-case="traffic"><span>02</span> FPT Smart City <small>Urban traffic</small></button><button class="case-tab" type="button" role="tab" id="tab-energy" aria-controls="case-panel" aria-selected="false" tabindex="-1" data-case="energy"><span>03</span> FPT × E.ON <small>Energy demand</small></button></div>
-        <div class="case-content" id="case-panel" role="tabpanel" aria-labelledby="tab-pharmacy">
-          <div class="case-intro"><div><div class="case-kicker" id="case-kicker">ILLUSTRATIVE / HEALTHCARE</div><h3 id="case-title">A local demand surge is coming.</h3><p id="case-description">The sales curve looks routine. Early context suggests a change before it shows up at the pharmacy counter.</p></div><div class="case-icon" id="case-icon" aria-hidden="true">✚</div></div>
+    <section class="article-section">
+      <div class="article-container">
+        <h2 class="section-title">Why scenario-level guidance?</h2>
+        <p>A model that sees only past values can follow regular trends while missing an event described in a recent document. Raw documents are also noisy and weakly aligned with the time series. ScenarioDiff makes the role of each piece of text explicit before asking a numerical model to forecast.</p>
+        <figure class="paper-figure motivation-figure">
+          <div class="figure-comparison"><div><span>History only</span><svg viewBox="0 0 420 180" role="img" aria-label="Illustrative history-only line misses a surge"><path class="gridline" d="M10 45H410M10 90H410M10 135H410"/><path class="origin" d="M210 20V150"/><path class="past" d="M15 124 C60 119 87 120 120 110 S169 107 208 101"/><path class="flat" d="M208 101 C270 97 338 95 405 91"/><path class="truth" d="M208 101 C260 90 283 56 319 53 S365 69 405 71"/></svg></div><div><span>With scenario guidance</span><svg viewBox="0 0 420 180" role="img" aria-label="Illustrative guided line follows a surge"><path class="gridline" d="M10 45H410M10 90H410M10 135H410"/><path class="origin" d="M210 20V150"/><path class="past" d="M15 124 C60 119 87 120 120 110 S169 107 208 101"/><rect x="300" y="42" width="29" height="27" class="band" rx="3"/><path class="guided" d="M208 101 C260 89 282 59 315 55 S360 68 405 74"/><path class="truth" d="M208 101 C260 90 283 56 319 53 S365 69 405 71"/></svg></div></div>
+          <figcaption>Illustrative example: a future signal can change the plausible trajectory before the event appears in the numerical history. Dashed lines show an invented realized path for explanation.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="article-section section-shaded">
+      <div class="article-container">
+        <h2 class="section-title">How ScenarioDiff works</h2>
+        <p>The paper separates observed evidence, future hypotheses, and local trajectory constraints. Only information available before the forecast origin enters the three agents.</p>
+        <figure class="paper-figure">
+          <div class="method-flow"><div><b>1</b><strong>Historical Context Agent</strong><small>Summarizes observed reports at each step</small></div><span>→</span><div><b>2</b><strong>Scenario Agent</strong><small>Describes likely future behavior</small></div><span>→</span><div><b>3</b><strong>Anchor Guidance Agent</strong><small>Proposes sparse value intervals</small></div><span>→</span><div><b>4</b><strong>Diffusion Forecaster</strong><small>Generates paths and refines them locally</small></div></div>
+          <figcaption>Figure 1. Three levels of textual guidance condition a Multimodal Diffusion Transformer. Anchor Blended Sampling edits event-relevant forecast regions.</figcaption>
+        </figure>
+        <p>The agents produce guidance rather than a complete numerical forecast. The diffusion model generates possible trajectories, and the anchor bands act as soft constraints during a short inference-time refinement.</p>
+      </div>
+    </section>
+
+    <section id="video" class="article-section">
+      <div class="wide-container">
+        <h2 class="section-title center">Video</h2>
+        <p class="section-intro">A short, text-led explanation of the method across healthcare, traffic, and energy examples.</p>
+        <figure class="video-figure"><video controls playsinline preload="metadata" poster="assets/poster.jpg" aria-label="ScenarioDiff illustrative research demo video"><source src="assets/scenariodiff-demo.mp4" type="video/mp4">Your browser does not support video. <a href="assets/scenariodiff-demo.mp4">Download the MP4</a>.</video><figcaption>86-second presentation film. All three business situations and numerical forecasts are fictional illustrations.</figcaption></figure>
+        <p class="video-download"><a href="assets/scenariodiff-demo.mp4" download>Download MP4</a></p>
+      </div>
+    </section>
+
+    <section class="article-section section-shaded" id="examples">
+      <div class="wide-container">
+        <h2 class="section-title center">Illustrative applications</h2>
+        <p class="section-intro">The same workflow can be adapted to different domains by changing the relevant documents, prompts, and business constraints. These examples use invented briefs and synthetic values.</p>
+        <div class="example-grid">
+          <figure><video autoplay muted loop playsinline preload="metadata" aria-label="Illustrative FPT Long Châu pharmacy demand forecast"><source src="assets/pharmacy-loop.mp4" type="video/mp4"></video><figcaption><strong>FPT Long Châu</strong><br>Pharmacy demand following a fictional local health signal.</figcaption></figure>
+          <figure><video autoplay muted loop playsinline preload="metadata" aria-label="Illustrative FPT Smart City traffic forecast"><source src="assets/traffic-loop.mp4" type="video/mp4"></video><figcaption><strong>FPT Smart City</strong><br>Traffic around a fictional corridor closure.</figcaption></figure>
+          <figure><video autoplay muted loop playsinline preload="metadata" aria-label="Illustrative FPT and E.ON energy load forecast"><source src="assets/energy-loop.mp4" type="video/mp4"></video><figcaption><strong>FPT × E.ON</strong><br>Energy load during a fictional heatwave.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="interactive" class="article-section">
+      <div class="wide-container">
+        <h2 class="section-title center">Interactive demo</h2>
+        <p class="section-intro">Choose an application and click through the five stages. The curves explain the mechanism; they are not trained-model outputs.</p>
+        <div class="demo-notice"><strong>Illustrative simulation:</strong> every brief and forecast value in this explorer is fictional.</div>
+        <div class="case-tabs" role="tablist" aria-label="Illustrative applications"><button class="case-tab active" type="button" role="tab" id="tab-pharmacy" aria-controls="case-panel" aria-selected="true" data-case="pharmacy">FPT Long Châu</button><button class="case-tab" type="button" role="tab" id="tab-traffic" aria-controls="case-panel" aria-selected="false" tabindex="-1" data-case="traffic">FPT Smart City</button><button class="case-tab" type="button" role="tab" id="tab-energy" aria-controls="case-panel" aria-selected="false" tabindex="-1" data-case="energy">FPT × E.ON</button></div>
+        <div id="case-panel" role="tabpanel" aria-labelledby="tab-pharmacy" class="case-content">
+          <div class="case-intro"><div><div class="case-kicker" id="case-kicker">ILLUSTRATIVE / HEALTHCARE</div><h3 id="case-title">A local demand surge is coming.</h3><p id="case-description">The sales curve looks routine. Early context suggests a change before it shows up at the pharmacy counter.</p></div><span class="case-icon" id="case-icon" aria-hidden="true">✚</span></div>
           <div class="demo-stage"><div class="chart-header"><span id="chart-label">WEEKLY MEDICINE DEMAND INDEX</span><span>PAST <i class="chart-divider"></i> FUTURE</span></div><svg id="demo-chart" viewBox="0 0 760 328" role="img" aria-label="Illustrative time series forecast chart"></svg><div class="chart-legend"><span><i class="legend-history"></i> Observed</span><span><i class="legend-baseline"></i> History-only illustration</span><span><i class="legend-guided"></i> Scenario-guided illustration</span><span><i class="legend-anchor"></i> Anchor interval</span></div></div>
           <div class="step-controls" role="group" aria-label="Demo stage"><button type="button" class="step-button active" data-step="0" aria-pressed="true"><i>01</i> History</button><button type="button" class="step-button" data-step="1" aria-pressed="false"><i>02</i> Evidence</button><button type="button" class="step-button" data-step="2" aria-pressed="false"><i>03</i> Scenario</button><button type="button" class="step-button" data-step="3" aria-pressed="false"><i>04</i> Anchors</button><button type="button" class="step-button" data-step="4" aria-pressed="false"><i>05</i> Forecast</button></div>
           <div class="step-narrative"><div class="step-tag" id="step-tag">01 / NUMERICAL HISTORY</div><p id="step-text">A familiar pattern. The historical values alone do not reveal the upcoming event.</p><button class="next-button" id="next-step" type="button">Next: evidence <span aria-hidden="true">→</span></button></div>
@@ -101,14 +119,29 @@
       </div>
     </section>
 
-    <section class="results section-shell" id="results">
-      <div class="section-label reveal">05 / RESEARCH EVIDENCE</div>
-      <div class="section-heading reveal"><h2>Where context matters,<br><em>the method stands out.</em></h2><p>The paper evaluates ScenarioDiff on five Time-MMD domains. Its strongest average rank is in event-driven Economy, Energy, and Security.</p></div>
-      <div class="results-grid reveal"><div class="result-number"><strong>13</strong><span>first-place horizon results<br>across the reported MSE/MAE entries</span></div><div class="result-number"><strong>5</strong><span>Time-MMD domains<br>in the paper evaluation</span></div><div class="rank-card"><div class="rank-title">Average rank · event-driven domains <small>LOWER IS BETTER</small></div><div class="rank-row"><span>ScenarioDiff</span><div><i style="width:48%"></i></div><b>2.00</b></div><div class="rank-row"><span>S2IP-LLM</span><div><i style="width:76%"></i></div><b>3.17</b></div><div class="rank-row"><span>PatchTST</span><div><i style="width:100%"></i></div><b>4.17</b></div></div></div>
-      <p class="results-footnote reveal">Source: Tables I and III of the ICDM 2026 paper. Ranks average MSE and MAE columns over Economy, Energy, and Security; lower is better. Results vary by domain, and some baselines are stronger in less event-driven settings.</p>
-      <div class="final-cta reveal"><div><span>READ THE RESEARCH</span><h2>Make context count.</h2></div><div><a class="button button-primary" href="https://arxiv.org/abs/2608.17164" target="_blank" rel="noopener noreferrer">Open paper ↗</a><a class="button button-light" href="https://github.com/ttb06/ScenarioDiff" target="_blank" rel="noopener noreferrer">View code ↗</a></div></div>
+    <section id="results" class="article-section section-shaded">
+      <div class="article-container">
+        <h2 class="section-title">Results</h2>
+        <p>ScenarioDiff is evaluated on five Time-MMD domains. In the paper's event-driven group (Economy, Energy, and Security), it has the best average MSE/MAE rank among the reported methods. The paper also reports 13 first-place horizon-level MSE/MAE entries.</p>
+        <table class="results-table"><caption>Average rank on event-driven domains (lower is better)</caption><thead><tr><th>Model</th><th>Average rank</th></tr></thead><tbody><tr><td>ScenarioDiff</td><td><strong>2.00</strong></td></tr><tr><td>S2IP-LLM</td><td>3.17</td></tr><tr><td>PatchTST</td><td>4.17</td></tr></tbody></table>
+        <p class="table-note">Source: Tables I and III of the ICDM 2026 paper. The method's advantage varies across domains; several baselines are stronger in less event-driven settings.</p>
+      </div>
+    </section>
+
+    <section class="article-section">
+      <div class="article-container">
+        <h2 class="section-title">BibTeX</h2>
+        <pre class="bibtex"><code>@misc{tran2026scenariodiff,
+  title={SCENARIODIFF: A Scenario-level Guidance Framework for Multimodal Time Series Forecasting},
+  author={Tuan-Binh Tran and Dat Nguyen-Cong and Duc-Trong Le and Thanh Trung Huynh and Tung Kieu},
+  year={2026},
+  eprint={2608.17164},
+  archivePrefix={arXiv}
+}</code></pre>
+      </div>
     </section>
   </main>
-  <footer class="site-footer section-shell"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Scenario<span>Diff</span></a><p>Research by VinUniversity, FPT Software AI Center, VNU University of Engineering and Technology, and Aalborg University. Company application stories on this page are fictional illustrations.</p><span>© 2026 ScenarioDiff research team</span></footer>
+
+  <footer class="site-footer"><div class="article-container"><p>Research by VinUniversity, FPT Software AI Center, VNU University of Engineering and Technology, and Aalborg University. Company application stories are fictional illustrations.</p><p>Page layout inspired by the <a href="https://m-arriola.com/bd3lms/" target="_blank" rel="noopener noreferrer">Block Diffusion project page</a> and the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener noreferrer">Academic Project Page Template</a>.</p></div></footer>
 </body>
 </html>
