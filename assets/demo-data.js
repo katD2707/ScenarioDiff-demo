@@ -79,7 +79,7 @@ window.SCENARIO_DEMO = {
         900
       ],
       "domain": "Healthcare & retail",
-      "brand": "FPT Long Chau / potential application",
+      "brand": "FPT Long Chau",
       "title": "An outbreak bulletin.\nA different stock plan.",
       "shortTitle": "Demand for healthcare supplies",
       "source": "HCDC",
@@ -210,7 +210,7 @@ window.SCENARIO_DEMO = {
         60
       ],
       "domain": "Smart city",
-      "brand": "FPT Smart City / potential application",
+      "brand": "FPT Smart City",
       "title": "Traffic is still light.\nThe closure is scheduled.",
       "shortTitle": "Travel around restricted roads",
       "source": "Government News / PC08",
@@ -339,7 +339,7 @@ window.SCENARIO_DEMO = {
         70
       ],
       "domain": "Energy",
-      "brand": "FPT x E.ON / potential application",
+      "brand": "FPT x E.ON",
       "title": "After the heat peak,\ndemand may ease.",
       "shortTitle": "Electricity demand as heat eases",
       "source": "EVN / Electricity Regulatory Authority",
