@@ -1,4 +1,4 @@
-"""English presentation and denoising loops using published observed series.
+"""English presentation of the original three Vietnam use cases.
 Forecast targets and animation are authored; no model checkpoint is evaluated.
 """
 from pathlib import Path
@@ -23,7 +23,7 @@ for i,c in enumerate(CASES):
     SCENES.extend([dict(kind='source',case=i,duration=14,caption=c['fact']),
                    dict(kind='scenario',case=i,duration=15,caption=c['scenario']),
                    dict(kind='forecast',case=i,duration=16,caption=c['assumption'])])
-SCENES.append(dict(kind='outro',duration=12,caption='Published observations provide the comparison. Scenario and forecast paths illustrate the mechanism, rather than a model evaluation.'))
+SCENES.append(dict(kind='outro',duration=12,caption='The event reports are sourced. Operating histories, ground-truth references and forecast paths illustrate the mechanism; these are not customer measurements or model results.'))
 TOTAL=sum(s['duration'] for s in SCENES)
 
 @lru_cache(maxsize=100)
@@ -88,13 +88,12 @@ def common(scene,idx):
     return im,d
 
 def trajectory(c,amount=1):
-    # Local, authored anchor correction. Ground truth is never read here.
-    sign=1 if c['id']=='traffic' else -1
-    span=c['range'][1]-c['range'][0]
-    return [v+sign*span*.12*max(math.exp(-.5*((i-a['i'])/.8)**2) for a in c['anchors'])*(1-amount)
-            for i,v in enumerate(c['guided'])]
+    # Authored local refinement; comparison truth is never an input to guidance.
+    amount=max(0,min(1,amount))
+    return [before+amount*(after-before) for before,after in zip(c['preAnchor'],c['guided'])]
 
-def chart(d,c,box,stage=4,sampling=1,anchor_strength=1,truth=False):
+
+def chart(d,c,box,stage=4,sampling=1,anchor_strength=1,truth=True):
     x0,y0,x1,y1=box
     d.rounded_rectangle(box,radius=5,fill='#f7f8fb',outline='#cad0d9',width=1)
     txt(d,(x0+30,y0+20),c['metric'],27,'serif')
@@ -119,7 +118,7 @@ def chart(d,c,box,stage=4,sampling=1,anchor_strength=1,truth=False):
     for i in sorted(set([len(c['futureDates'])//2,len(c['futureDates'])-1])):
         label=c['futureDates'][i];width=d.textlength(label,font=font(18))
         txt(d,(fx(i)-width/2,bottom+18),label,18,fill=MUTED)
-    txt(d,(left,top-34),'OBSERVED HISTORY',17,'mono',MUTED)
+    txt(d,(left,top-34),'HISTORY',17,'mono',MUTED)
     txt(d,(origin+18,top-34),'EVENT WINDOW',17,'mono',BLUE)
     if stage>=3 and anchor_strength>0:
         for a in c['anchors']:
@@ -157,7 +156,7 @@ def static_scene(idx):
         rule(d,577)
         txt(d,(95,635),'03',98,'serif');txt(d,(290,648),'events. Three patterns of change.',47,'serif')
         txt(d,(290,729),'HEALTHCARE / MOBILITY / ENERGY',25,'mono',MUTED)
-        txt(d,(95,852),'Published observations. Scenario-guided trajectories.',30,fill=MUTED)
+        txt(d,(95,852),'Vietnamese events. Scenario-guided trajectories.',30,fill=MUTED)
     elif kind=='method':
         heading(d,'The mechanism','From evidence to a future trajectory.')
         labels=['Read the past','Describe the future','Locate the change','Generate & refine']
@@ -199,7 +198,7 @@ def static_scene(idx):
             txt(d,(90,332),'CONTEXT / ANCHORS / TRAJECTORY',19,fill=MUTED)
             wrap(d,(90,393),c['action'],610,52,'serif',leading=1.25)
             rule(d,623,90,715,LINE)
-            wrap(d,(90,668),'First watch the forecast settle. Then compare it with the green observed series.',600,30,leading=1.45)
+            wrap(d,(90,668),'Follow the green reference throughout. Watch anchors move the blue forecast closer in the highlighted regions.',600,30,leading=1.45)
             txt(d,(90,858),c['brand'],20,fill=MUTED)
     else:
         heading(d,'Three patterns of change','Context gives the forecast a direction.')
@@ -213,10 +212,10 @@ def static_scene(idx):
     return im
 
 def phase(t):
-    return '01 / Initial noise' if t<3 else '02 / Context-conditioned denoising' if t<8 else '03 / Local anchor guidance' if t<12 else '04 / Compare with ground truth'
+    return '01 / Initial noise' if t<3 else '02 / Context-conditioned denoising' if t<8 else '03 / Local anchor guidance' if t<12 else '04 / Refined forecast'
 
 def animate_chart(d,c,box,t):
-    chart(d,c,box,sampling=min(1,t/7),anchor_strength=max(0,min(1,(t-8)/4)),truth=t>=12)
+    chart(d,c,box,sampling=min(1,t/7),anchor_strength=max(0,min(1,(t-8)/4)),truth=True)
 
 def frame(idx,local,global_t):
     im=static_scene(idx).copy();d=ImageDraw.Draw(im);s=SCENES[idx]
@@ -239,7 +238,7 @@ def loop_frame(c,t):
 def stamp(t):return f'{int(t)//3600:02d}:{int(t)//60%60:02d}:{int(t)%60:02d}.000'
 
 def supporting_files():
-    t=0;vtt=['WEBVTT',''];transcript=['# ScenarioDiff — English presentation','','History and ground truth are published observations. Scenario, anchor and forecast paths are authored illustrations, not model evaluation or a point-in-time backtest.',''];chapters=[]
+    t=0;vtt=['WEBVTT',''];transcript=['# ScenarioDiff — English presentation','',DATA['provenance'],''];chapters=[]
     for i,s in enumerate(SCENES):
         vtt.extend([str(i+1),f'{stamp(t)} --> {stamp(t+s["duration"])}',s['caption'],''])
         title=s['kind'] if 'case' not in s else CASES[s['case']]['domain']+' / '+s['kind']
@@ -247,14 +246,6 @@ def supporting_files():
     (OUT/'demo-en.vtt').write_text('\n'.join(vtt),encoding='utf-8')
     (OUT/'demo-transcript-en.md').write_text('\n'.join(transcript),encoding='utf-8')
     (OUT/'demo-chapters.json').write_text(json.dumps(dict(duration=TOTAL,chapters=chapters),indent=2),encoding='utf-8')
-    with (OUT/'demo-series.csv').open('w',newline='',encoding='utf-8-sig') as f:
-        writer=csv.writer(f);writer.writerow(['case','period','series','value','unit','provenance','source_url'])
-        for c in CASES:
-            n=len(c['history'])
-            for name,offset in [('history',0),('groundTruth',n)]:
-                for i,v in enumerate(c[name]):writer.writerow([c['id'],c['observationDates'][offset+i],name,v,c['unit'],'published_observation',c['observationSources'][offset+i]])
-            for name in ['baseline','guided']:
-                for i,v in enumerate(c[name]):writer.writerow([c['id'],c['observationDates'][n+i],name,v,c['unit'],'authored_illustration',''])
 
 def render():
     supporting_files();frame(0,5,5).save(OUT/'poster.jpg',quality=95)
@@ -281,8 +272,7 @@ def render():
         try:
             for f in range(16*12):writer.send(np.asarray(loop_frame(c,f/12)))
         finally:writer.close()
-        subprocess.run([ffmpeg,'-y','-i',str(OUT/(c['id']+'-denoising.mp4')),'-filter_complex','fps=8,scale=672:-1:flags=lanczos,split[a][b];[a]palettegen=stats_mode=diff[p];[b][p]paletteuse=dither=bayer','-loop','0',str(OUT/(c['id']+'-denoising.gif'))],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
         print('Rendered loops: '+c['id'],flush=True)
-    print('English film, clips, MP4 loops and GIFs ready.',flush=True)
+    print('English film and embedded animation loops ready.',flush=True)
 
 if __name__=='__main__':render()

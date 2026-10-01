@@ -30,6 +30,7 @@ try {
  assert.equal(await js('document.querySelectorAll(".event-example").length'),3);
  assert.equal(await js('document.querySelectorAll("#interactive, #demo-sources").length'),0);
  assert.equal(await js('document.querySelectorAll("[lang=vi]").length'),0);
+ assert.equal(await js('document.querySelectorAll("a[download], .event-downloads, .demo-resource-links, [data-outcome]").length'),0);
  assert.equal(await js('[...document.querySelectorAll(".denoising-loop")].every(v=>v.paused)'),true,'Reduced motion should pause animations');
  const screenshots=[];
  const shot=async(name,selector)=>{await js(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({behavior:'instant',block:'start'})`);await wait(250);const r=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});const p=join(tmpdir(),name+'.png');writeFileSync(p,Buffer.from(r.data,'base64'));screenshots.push(p);};
@@ -42,10 +43,7 @@ try {
   assert.equal(await js(`${select}.querySelector('video').paused`),false,'Animation play failed');
   await js(`${select}.querySelector('.toggle-loop').click()`);
   assert.equal(await js(`${select}.querySelector('video').paused`),true,'Animation pause failed');
-  await js(`${select}.querySelector('[data-outcome]').click()`);await wait(300);
-  assert.equal(await js(`${select}.querySelector('video').currentTime`),15);
-  assert.equal(await js(`${select}.querySelector('video').paused`),true);
-  assert.equal(await js(`${select}.querySelector('.toggle-loop').getAttribute('aria-pressed')`),'false');
+  await js(`${select}.querySelector('video').currentTime = 15`);await wait(250);
   const data=await js(`window.SCENARIO_DEMO.cases.find(c=>c.id==='${c}')`);
   assert.equal(data.groundTruth.length,data.futureDates.length);
   results.push({case:c,history:data.history,groundTruth:data.groundTruth});

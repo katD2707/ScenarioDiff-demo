@@ -1,6 +1,6 @@
 # ScenarioDiff — English presentation
 
-History and ground truth are published observations. Scenario, anchor and forecast paths are authored illustrations, not model evaluation or a point-in-time backtest.
+Event reports are sourced. Operating histories, ground-truth references and forecast paths are illustrative; they are not customer measurements or model evaluation.
 
 ## 00:00:00.000 — intro
 An event can change the future before that change appears in the historical series.
@@ -8,32 +8,32 @@ An event can change the future before that change appears in the historical seri
 ## 00:00:09.000 — method
 Historical evidence informs a scenario. Sparse anchors identify local regions of interest; diffusion generates the trajectory.
 
-## 00:00:23.000 — Healthcare / source
+## 00:00:23.000 — Healthcare & retail / source
 HCDC reported 272 dengue cases in week 32, 18.8% above the preceding four-week average.
 
-## 00:00:37.000 — Healthcare / scenario
-Cases may remain elevated over the next three weeks before growth slows.
+## 00:00:37.000 — Healthcare & retail / scenario
+Demand for healthcare supplies rises over the next few weeks, then eases as replenishment catches up.
 
-## 00:00:52.000 — Healthcare / forecast
-The observed week-35 decline is sharper than the scenario anticipates. Context is useful, but does not remove uncertainty.
+## 00:00:52.000 — Healthcare & retail / forecast
+The anchors lift the forecast around weeks 36 and 38, bringing it closer to the ground-truth reference while preserving the overall demand pattern.
 
-## 00:01:08.000 — Mobility / source
-Federal guidance called for avoiding discretionary travel as the COVID-19 response intensified.
+## 00:01:08.000 — Smart city / source
+Selected central Ho Chi Minh City roads were scheduled to close from 17:30 on April 22 until 01:00 on April 23.
 
-## 00:01:22.000 — Mobility / scenario
-Travel falls sharply while restrictions take effect, followed by a gradual recovery.
+## 00:01:22.000 — Smart city / scenario
+Diverted traffic increases travel time after 17:30, followed by a gradual decline toward the end of the night.
 
-## 00:01:37.000 — Mobility / forecast
-April observations fall below the scenario; the recovery is faster. Compare timing and magnitude, not just direction.
+## 00:01:37.000 — Smart city / forecast
+Guidance raises the peak near 19:00 and refines the easing phase near 23:00. The forecast moves closer to the ground-truth reference at both anchor regions.
 
 ## 00:01:53.000 — Energy / source
-EIA reported crude prices above $100 per barrel following Russia’s invasion of Ukraine, with increased volatility.
+EVN reported average national consumption of 946.6 million kWh per day and an outlook for easing heat over the following ten days.
 
 ## 00:02:07.000 — Energy / scenario
-Retail gasoline prices rise quickly, remain elevated, then ease as the initial shock moderates.
+As the heat eases, cooling demand falls and the facility cluster load declines instead of extending its recent upward trend.
 
 ## 00:02:22.000 — Energy / forecast
-The observed peak arrives earlier than the scenario. Both the jump and the easing phase matter for planning.
+The anchors lower the trajectory around May 3 and May 6, aligning it more closely with the ground-truth reference during the easing phase.
 
 ## 00:02:38.000 — outro
-Published observations provide the comparison. Scenario and forecast paths illustrate the mechanism, rather than a model evaluation.
+The event reports are sourced. Operating histories, ground-truth references and forecast paths illustrate the mechanism; these are not customer measurements or model results.

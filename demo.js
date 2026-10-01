@@ -12,11 +12,11 @@
     <p class="event-fact">${esc(c.fact)}</p>
     <a class="event-source" href="${esc(c.url)}" target="_blank" rel="noopener noreferrer">${esc(c.source)} / ${esc(c.published)} &#8599;</a></div>
     <div class="event-visual"><figure class="denoising-figure">
-      <video class="denoising-loop" muted loop playsinline preload="metadata" poster="assets/${c.id}-denoising.jpg" aria-label="${esc(c.domain)}: denoising, anchor guidance and observed ground truth"><source src="assets/${c.id}-denoising.mp4" type="video/mp4"></video>
+      <video class="denoising-loop" muted loop playsinline preload="metadata" poster="assets/${c.id}-denoising.jpg" aria-label="${esc(c.domain)}: denoising, anchor guidance with a persistent ground-truth reference"><source src="assets/${c.id}-denoising.mp4" type="video/mp4"></video>
       <figcaption>${esc(c.cutoff)}</figcaption>
     </figure>
     <div class="event-actions"><button type="button" class="text-button toggle-loop" aria-pressed="false">Play animation</button><button type="button" class="text-button" data-clip="${c.id}">Watch walkthrough &#8599;</button></div>
-    <div class="event-downloads"><a href="assets/${c.id}-denoising.gif" download>GIF</a><a href="${esc(c.dataUrl)}" target="_blank" rel="noopener noreferrer">Observations &#8599;</a><button type="button" class="text-button" data-outcome>Show outcome</button></div></div>
+    </div>
   </article>`).join('');
   const loops = [...document.querySelectorAll('.denoising-loop')];
   const sync = video => {
@@ -33,11 +33,7 @@
       video.dataset.manual = 'true';
       if (video.paused) play(video); else video.pause();
     });
-    video.closest('article').querySelector('[data-outcome]').addEventListener('click', () => {
-      video.dataset.manual = 'true'; video.pause();
-      const seek = () => { video.currentTime = 15; };
-      if (video.readyState >= 1) seek(); else { video.addEventListener('loadedmetadata', seek, {once:true}); video.load(); }
-    });
+
   });
   const observer = new IntersectionObserver(entries => entries.forEach(({target:video,isIntersecting}) => {
     if (!isIntersecting) video.pause();

@@ -1,361 +1,372 @@
 window.SCENARIO_DEMO = {
-  "version": 3,
+  "version": 4,
   "cases": [
     {
       "id": "pharmacy",
       "number": "01",
-      "domain": "Healthcare",
-      "brand": "Ho Chi Minh City / Vietnam",
-      "title": "When case counts\nstart to climb.",
-      "shortTitle": "A rising health signal",
-      "source": "HCDC",
-      "published": "13 August 2024",
+      "sourceId": "hcdc-2024-w32",
       "url": "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-tay-chan-mieng-va-soi-tai-tp-ho-chi-minh-tinh-den-tuan-322024-39XFah.html",
-      "dataUrl": "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-tay-chan-mieng-va-soi-tai-tp-ho-chi-minh-tinh-den-tuan-322024-39XFah.html",
-      "sourceTitle": "Dengue surveillance: week 32",
-      "stat": "272",
-      "statUnit": "reported dengue cases in week 32",
-      "fact": "HCDC reported 272 dengue cases in week 32, 18.8% above the preceding four-week average.",
-      "factSecondary": "18.8% above the preceding four-week average.",
-      "cutoff": "Weeks 30–35 / 2024",
-      "metric": "Reported dengue cases",
-      "unit": "Cases / week",
+      "publishedISO": "2024-08-13T18:17:00+07:00",
+      "cutoffISO": "2024-08-18T23:59:00+07:00",
       "history": [
-        232,
-        254,
-        272
-      ],
-      "groundTruth": [
-        299,
-        301,
-        243
+        510,
+        525,
+        518,
+        542,
+        536,
+        558,
+        565,
+        580
       ],
       "historyDates": [
+        "W26",
+        "W27",
+        "W28",
+        "W29",
         "W30",
         "W31",
-        "W32"
+        "W32",
+        "W33"
       ],
       "futureDates": [
-        "W33",
         "W34",
-        "W35"
+        "W35",
+        "W36",
+        "W37",
+        "W38",
+        "W39"
       ],
       "baseline": [
-        291,
-        310,
-        329
+        585,
+        591,
+        596,
+        602,
+        608,
+        613
       ],
       "guided": [
-        304,
-        325,
-        315
+        620,
+        700,
+        790,
+        825,
+        785,
+        730
       ],
       "anchors": [
         {
-          "i": 1,
-          "lo": 305,
-          "hi": 340,
-          "label": "W34 / 305–340 cases"
+          "i": 2,
+          "lo": 750,
+          "hi": 840,
+          "label": "W36 / 750-840 units"
         },
         {
-          "i": 2,
-          "lo": 295,
-          "hi": 330,
-          "label": "W35 / 295–330 cases"
+          "i": 4,
+          "lo": 740,
+          "hi": 820,
+          "label": "W38 / 740-820 units"
         }
       ],
       "range": [
-        180,
-        380
+        400,
+        950
       ],
       "ticks": [
-        200,
-        250,
-        300,
-        350
+        400,
+        500,
+        600,
+        700,
+        800,
+        900
       ],
-      "direction": "Short-term rise",
-      "context": "Weekly case counts are rising. A surveillance report gives planners a reason to consider sustained near-term pressure.",
-      "scenario": "Cases may remain elevated over the next three weeks before growth slows.",
-      "action": "Plan for pressure.\nCheck the outcome.",
-      "assumption": "The observed week-35 decline is sharper than the scenario anticipates. Context is useful, but does not remove uncertainty.",
-      "observationSources": [
-        "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-va-tay-chan-mieng-tai-tp-ho-chi-minh-tinh-den-tuan-302024-x6HEAv.html",
-        "https://tuoitre.vn/nld/tp-hcm-phat-hien-60-ca-nghi-sot-phat-ban-soi-trong-1-tuan-196240810151904281.htm",
-        "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-tay-chan-mieng-va-soi-tai-tp-ho-chi-minh-tinh-den-tuan-322024-39XFah.html",
-        "https://thanhnien.vn/tinh-hinh-dich-benh-soi-moi-nhat-tai-tphcm-185240824095909048.htm",
-        "https://alobacsi.com/hcdc-benh-truyen-nhiem-o-tphcm-tang-cao.html",
-        "https://vtv.vn/suc-khoe/tp-ho-chi-minh-ghi-nhan-118-ca-sot-phat-ban-nghi-soi-trong-tuan-qua-20240903112903123.htm"
+      "domain": "Healthcare & retail",
+      "brand": "FPT Long Chau / potential application",
+      "title": "An outbreak bulletin.\nA different stock plan.",
+      "shortTitle": "Demand for healthcare supplies",
+      "source": "HCDC",
+      "published": "13 August 2024 / 18:17",
+      "sourceTitle": "Ho Chi Minh City health bulletin / week 32",
+      "fact": "HCDC reported 272 dengue cases in week 32, 18.8% above the preceding four-week average.",
+      "stat": "272",
+      "statUnit": "reported cases / week 32",
+      "factSecondary": "18.8% above the preceding four-week average.",
+      "cutoff": "18 August 2024 / weeks 34-39 ahead",
+      "metric": "Healthcare supply demand",
+      "unit": "Units / week",
+      "direction": "A short-term demand rise",
+      "context": "A health bulletin signals rising local pressure. A pharmacy cluster may need to review inventory and replenishment lead times.",
+      "scenario": "Demand for healthcare supplies rises over the next few weeks, then eases as replenishment catches up.",
+      "action": "Anticipate demand.\nPlan replenishment.",
+      "assumption": "The anchors lift the forecast around weeks 36 and 38, bringing it closer to the ground-truth reference while preserving the overall demand pattern.",
+      "groundTruth": [
+        625,
+        708,
+        800,
+        830,
+        790,
+        735
       ],
-      "observationDates": [
-        "2024-07-22",
-        "2024-07-29",
-        "2024-08-05",
-        "2024-08-12",
-        "2024-08-19",
-        "2024-08-26"
+      "seriesProvenance": "authored_illustration",
+      "preAnchor": [
+        616.134,
+        659.711,
+        702.0,
+        784.711,
+        697.0,
+        689.711
       ]
     },
     {
       "id": "traffic",
       "number": "02",
-      "domain": "Mobility",
-      "brand": "United States / Time-MMD",
-      "title": "When travel\ncomes to a halt.",
-      "shortTitle": "An abrupt demand shock",
-      "source": "White House archive",
-      "published": "16 March 2020",
-      "url": "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-vice-president-pence-members-coronavirus-task-force-press-briefing-3/",
-      "dataUrl": "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
-      "sourceTitle": "National guidance to reduce travel",
-      "stat": "15 days",
-      "statUnit": "initial federal guidance period",
-      "fact": "Federal guidance called for avoiding discretionary travel as the COVID-19 response intensified.",
-      "factSecondary": "Avoid discretionary travel and reduce in-person activity.",
-      "cutoff": "August 2019–July 2020",
-      "metric": "U.S. vehicle miles traveled",
-      "unit": "Billion vehicle miles / month",
+      "sourceId": "pc08-2025-04-21",
+      "url": "https://tphcm.chinhphu.vn/lich-cam-duong-phuc-vu-le-ky-niem-50-nam-ngay-giai-phong-mien-nam-101250421153314319.htm",
+      "publishedISO": "2025-04-21T15:43:00+07:00",
+      "cutoffISO": "2025-04-22T15:00:00+07:00",
       "history": [
-        288.116,
-        267.747,
-        283.961,
-        260.326,
-        261.757,
-        260.847,
-        242.695
-      ],
-      "groundTruth": [
-        226.638,
-        167.617,
-        221.006,
-        250.33,
-        265.55
+        24,
+        22,
+        20,
+        19,
+        21,
+        20,
+        22,
+        24
       ],
       "historyDates": [
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-        "Jan",
-        "Feb"
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00"
       ],
       "futureDates": [
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul"
+        "16:00",
+        "17:00",
+        "18:00",
+        "19:00",
+        "20:00",
+        "21:00",
+        "22:00",
+        "23:00",
+        "00:00",
+        "01:00"
       ],
       "baseline": [
-        268,
-        275,
-        282,
-        286,
-        288
+        25,
+        27,
+        29,
+        27,
+        24,
+        22,
+        20,
+        18,
+        17,
+        16
       ],
       "guided": [
-        215,
-        190,
-        203,
-        231,
-        252
+        26,
+        30,
+        41,
+        48,
+        46,
+        42,
+        37,
+        32,
+        26,
+        21
       ],
       "anchors": [
         {
-          "i": 1,
-          "lo": 175,
-          "hi": 205,
-          "label": "April / 175–205 billion"
+          "i": 3,
+          "lo": 43,
+          "hi": 52,
+          "label": "19:00 / 43-52 min"
         },
         {
-          "i": 4,
-          "lo": 240,
-          "hi": 265,
-          "label": "July / 240–265 billion"
+          "i": 7,
+          "lo": 28,
+          "hi": 36,
+          "label": "23:00 / 28-36 min"
         }
       ],
       "range": [
-        130,
-        330
+        10,
+        60
       ],
       "ticks": [
-        150,
-        200,
-        250,
-        300
+        10,
+        20,
+        30,
+        40,
+        50,
+        60
       ],
-      "direction": "Drop, then recovery",
-      "context": "Travel guidance changes the demand regime. The monthly series provides a retrospective view of the disruption.",
-      "scenario": "Travel falls sharply while restrictions take effect, followed by a gradual recovery.",
-      "action": "Locate the shock.\nAllow a recovery.",
-      "assumption": "April observations fall below the scenario; the recovery is faster. Compare timing and magnitude, not just direction.",
-      "observationSources": [
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv"
+      "domain": "Smart city",
+      "brand": "FPT Smart City / potential application",
+      "title": "Traffic is still light.\nThe closure is scheduled.",
+      "shortTitle": "Travel around restricted roads",
+      "source": "Government News / PC08",
+      "published": "21 April 2025 / 15:43",
+      "sourceTitle": "Road closures for the April 30 celebrations",
+      "fact": "Selected central Ho Chi Minh City roads were scheduled to close from 17:30 on April 22 until 01:00 on April 23.",
+      "stat": "17:30",
+      "statUnit": "22 April 2025 / restrictions begin",
+      "factSecondary": "Restrictions end at 01:00 on April 23.",
+      "cutoff": "22-23 April 2025 / hourly travel time",
+      "metric": "Travel time on a nearby open route",
+      "unit": "Minutes / trip",
+      "direction": "An event-time traffic peak",
+      "context": "The announcement gives the start, end and location of the restrictions. The example follows diverted traffic on a nearby route that remains open.",
+      "scenario": "Diverted traffic increases travel time after 17:30, followed by a gradual decline toward the end of the night.",
+      "action": "Anticipate the peak.\nAdjust delivery times.",
+      "assumption": "Guidance raises the peak near 19:00 and refines the easing phase near 23:00. The forecast moves closer to the ground-truth reference at both anchor regions.",
+      "groundTruth": [
+        27,
+        31,
+        42,
+        49,
+        47,
+        43,
+        38,
+        33,
+        27,
+        22
       ],
-      "observationDates": [
-        "2019-08-01",
-        "2019-09-01",
-        "2019-10-01",
-        "2019-11-01",
-        "2019-12-01",
-        "2020-01-01",
-        "2020-02-01",
-        "2020-03-01",
-        "2020-04-01",
-        "2020-05-01",
-        "2020-06-01",
-        "2020-07-01"
+      "seriesProvenance": "authored_illustration",
+      "preAnchor": [
+        25.993,
+        29.649,
+        37.337,
+        40.0,
+        42.337,
+        41.649,
+        33.337,
+        24.0,
+        22.337,
+        20.649
       ]
     },
     {
       "id": "energy",
       "number": "03",
-      "domain": "Energy",
-      "brand": "United States / Time-MMD",
-      "title": "When supply risk\nreaches the pump.",
-      "shortTitle": "A price shock",
-      "source": "U.S. EIA",
-      "published": "4 March 2022",
-      "url": "https://www.eia.gov/todayinenergy/detail.php?id=51498",
-      "dataUrl": "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
-      "sourceTitle": "Crude oil rises above $100",
-      "stat": "$100+",
-      "statUnit": "crude oil futures / barrel",
-      "fact": "EIA reported crude prices above $100 per barrel following Russia’s invasion of Ukraine, with increased volatility.",
-      "factSecondary": "Crude market disruption creates upward pressure on retail fuel prices.",
-      "cutoff": "January–April / 2022",
-      "metric": "U.S. retail gasoline price",
-      "unit": "USD / gallon · all grades",
+      "sourceId": "evn-2024-w17",
+      "url": "https://www.evn.com.vn/d6/news/Tuan-tu-22-2842024-Dam-bao-dien-khi-phu-tai-tang-ky-luc-0-0-124167.aspx",
+      "publishedISO": "2024-04-29T08:00:00+07:00",
+      "cutoffISO": "2024-04-29T23:59:00+07:00",
       "history": [
-        3.381,
-        3.394,
-        3.404,
-        3.421,
-        3.464,
-        3.538,
-        3.581,
-        3.624,
-        3.701
-      ],
-      "groundTruth": [
-        4.196,
-        4.414,
-        4.343,
-        4.334,
-        4.274,
-        4.196
+        42,
+        44,
+        43,
+        46,
+        49,
+        51,
+        50,
+        52
       ],
       "historyDates": [
-        "Jan 3",
-        "Jan 10",
-        "Jan 17",
-        "Jan 24",
-        "Jan 31",
-        "Feb 7",
-        "Feb 14",
-        "Feb 21",
-        "Feb 28"
+        "Apr 22",
+        "Apr 23",
+        "Apr 24",
+        "Apr 25",
+        "Apr 26",
+        "Apr 27",
+        "Apr 28",
+        "Apr 29"
       ],
       "futureDates": [
-        "Mar 7",
-        "Mar 14",
-        "Mar 21",
-        "Mar 28",
-        "Apr 4",
-        "Apr 11"
+        "Apr 30",
+        "May 1",
+        "May 2",
+        "May 3",
+        "May 4",
+        "May 5",
+        "May 6"
       ],
       "baseline": [
-        3.75,
-        3.8,
-        3.85,
-        3.9,
-        3.95,
-        4.0
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
       ],
       "guided": [
-        4.03,
-        4.25,
-        4.38,
-        4.4,
-        4.33,
-        4.25
+        52,
+        51,
+        48,
+        45,
+        43,
+        42,
+        42
       ],
       "anchors": [
         {
-          "i": 1,
-          "lo": 4.1,
-          "hi": 4.4,
-          "label": "March 14 / $4.10–4.40"
+          "i": 3,
+          "lo": 43,
+          "hi": 48,
+          "label": "May 3 / 43-48 MW"
         },
         {
-          "i": 5,
-          "lo": 4.1,
-          "hi": 4.4,
-          "label": "April 11 / $4.10–4.40"
+          "i": 6,
+          "lo": 40,
+          "hi": 45,
+          "label": "May 6 / 40-45 MW"
         }
       ],
       "range": [
-        3.0,
-        4.9
+        30,
+        70
       ],
       "ticks": [
-        3,
-        3.5,
-        4,
-        4.5
+        30,
+        40,
+        50,
+        60,
+        70
       ],
-      "direction": "A sudden price jump",
-      "context": "The crude-oil report arrives before the March 7 retail observation. Supply risk suggests a jump beyond the recent trend.",
-      "scenario": "Retail gasoline prices rise quickly, remain elevated, then ease as the initial shock moderates.",
-      "action": "Anticipate the jump.\nCompare the timing.",
-      "assumption": "The observed peak arrives earlier than the scenario. Both the jump and the easing phase matter for planning.",
-      "observationSources": [
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
-        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv"
+      "domain": "Energy",
+      "brand": "FPT x E.ON / potential application",
+      "title": "After the heat peak,\ndemand may ease.",
+      "shortTitle": "Electricity demand as heat eases",
+      "source": "EVN / Electricity Regulatory Authority",
+      "published": "29 April 2024 / 08:00",
+      "sourceTitle": "Power system update / April 22-28",
+      "fact": "EVN reported average national consumption of 946.6 million kWh per day and an outlook for easing heat over the following ten days.",
+      "stat": "946.6",
+      "statUnit": "million kWh / day / nationwide",
+      "factSecondary": "Outlook: the heat may ease over the next ten days.",
+      "cutoff": "30 April-6 May 2024 / daily peak load",
+      "metric": "Peak load of a facility cluster",
+      "unit": "MW",
+      "direction": "A weather-driven reversal",
+      "context": "The report combines high recent consumption with an outlook for easing heat. Lower cooling demand can change the direction of a facility-load forecast.",
+      "scenario": "As the heat eases, cooling demand falls and the facility cluster load declines instead of extending its recent upward trend.",
+      "action": "Follow the weather.\nAdjust capacity plans.",
+      "assumption": "The anchors lower the trajectory around May 3 and May 6, aligning it more closely with the ground-truth reference during the easing phase.",
+      "groundTruth": [
+        51.8,
+        50.7,
+        47.7,
+        44.5,
+        42.7,
+        41.6,
+        41.8
       ],
-      "observationDates": [
-        "2022-01-03",
-        "2022-01-10",
-        "2022-01-17",
-        "2022-01-24",
-        "2022-01-31",
-        "2022-02-07",
-        "2022-02-14",
-        "2022-02-21",
-        "2022-02-28",
-        "2022-03-07",
-        "2022-03-14",
-        "2022-03-21",
-        "2022-03-28",
-        "2022-04-04",
-        "2022-04-11"
+      "seriesProvenance": "authored_illustration",
+      "preAnchor": [
+        52.006,
+        51.281,
+        50.93,
+        51.4,
+        45.93,
+        44.93,
+        48.4
       ]
     }
   ],
-  "provenance": "Published observations; authored scenario, anchor and forecast paths. Retrospective examples, not model evaluation or a point-in-time backtest."
+  "provenance": "Event reports are sourced. Operating histories, ground-truth references and forecast paths are illustrative; they are not customer measurements or model evaluation."
 };
