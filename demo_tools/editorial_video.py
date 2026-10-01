@@ -1,42 +1,30 @@
-"""Render the Vietnamese, source-backed ScenarioDiff film in the EaTemp style.
-
-Usage: python demo_tools/editorial_video.py [--preview]
-Public sources and authored simulations are deliberately separate in the data.
-All diffusion animations illustrate mechanics; no model is run here.
+"""English presentation and denoising loops using published observed series.
+Forecast targets and animation are authored; no model checkpoint is evaluated.
 """
 from pathlib import Path
-import csv
-import json
-import math
-import sys
 from functools import lru_cache
-import subprocess
+import csv, json, math, sys, subprocess
 import imageio_ffmpeg
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'assets'
-DATA = json.loads((OUT / 'demo-data.js').read_text(encoding='utf-8').split('window.SCENARIO_DEMO = ',1)[1].rstrip(';\n'))
+DATA = json.loads((OUT/'demo-data.js').read_text(encoding='utf-8').split('window.SCENARIO_DEMO = ',1)[1].rstrip(';\n'))
 CASES = DATA['cases']
 W,H,FPS = 1920,1080,24
-INK='#272727'; MUTED='#58616d'; BLUE='#456486'; PINK='#ad576f'; LINE='#b2bbc7'
-BG = Image.open(OUT/'demo-background.png').convert('RGB').resize((W,H),Image.Resampling.LANCZOS)
-SCENES = [
- {'kind':'intro','duration':9,'caption':'Một thông báo có thể xuất hiện trước khi dữ liệu vận hành thay đổi. ScenarioDiff tổ chức bằng chứng đó thành hướng dẫn cho dự báo.'},
- {'kind':'method','duration':14,'caption':'Historical Context Agent lọc bằng chứng. Scenario Agent mô tả tương lai. Anchor Guidance Agent đặt khoảng neo; mô hình diffusion tạo và hiệu chỉnh quỹ đạo.'},
- {'kind':'source','case':0,'duration':14,'caption':'Bản tin HCDC là dữ liệu thật. Số ca bệnh giúp nhận diện bối cảnh; không được quy đổi trực tiếp thành đơn hàng hoặc lượng thuốc.'},
- {'kind':'scenario','case':0,'duration':15,'caption':'Giả thuyết cho cụm nhà thuốc: nhu cầu vật tư chăm sóc tăng ngắn hạn. Hai khoảng neo là giả định của demo, không phải số liệu HCDC.'},
- {'kind':'forecast','case':0,'duration':16,'caption':'Quan sát đường nền, các quỹ đạo minh họa và hai vùng neo. Bối cảnh giúp người vận hành xem xét phương án bổ sung hàng sớm hơn.'},
- {'kind':'source','case':1,'duration':14,'caption':'Thông báo công bố trước một ngày: hạn chế giao thông từ 17:30 ngày 22/4 đến 01:00 ngày 23/4. Đây là sự kiện có thời gian rõ ràng.'},
- {'kind':'scenario','case':1,'duration':15,'caption':'Ví dụ xét tuyến lân cận còn mở: xe chuyển hướng có thể làm tăng thời gian di chuyển. Các giá trị phút và khoảng neo đều được giả lập.'},
- {'kind':'forecast','case':1,'duration':16,'caption':'Neo tập trung vào đỉnh và giai đoạn hạ nhiệt. Có thể thử đổi giờ giao hàng trước khi sự kiện bắt đầu; đây chưa phải dự báo giao thông thực.'},
- {'kind':'source','case':2,'duration':14,'caption':'EVN báo cáo mức tiêu thụ cao trong tuần 22–28/4, đồng thời nêu triển vọng nắng nóng dịu đi. Bản tin có trước mốc dự báo.'},
- {'kind':'scenario','case':2,'duration':15,'caption':'Kịch bản có thể đảo chiều xu hướng: nhu cầu làm mát giảm. Chuỗi MW của cụm cơ sở được giả lập, tách biệt với số kWh toàn quốc.'},
- {'kind':'forecast','case':2,'duration':16,'caption':'Đường nền kéo dài xu hướng tăng; bối cảnh gợi ý hạ phụ tải. Các quỹ đạo được minh họa quanh khoảng neo, không có tuyên bố về độ chính xác.'},
- {'kind':'outro','duration':12,'caption':'Ba ngành, cùng một quy trình: bằng chứng, kịch bản, điểm neo, dự báo. Mở demo tương tác để kiểm tra nguồn và thay đổi độ mạnh điểm neo.'},
+INK='#272727'; MUTED='#58616d'; BLUE='#456486'; PINK='#ad576f'; GREEN='#287957'; LINE='#b2bbc7'
+BG=Image.open(OUT/'demo-background.png').convert('RGB').resize((W,H),Image.Resampling.LANCZOS)
+SCENES=[
+ dict(kind='intro',duration=9,caption='An event can change the future before that change appears in the historical series.'),
+ dict(kind='method',duration=14,caption='Historical evidence informs a scenario. Sparse anchors identify local regions of interest; diffusion generates the trajectory.'),
 ]
-TOTAL = sum(s['duration'] for s in SCENES)
+for i,c in enumerate(CASES):
+    SCENES.extend([dict(kind='source',case=i,duration=14,caption=c['fact']),
+                   dict(kind='scenario',case=i,duration=15,caption=c['scenario']),
+                   dict(kind='forecast',case=i,duration=16,caption=c['assumption'])])
+SCENES.append(dict(kind='outro',duration=12,caption='Published observations provide the comparison. Scenario and forecast paths illustrate the mechanism, rather than a model evaluation.'))
+TOTAL=sum(s['duration'] for s in SCENES)
 
 @lru_cache(maxsize=100)
 def font(size,kind='sans'):
@@ -74,17 +62,6 @@ def pill(d,xy,label):
     d.rounded_rectangle((x,y,x+ww,y+40),radius=20,outline=INK,width=1)
     txt(d,(x+17,y+7),label,20,'mono')
 
-def common(scene,idx):
-    im=BG.copy();d=ImageDraw.Draw(im)
-    txt(d,(90,43),'ScenarioDiff',28,'serif');star(d,290,61,16)
-    txt(d,(1415,49),'RESEARCH / DEMO VI',20,'mono')
-    rule(d,94)
-    rule(d,949,color=LINE)
-    wrap(d,(90,969),scene['caption'],1650,23,fill=INK,leading=1.4)
-    txt(d,(90,1045),'SỰ KIỆN THẬT · CHUỖI VẬN HÀNH VÀ DỰ BÁO GIẢ LẬP',16,'mono',MUTED)
-    txt(d,(1700,1041),f'{idx+1:02d} / {len(SCENES):02d}',18,'mono',MUTED)
-    return im,d
-
 def path(d,points,fill=INK,width=4,progress=1,dashed=False):
     count=(len(points)-1)*max(0,min(progress,1));whole=int(count)
     pp=points[:whole+1]
@@ -99,204 +76,213 @@ def path(d,points,fill=INK,width=4,progress=1,dashed=False):
                 d.line((a[0]+(b[0]-a[0])*u,a[1]+(b[1]-a[1])*u,a[0]+(b[0]-a[0])*v,a[1]+(b[1]-a[1])*v),fill=fill,width=width)
     else:d.line(pp,fill=fill,width=width,joint='curve')
 
-def trajectory(c,amount=.7):
-    sign=1 if c['id']=='energy' else -1
-    result=[]
-    for i,v in enumerate(c['guided']):
-        local=max(math.exp(-.5*((i-a['i'])/.8)**2) for a in c['anchors'])
-        result.append(v+sign*(c['range'][1]-c['range'][0])*.18*local*(1-amount))
-    return result
 
-def chart(d,c,box,stage=0,progress=1,sampling=1,show_anchors=True,anchor_strength=.7):
+def common(scene,idx):
+    im=BG.copy();d=ImageDraw.Draw(im)
+    txt(d,(90,43),'ScenarioDiff',28,'serif');star(d,290,61,16)
+    txt(d,(1430,49),'RESEARCH / DEMO',20,'mono');rule(d,94)
+    rule(d,949,color=LINE)
+    wrap(d,(90,970),scene['caption'],1660,25,leading=1.35)
+    txt(d,(90,1045),'HEALTHCARE / MOBILITY / ENERGY',16,'mono',MUTED)
+    txt(d,(1710,1043),f'{idx+1:02d} / {len(SCENES):02d}',18,'mono',MUTED)
+    return im,d
+
+def trajectory(c,amount=1):
+    # Local, authored anchor correction. Ground truth is never read here.
+    sign=1 if c['id']=='traffic' else -1
+    span=c['range'][1]-c['range'][0]
+    return [v+sign*span*.12*max(math.exp(-.5*((i-a['i'])/.8)**2) for a in c['anchors'])*(1-amount)
+            for i,v in enumerate(c['guided'])]
+
+def chart(d,c,box,stage=4,sampling=1,anchor_strength=1,truth=False):
     x0,y0,x1,y1=box
     d.rounded_rectangle(box,radius=5,fill='#f7f8fb',outline='#cad0d9',width=1)
-    txt(d,(x0+30,y0+20),c['metric'],25,'serif')
-    txt(d,(x0+30,y0+60),c['unit']+' · toàn bộ đường cong giả lập',17,'sans',MUTED)
-    left,top,right,bottom=x0+70,y0+123,x1-35,y1-120
-    origin=left+(right-left)*.42
+    txt(d,(x0+30,y0+20),c['metric'],27,'serif')
+    txt(d,(x0+30,y0+63),c['unit'],19,fill=MUTED)
+    left,top,right,bottom=x0+83,y0+139,x1-44,y1-133
+    origin=left+(right-left)*.43
     d.rectangle((origin,top,right,bottom),fill='#ecedf5')
     lo,hi=c['range'];yy=lambda v:bottom-(v-lo)/(hi-lo)*(bottom-top)
     hx=lambda i:left+(origin-left)*i/(len(c['history'])-1)
     fx=lambda i:origin+(right-origin)*(i+1)/len(c['baseline'])
     for v in c['ticks']:
         d.line((left,yy(v),right,yy(v)),fill='#dce0e7',width=1)
-        txt(d,(left-55,yy(v)-10),str(v),16,'mono',MUTED)
+        txt(d,(left-64,yy(v)-12),f'{v:g}',19,'mono',MUTED)
     d.line((origin,top,origin,bottom),fill='#a3aeba',width=2)
     hist=[(hx(i),yy(v)) for i,v in enumerate(c['history'])]
-    base=[hist[-1]]+[(fx(i),yy(v)) for i,v in enumerate(c['baseline'])]
-    values=trajectory(c,anchor_strength)
-    guided=[hist[-1]]+[(fx(i),yy(v)) for i,v in enumerate(values)]
     path(d,hist,INK,4)
     for x,y in hist:d.ellipse((x-4,y-4,x+4,y+4),fill=INK)
-    path(d,base,'#8f99a7',3,dashed=True)
-    for i in [0,3,7]:txt(d,(hx(i)-17,bottom+12),c['historyDates'][i],16,'mono',MUTED)
-    indexes=sorted(set([0,len(c['futureDates'])//2,len(c['futureDates'])-1]))
-    for i in indexes:txt(d,(fx(i)-22,bottom+12),c['futureDates'][i],16,'mono',MUTED)
-    txt(d,(left,top-32),'LỊCH SỬ GIẢ LẬP',16,'mono',MUTED)
-    txt(d,(origin+20,top-32),'TƯƠNG LAI MINH HỌA',16,'mono',BLUE)
-    if stage>=3 and show_anchors:
+    path(d,[hist[-1]]+[(fx(i),yy(v)) for i,v in enumerate(c['baseline'])],'#929ba7',3,dashed=True)
+    for i in sorted(set([0,(len(hist)-1)//2,len(hist)-1])):
+        label=c['historyDates'][i];width=d.textlength(label,font=font(18))
+        txt(d,(hx(i)-width/2,bottom+18),label,18,fill=MUTED)
+    for i in sorted(set([len(c['futureDates'])//2,len(c['futureDates'])-1])):
+        label=c['futureDates'][i];width=d.textlength(label,font=font(18))
+        txt(d,(fx(i)-width/2,bottom+18),label,18,fill=MUTED)
+    txt(d,(left,top-34),'OBSERVED HISTORY',17,'mono',MUTED)
+    txt(d,(origin+18,top-34),'EVENT WINDOW',17,'mono',BLUE)
+    if stage>=3 and anchor_strength>0:
         for a in c['anchors']:
             x=fx(a['i']);d.rounded_rectangle((x-18,yy(a['hi']),x+18,yy(a['lo'])),radius=6,fill='#ebccda',outline=PINK,width=2)
     if stage>=4:
-        for j in range(6):
-            pp=[hist[-1]]
-            for i,v in enumerate(values):
-                noise=(hi-lo)*(.16*(1-sampling)+.018)*math.sin((i+1)*(j+1)*1.47+j)
-                vv=v+noise
-                pp.append((fx(i),yy(vv)))
-            path(d,pp,'#b7c4d7',2,progress)
-        mean=[hist[-1]]+[(fx(i),yy(v+(hi-lo)*.11*(1-sampling)*math.sin((i+1)*2.1))) for i,v in enumerate(values)]
-        path(d,mean,BLUE,5,progress)
-    elif stage==2:
-        # Only qualitative direction: no numeric forecast appears at this stage.
-        txt(d,(origin+32,top+45),'KỊCH BẢN',18,'mono',BLUE)
-        wrap(d,(origin+32,top+85),'Tăng ngắn hạn' if c['id']=='pharmacy' else 'Đỉnh theo giờ' if c['id']=='traffic' else 'Giảm dần',right-origin-60,31,'serif',BLUE)
-    legendY=y1-50
-    for x,label,color in [(x0+30,'Lịch sử',INK),(x0+220,'Đường nền','#8f99a7'),(x0+465,'Có bối cảnh',BLUE),(x0+740,'Neo',PINK)]:
-        d.line((x,legendY+10,x+30,legendY+10),fill=color,width=4);txt(d,(x+40,legendY),label,18,fill=MUTED)
-
-def source_card(d,c,box):
-    x,y,x1,y1=box;d.rectangle(box,fill='#f9f9fc',outline='#adb6c3',width=1)
-    pill(d,(x+30,y+28),'BẢN TIN THẬT')
-    txt(d,(x+30,y+88),c['published'],20,'mono',MUTED)
-    cy=wrap(d,(x+30,y+138),c['sourceTitle'],x1-x-60,36,'serif',leading=1.25)
-    rule(d,cy+20,x+30,x1-30,LINE)
-    txt(d,(x+30,cy+45),c['stat'],85,'serif')
-    cy=wrap(d,(x+30,cy+151),c['statUnit'],x1-x-60,22,fill=MUTED)
-    wrap(d,(x+30,cy+23),c['factSecondary'],x1-x-60,25,fill=BLUE)
-    wrap(d,(x+30,y1-70),c['source'],x1-x-60,18,'mono',MUTED)
+        vals=trajectory(c,anchor_strength)
+        for j in range(5):
+            pts=[hist[-1]]
+            for i,v in enumerate(vals):
+                noise=(hi-lo)*(.16*(1-sampling)+.012)*math.sin((i+1)*(j+1)*1.47+j)
+                pts.append((fx(i),yy(v+noise)))
+            path(d,pts,'#b7c4d7',2)
+        path(d,[hist[-1]]+[(fx(i),yy(v+(hi-lo)*.12*(1-sampling)*math.sin((i+1)*2.1))) for i,v in enumerate(vals)],BLUE,5)
+    if truth:
+        gt=[hist[-1]]+[(fx(i),yy(v)) for i,v in enumerate(c['groundTruth'])]
+        path(d,gt,GREEN,4,dashed=True)
+        for x,y in gt[1:]:d.ellipse((x-5,y-5,x+5,y+5),fill=GREEN)
+    labels=[('History',INK),('Baseline','#929ba7'),('Forecast',BLUE),('Ground truth',GREEN),('Anchors',PINK)]
+    for i,(label,color) in enumerate(labels):
+        x=x0+27+i*(x1-x0-45)/5;y=y1-48
+        d.line((x,y+9,x+24,y+9),fill=color,width=4)
+        txt(d,(x+32,y-3),label,17,fill=MUTED)
 
 def heading(d,kicker,title):
-    txt(d,(90,130),kicker.upper(),21,'mono',MUTED)
-    wrap(d,(90,178),title,1720,64,'serif',leading=1.1)
+    txt(d,(90,133),kicker.upper(),21,'mono',MUTED)
+    wrap(d,(90,182),title,1720,65,'serif',leading=1.1)
 
 @lru_cache(maxsize=24)
 def static_scene(idx):
-    s=SCENES[idx]; im,d=common(s,idx);kind=s['kind']
+    s=SCENES[idx];im,d=common(s,idx);kind=s['kind']
     if kind=='intro':
-        star(d,1580,268,102);star(d,1720,183,38)
-        txt(d,(90,164),'TỪ THÔNG BÁO ĐẾN DỰ BÁO',25,'mono',MUTED)
-        wrap(d,(90,268),'Đọc bối cảnh.\nThấy một tương lai khác.',1600,109,'serif',leading=1.12)
-        rule(d,573)
-        txt(d,(95,620),'03',93,'serif');txt(d,(275,635),'sự kiện thật tại Việt Nam',41,'serif')
-        txt(d,(277,704),'Y TẾ  /  GIAO THÔNG  /  NĂNG LƯỢNG',24,'mono',MUTED)
-        wrap(d,(95,819),'Một minh họa bằng tiếng Việt về cơ chế ScenarioDiff.',1500,32,fill=MUTED)
+        star(d,1630,259,102);star(d,1770,176,38)
+        txt(d,(90,164),'FROM EVENTS TO FORECASTS',25,'mono',MUTED)
+        wrap(d,(90,270),'Read the context.\nSee a different future.',1510,112,'serif',leading=1.16)
+        rule(d,577)
+        txt(d,(95,635),'03',98,'serif');txt(d,(290,648),'events. Three patterns of change.',47,'serif')
+        txt(d,(290,729),'HEALTHCARE / MOBILITY / ENERGY',25,'mono',MUTED)
+        txt(d,(95,852),'Published observations. Scenario-guided trajectories.',30,fill=MUTED)
     elif kind=='method':
-        heading(d,'Cơ chế trong bài báo','Bằng chứng có vai trò ở từng bước.')
-        names=['Lọc bằng chứng','Tạo kịch bản','Đặt khoảng neo','Tạo quỹ đạo']
+        heading(d,'The mechanism','From evidence to a future trajectory.')
+        labels=['Read the past','Describe the future','Locate the change','Generate & refine']
         agents=['Historical Context Agent','Scenario Agent','Anchor Guidance Agent','Diffusion + Anchor Blending']
-        desc=['Đọc tài liệu đã có tại mốc dự báo.','Mô tả hướng biến động bằng ngôn ngữ.','Chọn thời điểm và khoảng giá trị cần chú ý.','Sinh các khả năng rồi hiệu chỉnh cục bộ.']
+        desc=['Extract stepwise evidence from historical documents.','Build a qualitative scenario for the event window.','Specify sparse value intervals at relevant future steps.','Denoise candidate paths and refine anchor regions.']
         for i in range(4):
-            x=90+i*445
-            d.ellipse((x,380,x+76,456),outline=INK,width=1);txt(d,(x+23,393),str(i+1),32,'serif')
+            x=90+i*445;d.ellipse((x,380,x+76,456),outline=INK,width=1)
+            txt(d,(x+23,393),str(i+1),32,'serif')
             if i<3:d.line((x+76,419,x+425,419),fill=INK,width=1)
-            txt(d,(x,505),names[i],35,'serif')
-            wrap(d,(x,566),agents[i],382,20,'mono',BLUE)
-            wrap(d,(x,654),desc[i],368,28)
-        rule(d,802)
-        txt(d,(90,834),'Trong demo: diễn giải được soạn sẵn; không chạy LLM hoặc checkpoint.',26,fill=MUTED)
+            txt(d,(x,505),labels[i],32,'serif')
+            wrap(d,(x,573),agents[i],375,21,fill=BLUE)
+            wrap(d,(x,675),desc[i],365,29)
+        rule(d,834)
+        txt(d,(90,866),'History grounds the context. Anchors guide selected regions.',28,fill=MUTED)
     elif kind in ['source','scenario','forecast']:
         c=CASES[s['case']]
-        suffix={'source':'Bằng chứng có trước dự báo','scenario':'Từ nhận định đến khoảng neo','forecast':'Quan sát tác động lên quỹ đạo'}[kind]
+        suffix={'source':'An event changes the context.','scenario':'A scenario becomes local guidance.','forecast':'From noise to an anchored trajectory.'}[kind]
         heading(d,c['number']+' / '+c['domain'],suffix)
         if kind=='source':
-            source_card(d,c,(90,310,790,890))
-            txt(d,(865,322),'MỐC DỰ BÁO',21,'mono',MUTED)
-            txt(d,(865,367),c['cutoff'],41,'serif')
-            rule(d,433,865,1830,LINE)
-            wrap(d,(865,474),c['title'],930,59,'serif',leading=1.16)
-            wrap(d,(865,650),c['context'],900,29,leading=1.5)
-            pill(d,(865,832),'NGUỒN CÓ TRƯỚC MỐC DỰ BÁO')
+            d.rectangle((90,310,790,900),fill='#f9f9fc',outline='#adb6c3',width=1)
+            pill(d,(120,339),'EVENT REPORT');txt(d,(120,399),c['published'],22,fill=MUTED)
+            cy=wrap(d,(120,450),c['sourceTitle'],610,41,'serif',leading=1.23)
+            rule(d,cy+19,120,760,LINE)
+            txt(d,(120,cy+43),c['stat'],86,'serif')
+            wrap(d,(120,cy+150),c['statUnit'],610,25,fill=MUTED)
+            txt(d,(120,851),c['source'],22,fill=BLUE)
+            txt(d,(865,327),c['brand'].upper(),21,fill=MUTED)
+            wrap(d,(865,390),c['title'],910,68,'serif',leading=1.15)
+            wrap(d,(865,614),c['context'],895,31,leading=1.5)
+            pill(d,(865,844),c['cutoff'])
         elif kind=='scenario':
-            txt(d,(90,325),'SCENARIO AGENT / MINH HỌA',19,'mono',MUTED)
-            y=wrap(d,(90,368),c['scenario'],610,34,'serif',leading=1.35)
-            rule(d,y+29,90,720,LINE)
-            txt(d,(90,y+58),'ANCHOR GUIDANCE / MINH HỌA',19,'mono',MUTED)
-            for i,a in enumerate(c['anchors']):
-                txt(d,(90,y+108+i*66),a['label'],31,'serif',PINK)
-            wrap(d,(90,813),'Các khoảng neo là giả định của demo, không phải số đo từ bản tin.',605,22,fill=MUTED)
-            chart(d,c,(790,310,1830,890),stage=3)
+            txt(d,(90,332),'SCENARIO',21,'mono',MUTED)
+            y=wrap(d,(90,384),c['scenario'],610,36,'serif',leading=1.3)
+            rule(d,y+36,90,715,LINE)
+            txt(d,(90,y+65),'SPARSE ANCHOR INTERVALS',20,'mono',MUTED)
+            for i,a in enumerate(c['anchors']):txt(d,(90,y+116+i*62),a['label'],28,'serif',PINK)
+            chart(d,c,(790,310,1830,900),stage=3)
         else:
-            txt(d,(90,322),'BỐI CẢNH → ĐIỂM NEO → QUỸ ĐẠO',18,'mono',MUTED)
-            wrap(d,(90,374),c['action'],610,44,'serif',leading=1.24)
-            rule(d,635,90,715,LINE)
-            wrap(d,(90,667),c['assumption'],610,23,fill=MUTED,leading=1.5)
-            txt(d,(90,863),'MÔ PHỎNG CƠ CHẾ / KHÔNG CHẤM ĐỘ CHÍNH XÁC',16,'mono',BLUE)
-            chart(d,c,(790,310,1830,890),stage=3)
+            txt(d,(90,332),'CONTEXT / ANCHORS / TRAJECTORY',19,fill=MUTED)
+            wrap(d,(90,393),c['action'],610,52,'serif',leading=1.25)
+            rule(d,623,90,715,LINE)
+            wrap(d,(90,668),'First watch the forecast settle. Then compare it with the green observed series.',600,30,leading=1.45)
+            txt(d,(90,858),c['brand'],20,fill=MUTED)
     else:
-        heading(d,'Từ nghiên cứu đến ứng dụng','Cùng một quy trình. Ba kiểu tác động.')
-        for i,(big,small) in enumerate([('Tăng ngắn hạn','Y tế · chuẩn bị tồn kho'),('Đỉnh cục bộ','Giao thông · điều phối theo giờ'),('Đảo chiều','Năng lượng · xem xét lịch vận hành')]):
-            x=90+i*580;txt(d,(x,365),f'0{i+1}',72,'serif',BLUE)
-            txt(d,(x,485),big,45,'serif');wrap(d,(x,558),small,500,28)
-        rule(d,693)
-        txt(d,(90,748),'Khám phá nguồn & thử từng bước',55,'serif')
-        txt(d,(90,838),'katd2707.github.io/ScenarioDiff-demo',28,'mono',BLUE)
-        star(d,1760,811,53)
+        heading(d,'Three patterns of change','Context gives the forecast a direction.')
+        for i,c in enumerate(CASES):
+            x=90+i*580;txt(d,(x,368),c['number'],78,'serif',BLUE)
+            wrap(d,(x,497),c['direction'],505,43,'serif',leading=1.2)
+            txt(d,(x,635),c['domain'].upper(),23,fill=MUTED)
+        rule(d,720)
+        txt(d,(90,772),'Explore the event. Watch the trajectory. Compare the outcome.',43,'serif')
+        txt(d,(90,867),'katd2707.github.io/ScenarioDiff-demo',27,fill=BLUE)
     return im
+
+def phase(t):
+    return '01 / Initial noise' if t<3 else '02 / Context-conditioned denoising' if t<8 else '03 / Local anchor guidance' if t<12 else '04 / Compare with ground truth'
+
+def animate_chart(d,c,box,t):
+    chart(d,c,box,sampling=min(1,t/7),anchor_strength=max(0,min(1,(t-8)/4)),truth=t>=12)
 
 def frame(idx,local,global_t):
     im=static_scene(idx).copy();d=ImageDraw.Draw(im);s=SCENES[idx]
-    u=local/s['duration']
     if s['kind']=='forecast':
-        c=CASES[s['case']];sampling=min(1,local/7)
-        amount=.7*max(0,min(1,(local-8)/4))
-        chart(d,c,(790,310,1830,890),stage=4,progress=min(1,local/3),sampling=sampling,show_anchors=local>=8,anchor_strength=amount)
-        phase='01 / Khởi tạo nhiễu' if local<3 else '02 / Khử nhiễu có bối cảnh' if local<8 else '03 / Hiệu chỉnh quanh neo'
-        txt(d,(810,906),phase+' · hoạt ảnh minh họa',20,'sans',BLUE)
+        animate_chart(d,CASES[s['case']],(790,310,1830,900),local)
+        txt(d,(810,913),phase(local),19,fill=BLUE)
     elif s['kind']=='method':
         selected=min(3,int(local/3.5));x=90+selected*445
         d.ellipse((x,380,x+76,456),fill=INK);txt(d,(x+23,393),str(selected+1),32,'serif','#fff')
     d.rectangle((0,H-5,int(W*global_t/TOTAL),H),fill=BLUE)
-    # Short fade-in per chapter, while keeping the text stable for reading.
-    if local<.35:
-        im=Image.blend(BG,im,local/.35)
+    if local<.35:im=Image.blend(BG,im,local/.35)
     return im
 
-def stamp(t):
-    return f'{int(t)//3600:02d}:{int(t)//60%60:02d}:{int(t)%60:02d}.000'
+def loop_frame(c,t):
+    im=Image.new('RGB',(1120,780),'#f7f8fb');d=ImageDraw.Draw(im)
+    animate_chart(d,c,(0,0,1120,705),t)
+    txt(d,(28,730),phase(t),24,fill=BLUE)
+    return im
+
+def stamp(t):return f'{int(t)//3600:02d}:{int(t)//60%60:02d}:{int(t)%60:02d}.000'
 
 def supporting_files():
-    t=0;vtt=['WEBVTT',''];transcript=['# ScenarioDiff — Demo tiếng Việt','', 'Sự kiện thật; chuỗi vận hành, kịch bản, neo và quỹ đạo giả lập. Không chạy mô hình.','']
-    chapters=[]
+    t=0;vtt=['WEBVTT',''];transcript=['# ScenarioDiff — English presentation','','History and ground truth are published observations. Scenario, anchor and forecast paths are authored illustrations, not model evaluation or a point-in-time backtest.',''];chapters=[]
     for i,s in enumerate(SCENES):
         vtt.extend([str(i+1),f'{stamp(t)} --> {stamp(t+s["duration"])}',s['caption'],''])
         title=s['kind'] if 'case' not in s else CASES[s['case']]['domain']+' / '+s['kind']
-        chapters.append({'start':t,'title':title});transcript.extend([f'## {stamp(t)} — {title}',s['caption'],'']);t+=s['duration']
-    (OUT/'demo-vi.vtt').write_text('\n'.join(vtt),encoding='utf-8')
-    (OUT/'demo-transcript-vi.md').write_text('\n'.join(transcript),encoding='utf-8')
-    (OUT/'demo-chapters.json').write_text(json.dumps({'duration':TOTAL,'chapters':chapters},ensure_ascii=False,indent=2),encoding='utf-8')
+        chapters.append(dict(start=t,title=title));transcript.extend([f'## {stamp(t)} — {title}',s['caption'],'']);t+=s['duration']
+    (OUT/'demo-en.vtt').write_text('\n'.join(vtt),encoding='utf-8')
+    (OUT/'demo-transcript-en.md').write_text('\n'.join(transcript),encoding='utf-8')
+    (OUT/'demo-chapters.json').write_text(json.dumps(dict(duration=TOTAL,chapters=chapters),indent=2),encoding='utf-8')
     with (OUT/'demo-series.csv').open('w',newline='',encoding='utf-8-sig') as f:
-        writer=csv.writer(f);writer.writerow(['case','period','series','value','unit','provenance'])
+        writer=csv.writer(f);writer.writerow(['case','period','series','value','unit','provenance','source_url'])
         for c in CASES:
-            for name,dates in [('history',c['historyDates']),('baseline',c['futureDates']),('guided',c['futureDates'])]:
-                writer.writerows([c['id'],date,name,v,c['unit'],'authored_simulation'] for date,v in zip(dates,c[name]))
-            for name,amount in [('scenario_before_anchors',0),('default_forecast_70_percent',.7)]:
-                writer.writerows([c['id'],date,name,round(v,3),c['unit'],'authored_simulation'] for date,v in zip(c['futureDates'],trajectory(c,amount)))
+            n=len(c['history'])
+            for name,offset in [('history',0),('groundTruth',n)]:
+                for i,v in enumerate(c[name]):writer.writerow([c['id'],c['observationDates'][offset+i],name,v,c['unit'],'published_observation',c['observationSources'][offset+i]])
+            for name in ['baseline','guided']:
+                for i,v in enumerate(c[name]):writer.writerow([c['id'],c['observationDates'][n+i],name,v,c['unit'],'authored_illustration',''])
 
 def render():
-    supporting_files()
-    frame(0,5,5).save(OUT/'poster.jpg',quality=95)
-    # Still previews are part of the reviewable demo, not a separate working folder.
-    preview=Image.new('RGB',(1920,1620),'white')
-    for i,idx in enumerate([0,1,2,3,6,10]):
-        scene=frame(idx,8,8);scene.thumbnail((960,540));preview.paste(scene,((i%2)*960,(i//2)*540))
-    preview.save(ROOT/'_archive'/'video-review.jpg',quality=92)
+    supporting_files();frame(0,5,5).save(OUT/'poster.jpg',quality=95)
+    preview=Image.new('RGB',(1920,2160),'white')
+    for i,idx in enumerate([0,1,2,3,4,7,10,11]):
+        scene=frame(idx,14 if SCENES[idx]['kind']=='forecast' else 8,8);scene.thumbnail((960,540));preview.paste(scene,((i%2)*960,(i//2)*540))
+    preview.save(ROOT/'_archive'/'video-review.jpg',quality=93)
     for i,c in enumerate(CASES):
         frame([4,7,10][i],14,14).save(OUT/(c['id']+'-poster.jpg'),quality=93)
-    if '--preview' in sys.argv:
-        print('Preview and supporting files ready.',flush=True);return
+        loop_frame(c,15).save(OUT/(c['id']+'-denoising.jpg'),quality=95)
+    if '--preview' in sys.argv:print('English storyboard ready.',flush=True);return
     ffmpeg=imageio_ffmpeg.get_ffmpeg_exe()
-    writer=imageio_ffmpeg.write_frames(str(OUT/'scenariodiff-demo.mp4'),(W,H),fps=FPS,codec='libx264',pix_fmt_in='rgb24',pix_fmt_out='yuv420p',quality=8,macro_block_size=1,output_params=['-preset','fast','-crf','20','-movflags','+faststart'])
+    writer=imageio_ffmpeg.write_frames(str(OUT/'scenariodiff-demo.mp4'),(W,H),fps=FPS,codec='libx264',pix_fmt_in='rgb24',pix_fmt_out='yuv420p',macro_block_size=1,output_params=['-preset','fast','-crf','20','-movflags','+faststart'])
     writer.send(None);global_t=0
     try:
         for idx,s in enumerate(SCENES):
-            for f in range(s['duration']*FPS):
-                writer.send(np.asarray(frame(idx,f/FPS,global_t+f/FPS)))
-            global_t+=s['duration'];print(f'Chapter {idx+1}/{len(SCENES)} rendered ({global_t}s)',flush=True)
+            for f in range(s['duration']*FPS):writer.send(np.asarray(frame(idx,f/FPS,global_t+f/FPS)))
+            global_t+=s['duration'];print(f'Chapter {idx+1}/12 rendered ({global_t}s)',flush=True)
     finally:writer.close()
-    # Reuse the informative scenario + forecast sequences as short, captioned loops.
     for c,start in zip(CASES,[37,82,127]):
         subprocess.run([ffmpeg,'-y','-ss',str(start),'-i',str(OUT/'scenariodiff-demo.mp4'),'-t','31','-an','-vf','scale=1280:720','-c:v','libx264','-crf','22','-preset','fast','-movflags','+faststart',str(OUT/(c['id']+'-loop.mp4'))],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
-    print(f'Completed {TOTAL}s film and three 31s examples.',flush=True)
+        writer=imageio_ffmpeg.write_frames(str(OUT/(c['id']+'-denoising.mp4')),(1120,780),fps=12,codec='libx264',pix_fmt_in='rgb24',pix_fmt_out='yuv420p',macro_block_size=1,output_params=['-preset','fast','-crf','20','-movflags','+faststart'])
+        writer.send(None)
+        try:
+            for f in range(16*12):writer.send(np.asarray(loop_frame(c,f/12)))
+        finally:writer.close()
+        subprocess.run([ffmpeg,'-y','-i',str(OUT/(c['id']+'-denoising.mp4')),'-filter_complex','fps=8,scale=672:-1:flags=lanczos,split[a][b];[a]palettegen=stats_mode=diff[p];[b][p]paletteuse=dither=bayer','-loop','0',str(OUT/(c['id']+'-denoising.gif'))],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+        print('Rendered loops: '+c['id'],flush=True)
+    print('English film, clips, MP4 loops and GIFs ready.',flush=True)
 
 if __name__=='__main__':render()

@@ -1,43 +1,23 @@
-    <section id="video" class="editorial-demo demo-film" lang="vi">
+    <section id="video" class="editorial-demo demo-film" lang="en">
       <div class="demo-container">
-        <p class="demo-eyebrow">SCENARIODIFF / PHIM MINH HỌA</p>
-        <div class="demo-section-heading"><h2>Khi một bản tin<br>thay đổi dự báo.</h2><p>Ba sự kiện có thật tại Việt Nam.<br>Theo dõi cách bằng chứng trở thành kịch bản, điểm neo và một đường dự báo khác.</p></div>
+        <p class="demo-eyebrow">SCENARIODIFF / THE FILM</p>
+        <div class="demo-section-heading"><h2>When the news<br>changes the forecast.</h2><p>From an event report to a scenario, sparse anchors and a future trajectory. Follow three stories in healthcare, mobility and energy.</p></div>
         <figure class="presentation-film">
-          <video id="presentation-video" controls playsinline preload="metadata" poster="assets/poster.jpg" aria-label="Phim minh họa ScenarioDiff bằng tiếng Việt"><source src="assets/scenariodiff-demo.mp4" type="video/mp4"><track kind="captions" src="assets/demo-vi.vtt" srclang="vi" label="Tiếng Việt">Trình duyệt không hỗ trợ video. <a href="assets/scenariodiff-demo.mp4">Tải video MP4</a>.</video>
-          <figcaption><span>02:50 / 1080p / diễn giải bằng chữ</span><span>Sự kiện thật · dữ liệu vận hành và dự báo giả lập</span></figcaption>
+          <video id="presentation-video" controls playsinline preload="metadata" poster="assets/poster.jpg" aria-label="ScenarioDiff presentation in English"><source src="assets/scenariodiff-demo.mp4" type="video/mp4"><track kind="captions" src="assets/demo-en.vtt" srclang="en" label="English">Download the <a href="assets/scenariodiff-demo.mp4">presentation video</a>.</video>
+          <figcaption><span>02:50 / 1080p / English on-screen narration</span><span>Healthcare &middot; Mobility &middot; Energy</span></figcaption>
         </figure>
-        <nav class="film-chapters" aria-label="Chương video"><button type="button" data-seek="0"><span>00:00</span> Mở đầu</button><button type="button" data-seek="9"><span>00:09</span> Cơ chế</button><button type="button" data-seek="23"><span>00:23</span> Y tế</button><button type="button" data-seek="68"><span>01:08</span> Giao thông</button><button type="button" data-seek="113"><span>01:53</span> Năng lượng</button></nav>
-        <div class="demo-resource-links"><a href="assets/scenariodiff-demo.mp4" download>Tải phim MP4 ↗</a><a href="assets/demo-transcript-vi.md" download>Đọc lời dẫn ↗</a><a href="#demo-sources">Nguồn sự kiện ↓</a></div>
+        <nav class="film-chapters" aria-label="Video chapters"><button type="button" data-seek="0"><span>00:00</span> Opening</button><button type="button" data-seek="9"><span>00:09</span> The mechanism</button><button type="button" data-seek="23"><span>00:23</span> Healthcare</button><button type="button" data-seek="68"><span>01:08</span> Mobility</button><button type="button" data-seek="113"><span>01:53</span> Energy</button></nav>
+        <div class="demo-resource-links"><a href="assets/scenariodiff-demo.mp4" download>Download film &#8599;</a><a href="assets/demo-transcript-en.md" download>Read transcript &#8599;</a></div>
       </div>
     </section>
 
-    <section id="examples" class="editorial-demo demo-examples" lang="vi">
+    <section id="examples" class="editorial-demo demo-examples" lang="en">
       <div class="demo-container">
-        <p class="demo-eyebrow">03 SỰ KIỆN / 03 KIỂU TÁC ĐỘNG</p>
-        <div class="demo-section-heading"><h2>Bối cảnh thật.<br>Tình huống cụ thể.</h2><p>Các bản tin lưu trữ từ 2024–2025 có ngày công bố và nguồn kiểm tra được. Tác động kinh doanh dưới đây là giả thuyết minh họa.</p></div>
+        <p class="demo-eyebrow">03 EVENTS / 03 PATTERNS OF CHANGE</p>
+        <div class="demo-section-heading"><h2>Watch the forecast<br>take shape.</h2><p>Noise becomes a trajectory. Anchors guide local regions. The green ground-truth line reveals what was subsequently observed.</p></div>
         <div class="event-examples" id="event-examples"></div>
+        <p class="provenance-note">History and ground truth are published observations. Scenario, anchor and forecast paths illustrate the method; these retrospective examples are not model evaluation. <a href="assets/demo-series.csv" download>Data CSV</a> &middot; <a href="assets/demo-sources.json" download>Source records</a></p>
       </div>
     </section>
 
-    <section id="interactive" class="editorial-demo demo-lab" lang="vi">
-      <div class="demo-container">
-        <p class="demo-eyebrow">PHÒNG DEMO / TƯƠNG TÁC</p>
-        <div class="demo-section-heading"><h2>Theo dõi<br>từng quyết định.</h2><p>Chọn tình huống, đi qua năm bước, rồi thử thay đổi độ mạnh của điểm neo để quan sát tác động lên quỹ đạo.</p></div>
-        <div class="case-tabs" role="tablist" aria-label="Tình huống minh họa"><button class="case-tab active" type="button" role="tab" id="tab-pharmacy" aria-controls="case-panel" aria-selected="true" data-case="pharmacy">01 / Y tế</button><button class="case-tab" type="button" role="tab" id="tab-traffic" aria-controls="case-panel" aria-selected="false" tabindex="-1" data-case="traffic">02 / Giao thông</button><button class="case-tab" type="button" role="tab" id="tab-energy" aria-controls="case-panel" aria-selected="false" tabindex="-1" data-case="energy">03 / Năng lượng</button></div>
-        <div id="case-panel" role="tabpanel" aria-labelledby="tab-pharmacy" class="case-content">
-          <header class="lab-case-header"><div><p class="demo-eyebrow" id="case-kicker"></p><h3 id="case-title"></h3></div><p class="forecast-cutoff">Mốc dự báo<strong id="case-cutoff"></strong><span id="case-period"></span></p></header>
-          <div class="lab-toolbar"><div class="step-controls" role="group" aria-label="Bước minh họa"><button type="button" class="step-button active" data-step="0" aria-pressed="true"><i>01</i> Lịch sử</button><button type="button" class="step-button" data-step="1" aria-pressed="false"><i>02</i> Bằng chứng</button><button type="button" class="step-button" data-step="2" aria-pressed="false"><i>03</i> Kịch bản</button><button type="button" class="step-button" data-step="3" aria-pressed="false"><i>04</i> Điểm neo</button><button type="button" class="step-button" data-step="4" aria-pressed="false"><i>05</i> Dự báo</button></div><button type="button" id="auto-demo" class="text-button" aria-pressed="false">▶ Tự chạy</button></div>
-          <div class="lab-grid">
-            <aside class="lab-evidence" aria-label="Nguồn bằng chứng"><div class="source-tag">Bản tin thật</div><time id="source-date"></time><h4 id="source-title"></h4><div class="source-stat" id="source-stat"></div><p class="source-stat-unit" id="source-stat-unit"></p><p class="source-fact" id="source-fact"></p><a id="source-link" target="_blank" rel="noopener noreferrer"></a><p class="source-timing">✓ Đã công bố trước mốc dự báo</p></aside>
-            <div class="lab-chart-panel"><div class="lab-chart-top"><div><h4 id="chart-label"></h4><p id="chart-unit"></p></div><span class="simulation-label">Chuỗi giả lập</span></div><div class="chart-scroll" tabindex="0" role="region" aria-label="Biểu đồ dự báo minh họa; cuộn ngang trên màn hình nhỏ"><svg id="demo-chart" viewBox="0 0 920 430" role="img" aria-label="Biểu đồ minh họa"></svg></div><div class="chart-legend"><span><i class="legend-history"></i> Lịch sử giả lập</span><span><i class="legend-baseline"></i> Đường nền</span><span><i class="legend-guided"></i> Có bối cảnh</span><span><i class="legend-anchor"></i> Khoảng neo</span></div><p class="chart-explanation" id="chart-explanation"></p><div class="forecast-controls"><label class="context-toggle"><input type="checkbox" id="show-context" checked> Hiện đường có bối cảnh</label><label class="anchor-slider" for="anchor-strength">Độ mạnh điểm neo <output id="anchor-value" for="anchor-strength">70%</output><input id="anchor-strength" type="range" min="0" max="100" value="70" step="5" disabled></label><button type="button" id="replay-forecast" class="text-button" disabled>↻ Xem khử nhiễu</button></div></div>
-          </div>
-          <div class="reasoning-panel" aria-live="polite"><div><p class="demo-eyebrow" id="step-tag"></p><h4 id="step-heading"></h4></div><div><p id="step-text"></p><p class="step-detail" id="step-detail"></p></div><button id="next-step" class="demo-button" type="button">Tiếp theo →</button></div>
-          <div class="anchor-readout" id="anchor-readout" hidden></div>
-          <details class="data-notes"><summary>Dữ liệu, giả định và phạm vi minh họa</summary><p id="case-assumption"></p><p>Các nhận định agent được soạn sẵn. Đường nền, đường theo kịch bản và các quỹ đạo đều là minh họa; không chạy LLM hay checkpoint ScenarioDiff. Vùng quỹ đạo không phải khoảng tin cậy đã hiệu chuẩn. Các doanh nghiệp được nêu như bối cảnh ứng dụng tiềm năng.</p><p><a href="assets/demo-series.csv" download>Tải chuỗi giả lập CSV</a> · <a href="assets/demo-sources.json" download>Tải dữ liệu nguồn JSON</a></p></details>
-        </div>
-      </div>
-    </section>
-
-    <section id="demo-sources" class="editorial-demo demo-sources" lang="vi"><div class="demo-container"><p class="demo-eyebrow">NGUỒN & PHƯƠNG PHÁP</p><h2>Có thể lần về từng bản tin.</h2><div id="source-register"></div><p class="provenance-note">Bản tin được truy xuất và kiểm tra theo nội dung công khai. Demo chỉ dùng thông tin đã công bố trước mốc dự báo tương ứng. Nền chuyển sắc và bố cục lấy cảm hứng từ “Cosmetics PPT Template” của EaTemp; phông serif được điều chỉnh để hỗ trợ đầy đủ tiếng Việt.</p></div></section>
-
-    <dialog id="clip-dialog" class="editorial-demo clip-dialog" lang="vi"><div class="clip-dialog-header"><h2 id="clip-title">Video tình huống</h2><button type="button" id="close-clip" aria-label="Đóng video">Đóng ×</button></div><video id="clip-video" controls playsinline preload="none"></video><p>Sự kiện có thật; dữ liệu vận hành và dự báo giả lập.</p></dialog>
+    <dialog id="clip-dialog" class="editorial-demo clip-dialog" lang="en"><div class="clip-dialog-header"><h2 id="clip-title">Event walkthrough</h2><button type="button" id="close-clip" aria-label="Close video">Close &times;</button></div><video id="clip-video" controls playsinline preload="metadata"></video></dialog>

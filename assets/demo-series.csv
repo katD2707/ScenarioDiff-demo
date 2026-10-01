@@ -1,117 +1,62 @@
-﻿case,period,series,value,unit,provenance
-pharmacy,T26,history,510,đơn vị / tuần,authored_simulation
-pharmacy,T27,history,525,đơn vị / tuần,authored_simulation
-pharmacy,T28,history,518,đơn vị / tuần,authored_simulation
-pharmacy,T29,history,542,đơn vị / tuần,authored_simulation
-pharmacy,T30,history,536,đơn vị / tuần,authored_simulation
-pharmacy,T31,history,558,đơn vị / tuần,authored_simulation
-pharmacy,T32,history,565,đơn vị / tuần,authored_simulation
-pharmacy,T33,history,580,đơn vị / tuần,authored_simulation
-pharmacy,T34,baseline,585,đơn vị / tuần,authored_simulation
-pharmacy,T35,baseline,591,đơn vị / tuần,authored_simulation
-pharmacy,T36,baseline,596,đơn vị / tuần,authored_simulation
-pharmacy,T37,baseline,602,đơn vị / tuần,authored_simulation
-pharmacy,T38,baseline,608,đơn vị / tuần,authored_simulation
-pharmacy,T39,baseline,613,đơn vị / tuần,authored_simulation
-pharmacy,T34,guided,620,đơn vị / tuần,authored_simulation
-pharmacy,T35,guided,700,đơn vị / tuần,authored_simulation
-pharmacy,T36,guided,790,đơn vị / tuần,authored_simulation
-pharmacy,T37,guided,825,đơn vị / tuần,authored_simulation
-pharmacy,T38,guided,785,đơn vị / tuần,authored_simulation
-pharmacy,T39,guided,730,đơn vị / tuần,authored_simulation
-pharmacy,T34,scenario_before_anchors,615.65,đơn vị / tuần,authored_simulation
-pharmacy,T35,scenario_before_anchors,654.674,đơn vị / tuần,authored_simulation
-pharmacy,T36,scenario_before_anchors,691.0,đơn vị / tuần,authored_simulation
-pharmacy,T37,scenario_before_anchors,779.674,đơn vị / tuần,authored_simulation
-pharmacy,T38,scenario_before_anchors,686.0,đơn vị / tuần,authored_simulation
-pharmacy,T39,scenario_before_anchors,684.674,đơn vị / tuần,authored_simulation
-pharmacy,T34,default_forecast_70_percent,618.695,đơn vị / tuần,authored_simulation
-pharmacy,T35,default_forecast_70_percent,686.402,đơn vị / tuần,authored_simulation
-pharmacy,T36,default_forecast_70_percent,760.3,đơn vị / tuần,authored_simulation
-pharmacy,T37,default_forecast_70_percent,811.402,đơn vị / tuần,authored_simulation
-pharmacy,T38,default_forecast_70_percent,755.3,đơn vị / tuần,authored_simulation
-pharmacy,T39,default_forecast_70_percent,716.402,đơn vị / tuần,authored_simulation
-traffic,08h,history,24,phút / chuyến,authored_simulation
-traffic,09h,history,22,phút / chuyến,authored_simulation
-traffic,10h,history,20,phút / chuyến,authored_simulation
-traffic,11h,history,19,phút / chuyến,authored_simulation
-traffic,12h,history,21,phút / chuyến,authored_simulation
-traffic,13h,history,20,phút / chuyến,authored_simulation
-traffic,14h,history,22,phút / chuyến,authored_simulation
-traffic,15h,history,24,phút / chuyến,authored_simulation
-traffic,16h,baseline,25,phút / chuyến,authored_simulation
-traffic,17h,baseline,27,phút / chuyến,authored_simulation
-traffic,18h,baseline,29,phút / chuyến,authored_simulation
-traffic,19h,baseline,27,phút / chuyến,authored_simulation
-traffic,20h,baseline,24,phút / chuyến,authored_simulation
-traffic,21h,baseline,22,phút / chuyến,authored_simulation
-traffic,22h,baseline,20,phút / chuyến,authored_simulation
-traffic,23h,baseline,18,phút / chuyến,authored_simulation
-traffic,00h,baseline,17,phút / chuyến,authored_simulation
-traffic,01h,baseline,16,phút / chuyến,authored_simulation
-traffic,16h,guided,26,phút / chuyến,authored_simulation
-traffic,17h,guided,30,phút / chuyến,authored_simulation
-traffic,18h,guided,41,phút / chuyến,authored_simulation
-traffic,19h,guided,48,phút / chuyến,authored_simulation
-traffic,20h,guided,46,phút / chuyến,authored_simulation
-traffic,21h,guided,42,phút / chuyến,authored_simulation
-traffic,22h,guided,37,phút / chuyến,authored_simulation
-traffic,23h,guided,32,phút / chuyến,authored_simulation
-traffic,00h,guided,26,phút / chuyến,authored_simulation
-traffic,01h,guided,21,phút / chuyến,authored_simulation
-traffic,16h,scenario_before_anchors,25.992,phút / chuyến,authored_simulation
-traffic,17h,scenario_before_anchors,29.605,phút / chuyến,authored_simulation
-traffic,18h,scenario_before_anchors,36.879,phút / chuyến,authored_simulation
-traffic,19h,scenario_before_anchors,39.0,phút / chuyến,authored_simulation
-traffic,20h,scenario_before_anchors,41.879,phút / chuyến,authored_simulation
-traffic,21h,scenario_before_anchors,41.605,phút / chuyến,authored_simulation
-traffic,22h,scenario_before_anchors,32.879,phút / chuyến,authored_simulation
-traffic,23h,scenario_before_anchors,23.0,phút / chuyến,authored_simulation
-traffic,00h,scenario_before_anchors,21.879,phút / chuyến,authored_simulation
-traffic,01h,scenario_before_anchors,20.605,phút / chuyến,authored_simulation
-traffic,16h,default_forecast_70_percent,25.998,phút / chuyến,authored_simulation
-traffic,17h,default_forecast_70_percent,29.881,phút / chuyến,authored_simulation
-traffic,18h,default_forecast_70_percent,39.764,phút / chuyến,authored_simulation
-traffic,19h,default_forecast_70_percent,45.3,phút / chuyến,authored_simulation
-traffic,20h,default_forecast_70_percent,44.764,phút / chuyến,authored_simulation
-traffic,21h,default_forecast_70_percent,41.881,phút / chuyến,authored_simulation
-traffic,22h,default_forecast_70_percent,35.764,phút / chuyến,authored_simulation
-traffic,23h,default_forecast_70_percent,29.3,phút / chuyến,authored_simulation
-traffic,00h,default_forecast_70_percent,24.764,phút / chuyến,authored_simulation
-traffic,01h,default_forecast_70_percent,20.881,phút / chuyến,authored_simulation
-energy,22/4,history,42,MW,authored_simulation
-energy,23/4,history,44,MW,authored_simulation
-energy,24/4,history,43,MW,authored_simulation
-energy,25/4,history,46,MW,authored_simulation
-energy,26/4,history,49,MW,authored_simulation
-energy,27/4,history,51,MW,authored_simulation
-energy,28/4,history,50,MW,authored_simulation
-energy,29/4,history,52,MW,authored_simulation
-energy,30/4,baseline,53,MW,authored_simulation
-energy,01/5,baseline,54,MW,authored_simulation
-energy,02/5,baseline,55,MW,authored_simulation
-energy,03/5,baseline,56,MW,authored_simulation
-energy,04/5,baseline,57,MW,authored_simulation
-energy,05/5,baseline,58,MW,authored_simulation
-energy,06/5,baseline,59,MW,authored_simulation
-energy,30/4,guided,52,MW,authored_simulation
-energy,01/5,guided,51,MW,authored_simulation
-energy,02/5,guided,48,MW,authored_simulation
-energy,03/5,guided,45,MW,authored_simulation
-energy,04/5,guided,43,MW,authored_simulation
-energy,05/5,guided,42,MW,authored_simulation
-energy,06/5,guided,42,MW,authored_simulation
-energy,30/4,scenario_before_anchors,52.006,MW,authored_simulation
-energy,01/5,scenario_before_anchors,51.316,MW,authored_simulation
-energy,02/5,scenario_before_anchors,51.296,MW,authored_simulation
-energy,03/5,scenario_before_anchors,52.2,MW,authored_simulation
-energy,04/5,scenario_before_anchors,46.296,MW,authored_simulation
-energy,05/5,scenario_before_anchors,45.296,MW,authored_simulation
-energy,06/5,scenario_before_anchors,49.2,MW,authored_simulation
-energy,30/4,default_forecast_70_percent,52.002,MW,authored_simulation
-energy,01/5,default_forecast_70_percent,51.095,MW,authored_simulation
-energy,02/5,default_forecast_70_percent,48.989,MW,authored_simulation
-energy,03/5,default_forecast_70_percent,47.16,MW,authored_simulation
-energy,04/5,default_forecast_70_percent,43.989,MW,authored_simulation
-energy,05/5,default_forecast_70_percent,42.989,MW,authored_simulation
-energy,06/5,default_forecast_70_percent,44.16,MW,authored_simulation
+﻿case,period,series,value,unit,provenance,source_url
+pharmacy,2024-07-22,history,232,Cases / week,published_observation,https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-va-tay-chan-mieng-tai-tp-ho-chi-minh-tinh-den-tuan-302024-x6HEAv.html
+pharmacy,2024-07-29,history,254,Cases / week,published_observation,https://tuoitre.vn/nld/tp-hcm-phat-hien-60-ca-nghi-sot-phat-ban-soi-trong-1-tuan-196240810151904281.htm
+pharmacy,2024-08-05,history,272,Cases / week,published_observation,https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-tay-chan-mieng-va-soi-tai-tp-ho-chi-minh-tinh-den-tuan-322024-39XFah.html
+pharmacy,2024-08-12,groundTruth,299,Cases / week,published_observation,https://thanhnien.vn/tinh-hinh-dich-benh-soi-moi-nhat-tai-tphcm-185240824095909048.htm
+pharmacy,2024-08-19,groundTruth,301,Cases / week,published_observation,https://alobacsi.com/hcdc-benh-truyen-nhiem-o-tphcm-tang-cao.html
+pharmacy,2024-08-26,groundTruth,243,Cases / week,published_observation,https://vtv.vn/suc-khoe/tp-ho-chi-minh-ghi-nhan-118-ca-sot-phat-ban-nghi-soi-trong-tuan-qua-20240903112903123.htm
+pharmacy,2024-08-12,baseline,291,Cases / week,authored_illustration,
+pharmacy,2024-08-19,baseline,310,Cases / week,authored_illustration,
+pharmacy,2024-08-26,baseline,329,Cases / week,authored_illustration,
+pharmacy,2024-08-12,guided,304,Cases / week,authored_illustration,
+pharmacy,2024-08-19,guided,325,Cases / week,authored_illustration,
+pharmacy,2024-08-26,guided,315,Cases / week,authored_illustration,
+traffic,2019-08-01,history,288.116,Billion vehicle miles / month,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv
+traffic,2019-09-01,history,267.747,Billion vehicle miles / month,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv
+traffic,2019-10-01,history,283.961,Billion vehicle miles / month,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv
+traffic,2019-11-01,history,260.326,Billion vehicle miles / month,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv
+traffic,2019-12-01,history,261.757,Billion vehicle miles / month,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv
+traffic,2020-01-01,history,260.847,Billion vehicle miles / month,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv
+traffic,2020-02-01,history,242.695,Billion vehicle miles / month,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv
+traffic,2020-03-01,groundTruth,226.638,Billion vehicle miles / month,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv
+traffic,2020-04-01,groundTruth,167.617,Billion vehicle miles / month,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv
+traffic,2020-05-01,groundTruth,221.006,Billion vehicle miles / month,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv
+traffic,2020-06-01,groundTruth,250.33,Billion vehicle miles / month,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv
+traffic,2020-07-01,groundTruth,265.55,Billion vehicle miles / month,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv
+traffic,2020-03-01,baseline,268,Billion vehicle miles / month,authored_illustration,
+traffic,2020-04-01,baseline,275,Billion vehicle miles / month,authored_illustration,
+traffic,2020-05-01,baseline,282,Billion vehicle miles / month,authored_illustration,
+traffic,2020-06-01,baseline,286,Billion vehicle miles / month,authored_illustration,
+traffic,2020-07-01,baseline,288,Billion vehicle miles / month,authored_illustration,
+traffic,2020-03-01,guided,215,Billion vehicle miles / month,authored_illustration,
+traffic,2020-04-01,guided,190,Billion vehicle miles / month,authored_illustration,
+traffic,2020-05-01,guided,203,Billion vehicle miles / month,authored_illustration,
+traffic,2020-06-01,guided,231,Billion vehicle miles / month,authored_illustration,
+traffic,2020-07-01,guided,252,Billion vehicle miles / month,authored_illustration,
+energy,2022-01-03,history,3.381,USD / gallon · all grades,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv
+energy,2022-01-10,history,3.394,USD / gallon · all grades,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv
+energy,2022-01-17,history,3.404,USD / gallon · all grades,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv
+energy,2022-01-24,history,3.421,USD / gallon · all grades,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv
+energy,2022-01-31,history,3.464,USD / gallon · all grades,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv
+energy,2022-02-07,history,3.538,USD / gallon · all grades,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv
+energy,2022-02-14,history,3.581,USD / gallon · all grades,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv
+energy,2022-02-21,history,3.624,USD / gallon · all grades,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv
+energy,2022-02-28,history,3.701,USD / gallon · all grades,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv
+energy,2022-03-07,groundTruth,4.196,USD / gallon · all grades,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv
+energy,2022-03-14,groundTruth,4.414,USD / gallon · all grades,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv
+energy,2022-03-21,groundTruth,4.343,USD / gallon · all grades,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv
+energy,2022-03-28,groundTruth,4.334,USD / gallon · all grades,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv
+energy,2022-04-04,groundTruth,4.274,USD / gallon · all grades,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv
+energy,2022-04-11,groundTruth,4.196,USD / gallon · all grades,published_observation,https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv
+energy,2022-03-07,baseline,3.75,USD / gallon · all grades,authored_illustration,
+energy,2022-03-14,baseline,3.8,USD / gallon · all grades,authored_illustration,
+energy,2022-03-21,baseline,3.85,USD / gallon · all grades,authored_illustration,
+energy,2022-03-28,baseline,3.9,USD / gallon · all grades,authored_illustration,
+energy,2022-04-04,baseline,3.95,USD / gallon · all grades,authored_illustration,
+energy,2022-04-11,baseline,4.0,USD / gallon · all grades,authored_illustration,
+energy,2022-03-07,guided,4.03,USD / gallon · all grades,authored_illustration,
+energy,2022-03-14,guided,4.25,USD / gallon · all grades,authored_illustration,
+energy,2022-03-21,guided,4.38,USD / gallon · all grades,authored_illustration,
+energy,2022-03-28,guided,4.4,USD / gallon · all grades,authored_illustration,
+energy,2022-04-04,guided,4.33,USD / gallon · all grades,authored_illustration,
+energy,2022-04-11,guided,4.25,USD / gallon · all grades,authored_illustration,

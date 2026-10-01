@@ -11,39 +11,39 @@
     },
     {
       "start": 23,
-      "title": "Y tế & bán lẻ / source"
+      "title": "Healthcare / source"
     },
     {
       "start": 37,
-      "title": "Y tế & bán lẻ / scenario"
+      "title": "Healthcare / scenario"
     },
     {
       "start": 52,
-      "title": "Y tế & bán lẻ / forecast"
+      "title": "Healthcare / forecast"
     },
     {
       "start": 68,
-      "title": "Đô thị thông minh / source"
+      "title": "Mobility / source"
     },
     {
       "start": 82,
-      "title": "Đô thị thông minh / scenario"
+      "title": "Mobility / scenario"
     },
     {
       "start": 97,
-      "title": "Đô thị thông minh / forecast"
+      "title": "Mobility / forecast"
     },
     {
       "start": 113,
-      "title": "Năng lượng / source"
+      "title": "Energy / source"
     },
     {
       "start": 127,
-      "title": "Năng lượng / scenario"
+      "title": "Energy / scenario"
     },
     {
       "start": 142,
-      "title": "Năng lượng / forecast"
+      "title": "Energy / forecast"
     },
     {
       "start": 158,

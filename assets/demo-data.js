@@ -1,77 +1,361 @@
-// Shared by the browser and video renderer. Every business time series is synthetic.
 window.SCENARIO_DEMO = {
-  "version": 2,
-  "stages": ["Lịch sử", "Bằng chứng", "Kịch bản", "Điểm neo", "Dự báo"],
+  "version": 3,
   "cases": [
     {
-      "id": "pharmacy", "number": "01", "domain": "Y tế & bán lẻ", "brand": "Ứng dụng tiềm năng · FPT Long Châu",
-      "title": "Một bản tin dịch tễ.\nMột kế hoạch tồn kho khác.",
-      "shortTitle": "Nhu cầu vật tư chăm sóc", "sourceId": "hcdc-2024-w32",
-      "source": "HCDC", "published": "13.08.2024 · 18:17", "publishedISO": "2024-08-13T18:17:00+07:00",
+      "id": "pharmacy",
+      "number": "01",
+      "domain": "Healthcare",
+      "brand": "Ho Chi Minh City / Vietnam",
+      "title": "When case counts\nstart to climb.",
+      "shortTitle": "A rising health signal",
+      "source": "HCDC",
+      "published": "13 August 2024",
       "url": "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-tay-chan-mieng-va-soi-tai-tp-ho-chi-minh-tinh-den-tuan-322024-39XFah.html",
-      "sourceTitle": "Bản tin dịch bệnh TP.HCM · tuần 32/2024",
-      "fact": "272 ca sốt xuất huyết trong tuần; tăng 18,8% so với trung bình 4 tuần trước.",
-      "stat": "272", "statUnit": "ca được báo cáo / tuần 32", "factSecondary": "+18,8% so với trung bình 4 tuần",
-      "cutoff": "18.08.2024", "cutoffISO": "2024-08-18T23:59:00+07:00", "forecastPeriod": "Tuần 34–39/2024",
-      "metric": "Vật tư chăm sóc sức khỏe", "unit": "đơn vị / tuần", "historyType": "Giả lập · cụm nhà thuốc", "historyLabel": "Lịch sử giả lập",
-      "history": [510,525,518,542,536,558,565,580], "historyDates": ["T26","T27","T28","T29","T30","T31","T32","T33"],
-      "futureDates": ["T34","T35","T36","T37","T38","T39"],
-      "baseline": [585,591,596,602,608,613], "guided": [620,700,790,825,785,730],
-      "anchors": [{"i":2,"lo":750,"hi":840,"label":"T36 · 750–840"},{"i":4,"lo":740,"hi":820,"label":"T38 · 740–820"}],
-      "range": [400,950], "ticks": [400,500,600,700,800,900],
-      "context": "Giữ lại địa bàn TP.HCM, tuần báo cáo, số ca và mức tăng. Không biến số ca bệnh thành số đơn hàng.",
-      "scenario": "Giả thuyết nghiệp vụ: nhu cầu vật tư chăm sóc tăng trong vài tuần, sau đó hạ dần khi được bổ sung hàng.",
-      "anchorText": "Khoảng neo do demo đặt: tuần 36 từ 750–840; tuần 38 từ 740–820 đơn vị. Đây không phải số liệu HCDC.",
-      "forecastText": "Các đường dự báo minh họa được điều chỉnh gần vùng neo. Thử thay đổi độ mạnh điểm neo để xem tác động cục bộ.",
-      "action": "Rà soát tồn kho và thời gian bổ sung hàng ở các cụm có tín hiệu tăng nhu cầu.",
-      "assumption": "Nhu cầu bán lẻ chỉ là giả thuyết. Không có dữ liệu bán hàng Long Châu; không quy đổi trực tiếp ca bệnh thành lượng thuốc.",
-      "stageNotes": ["8 tuần nhu cầu giả lập tạo đường nền. Đường đứt là phép ngoại suy minh họa khi chưa thêm bối cảnh.","Bản tin thật xuất hiện trước mốc dự báo. Historical Context Agent minh họa việc giữ lại bằng chứng liên quan.","Scenario Agent được minh họa bằng một nhận định định tính: tăng ngắn hạn, rồi hạ dần. Chưa tạo giá trị số.","Anchor Guidance Agent được minh họa bằng hai khoảng giá trị ở những tuần cần chú ý.","Mô phỏng quá trình tạo quỹ đạo và hiệu chỉnh cục bộ. Các đường và vùng tô không phải kết quả mô hình hoặc khoảng tin cậy đã hiệu chuẩn."]
+      "dataUrl": "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-tay-chan-mieng-va-soi-tai-tp-ho-chi-minh-tinh-den-tuan-322024-39XFah.html",
+      "sourceTitle": "Dengue surveillance: week 32",
+      "stat": "272",
+      "statUnit": "reported dengue cases in week 32",
+      "fact": "HCDC reported 272 dengue cases in week 32, 18.8% above the preceding four-week average.",
+      "factSecondary": "18.8% above the preceding four-week average.",
+      "cutoff": "Weeks 30–35 / 2024",
+      "metric": "Reported dengue cases",
+      "unit": "Cases / week",
+      "history": [
+        232,
+        254,
+        272
+      ],
+      "groundTruth": [
+        299,
+        301,
+        243
+      ],
+      "historyDates": [
+        "W30",
+        "W31",
+        "W32"
+      ],
+      "futureDates": [
+        "W33",
+        "W34",
+        "W35"
+      ],
+      "baseline": [
+        291,
+        310,
+        329
+      ],
+      "guided": [
+        304,
+        325,
+        315
+      ],
+      "anchors": [
+        {
+          "i": 1,
+          "lo": 305,
+          "hi": 340,
+          "label": "W34 / 305–340 cases"
+        },
+        {
+          "i": 2,
+          "lo": 295,
+          "hi": 330,
+          "label": "W35 / 295–330 cases"
+        }
+      ],
+      "range": [
+        180,
+        380
+      ],
+      "ticks": [
+        200,
+        250,
+        300,
+        350
+      ],
+      "direction": "Short-term rise",
+      "context": "Weekly case counts are rising. A surveillance report gives planners a reason to consider sustained near-term pressure.",
+      "scenario": "Cases may remain elevated over the next three weeks before growth slows.",
+      "action": "Plan for pressure.\nCheck the outcome.",
+      "assumption": "The observed week-35 decline is sharper than the scenario anticipates. Context is useful, but does not remove uncertainty.",
+      "observationSources": [
+        "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-va-tay-chan-mieng-tai-tp-ho-chi-minh-tinh-den-tuan-302024-x6HEAv.html",
+        "https://tuoitre.vn/nld/tp-hcm-phat-hien-60-ca-nghi-sot-phat-ban-soi-trong-1-tuan-196240810151904281.htm",
+        "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-tay-chan-mieng-va-soi-tai-tp-ho-chi-minh-tinh-den-tuan-322024-39XFah.html",
+        "https://thanhnien.vn/tinh-hinh-dich-benh-soi-moi-nhat-tai-tphcm-185240824095909048.htm",
+        "https://alobacsi.com/hcdc-benh-truyen-nhiem-o-tphcm-tang-cao.html",
+        "https://vtv.vn/suc-khoe/tp-ho-chi-minh-ghi-nhan-118-ca-sot-phat-ban-nghi-soi-trong-tuan-qua-20240903112903123.htm"
+      ],
+      "observationDates": [
+        "2024-07-22",
+        "2024-07-29",
+        "2024-08-05",
+        "2024-08-12",
+        "2024-08-19",
+        "2024-08-26"
+      ]
     },
     {
-      "id": "traffic", "number": "02", "domain": "Đô thị thông minh", "brand": "Ứng dụng tiềm năng · FPT Smart City",
-      "title": "Đường chưa đông.\nLịch cấm đường đã có.", "shortTitle": "Di chuyển quanh vùng hạn chế", "sourceId": "pc08-2025-04-21",
-      "source": "Báo Điện tử Chính phủ / PC08", "published": "21.04.2025 · 15:43", "publishedISO": "2025-04-21T15:43:00+07:00",
-      "url": "https://tphcm.chinhphu.vn/lich-cam-duong-phuc-vu-le-ky-niem-50-nam-ngay-giai-phong-mien-nam-101250421153314319.htm",
-      "sourceTitle": "Lịch cấm đường phục vụ lễ kỷ niệm 30/4",
-      "fact": "Một số tuyến trung tâm TP.HCM cấm lưu thông từ 17:30 ngày 22/4 đến 01:00 ngày 23/4.",
-      "stat": "17:30", "statUnit": "22.04.2025 · bắt đầu hạn chế", "factSecondary": "Kết thúc lúc 01:00 ngày 23.04",
-      "cutoff": "22.04.2025 · 15:00", "cutoffISO": "2025-04-22T15:00:00+07:00", "forecastPeriod": "16:00 ngày 22/4 – 01:00 ngày 23/4",
-      "metric": "Thời gian đi qua tuyến lân cận", "unit": "phút / chuyến", "historyType": "Giả lập · tuyến ngoài vùng cấm", "historyLabel": "Lịch sử giả lập",
-      "history": [24,22,20,19,21,20,22,24], "historyDates": ["08h","09h","10h","11h","12h","13h","14h","15h"],
-      "futureDates": ["16h","17h","18h","19h","20h","21h","22h","23h","00h","01h"],
-      "baseline": [25,27,29,27,24,22,20,18,17,16], "guided": [26,30,41,48,46,42,37,32,26,21],
-      "anchors": [{"i":3,"lo":43,"hi":52,"label":"19h · 43–52 phút"},{"i":7,"lo":28,"hi":36,"label":"23h · 28–36 phút"}],
-      "range": [10,60], "ticks": [10,20,30,40,50,60],
-      "context": "Trích thời điểm bắt đầu, kết thúc và phạm vi cấm. Tác động được xét trên tuyến lân cận còn mở.",
-      "scenario": "Giả thuyết: xe chuyển sang tuyến lân cận; thời gian di chuyển tăng sau 17:30 rồi giảm dần về cuối đêm.",
-      "anchorText": "Khoảng neo minh họa lúc 19h: 43–52 phút; lúc 23h: 28–36 phút. Thông báo chỉ cho biết lịch cấm, không cho các giá trị này.",
-      "forecastText": "Quỹ đạo minh họa tạo một đỉnh cục bộ trong khung giờ sự kiện, thay vì tăng toàn bộ đường dự báo.",
-      "action": "Thử phương án đổi giờ giao hàng và phân bổ luồng xe trước khi bắt đầu hạn chế.",
-      "assumption": "Lịch cấm là thông tin thật. Thời gian di chuyển và tuyến mô phỏng không phải dữ liệu camera, bản đồ hoặc vận hành của FPT.",
-      "stageNotes": ["Lịch sử giả lập từ 08h đến 15h vẫn khá đều. Dự báo mở từ 16h; chưa dùng quan sát tương lai.","Thông báo công bố ngày 21/4, trước mốc dự báo ngày 22/4. Sự kiện có giờ bắt đầu và kết thúc rõ ràng.","Nhận định định tính tập trung vào giao thông chuyển hướng, không dự báo xe chạy trên tuyến đang bị cấm.","Hai khoảng neo biểu diễn đỉnh và giai đoạn hạ nhiệt của một tuyến lân cận giả định.","Quan sát phần quỹ đạo quanh 19h và 23h khi điều chỉnh độ mạnh điểm neo. Đây là hiệu ứng minh họa, không phải mô phỏng giao thông đã kiểm định."]
+      "id": "traffic",
+      "number": "02",
+      "domain": "Mobility",
+      "brand": "United States / Time-MMD",
+      "title": "When travel\ncomes to a halt.",
+      "shortTitle": "An abrupt demand shock",
+      "source": "White House archive",
+      "published": "16 March 2020",
+      "url": "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-vice-president-pence-members-coronavirus-task-force-press-briefing-3/",
+      "dataUrl": "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+      "sourceTitle": "National guidance to reduce travel",
+      "stat": "15 days",
+      "statUnit": "initial federal guidance period",
+      "fact": "Federal guidance called for avoiding discretionary travel as the COVID-19 response intensified.",
+      "factSecondary": "Avoid discretionary travel and reduce in-person activity.",
+      "cutoff": "August 2019–July 2020",
+      "metric": "U.S. vehicle miles traveled",
+      "unit": "Billion vehicle miles / month",
+      "history": [
+        288.116,
+        267.747,
+        283.961,
+        260.326,
+        261.757,
+        260.847,
+        242.695
+      ],
+      "groundTruth": [
+        226.638,
+        167.617,
+        221.006,
+        250.33,
+        265.55
+      ],
+      "historyDates": [
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+        "Jan",
+        "Feb"
+      ],
+      "futureDates": [
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul"
+      ],
+      "baseline": [
+        268,
+        275,
+        282,
+        286,
+        288
+      ],
+      "guided": [
+        215,
+        190,
+        203,
+        231,
+        252
+      ],
+      "anchors": [
+        {
+          "i": 1,
+          "lo": 175,
+          "hi": 205,
+          "label": "April / 175–205 billion"
+        },
+        {
+          "i": 4,
+          "lo": 240,
+          "hi": 265,
+          "label": "July / 240–265 billion"
+        }
+      ],
+      "range": [
+        130,
+        330
+      ],
+      "ticks": [
+        150,
+        200,
+        250,
+        300
+      ],
+      "direction": "Drop, then recovery",
+      "context": "Travel guidance changes the demand regime. The monthly series provides a retrospective view of the disruption.",
+      "scenario": "Travel falls sharply while restrictions take effect, followed by a gradual recovery.",
+      "action": "Locate the shock.\nAllow a recovery.",
+      "assumption": "April observations fall below the scenario; the recovery is faster. Compare timing and magnitude, not just direction.",
+      "observationSources": [
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv"
+      ],
+      "observationDates": [
+        "2019-08-01",
+        "2019-09-01",
+        "2019-10-01",
+        "2019-11-01",
+        "2019-12-01",
+        "2020-01-01",
+        "2020-02-01",
+        "2020-03-01",
+        "2020-04-01",
+        "2020-05-01",
+        "2020-06-01",
+        "2020-07-01"
+      ]
     },
     {
-      "id": "energy", "number": "03", "domain": "Năng lượng", "brand": "Ứng dụng tiềm năng · FPT × E.ON",
-      "title": "Sau đỉnh nắng nóng,\nphụ tải có thể hạ.", "shortTitle": "Phụ tải khi thời tiết dịu lại", "sourceId": "evn-2024-w17",
-      "source": "EVN / Cục Điều tiết Điện lực", "published": "29.04.2024 · 08:00", "publishedISO": "2024-04-29T08:00:00+07:00",
-      "url": "https://www.evn.com.vn/d6/news/Tuan-tu-22-2842024-Dam-bao-dien-khi-phu-tai-tang-ky-luc-0-0-124167.aspx",
-      "sourceTitle": "Vận hành hệ thống điện · tuần 22–28/4/2024",
-      "fact": "Bình quân 946,6 triệu kWh/ngày. Bản tin nhận định nắng nóng có thể suy giảm trong 10 ngày tới.",
-      "stat": "946,6", "statUnit": "triệu kWh / ngày · toàn quốc", "factSecondary": "Triển vọng: nắng nóng có thể dịu đi",
-      "cutoff": "29.04.2024 · 23:59", "cutoffISO": "2024-04-29T23:59:00+07:00", "forecastPeriod": "30.04 – 06.05.2024",
-      "metric": "Phụ tải đỉnh của cụm cơ sở", "unit": "MW", "historyType": "Giả lập · cụm cơ sở tiêu thụ", "historyLabel": "Lịch sử giả lập",
-      "history": [42,44,43,46,49,51,50,52], "historyDates": ["22/4","23/4","24/4","25/4","26/4","27/4","28/4","29/4"],
-      "futureDates": ["30/4","01/5","02/5","03/5","04/5","05/5","06/5"],
-      "baseline": [53,54,55,56,57,58,59], "guided": [52,51,48,45,43,42,42],
-      "anchors": [{"i":3,"lo":43,"hi":48,"label":"03/5 · 43–48 MW"},{"i":6,"lo":40,"hi":45,"label":"06/5 · 40–45 MW"}],
-      "range": [30,70], "ticks": [30,40,50,60,70],
-      "context": "Tách số liệu tiêu thụ đã xảy ra khỏi nhận định thời tiết sắp tới. Không đổi đơn vị kWh toàn quốc thành MW của cơ sở.",
-      "scenario": "Giả thuyết: khi nắng nóng dịu lại, nhu cầu làm mát giảm; phụ tải của cụm cơ sở hạ dần thay vì kéo dài đà tăng.",
-      "anchorText": "Khoảng neo minh họa ngày 03/5: 43–48 MW; ngày 06/5: 40–45 MW. Các khoảng này là giả định cho cụm cơ sở.",
-      "forecastText": "Bối cảnh có thể kéo dự báo xuống. Các quỹ đạo minh họa vẫn có biến thiên quanh kịch bản giảm phụ tải.",
-      "action": "So sánh phương án lịch vận hành và mức công suất dự phòng theo các kịch bản thời tiết.",
-      "assumption": "EVN cung cấp bằng chứng bối cảnh tại Việt Nam. Chuỗi MW là giả lập; không phải dữ liệu hoặc dự báo của E.ON.",
-      "stageNotes": ["Chuỗi phụ tải giả lập đang tăng. Đường nền tiếp tục xu hướng này nếu chỉ nhìn lịch sử.","Bản tin ngày 29/4 vừa báo cáo mức tiêu thụ cao, vừa đưa ra triển vọng nắng nóng giảm. Cả hai đều có trước dự báo.","Kịch bản định tính cho phép đảo chiều xu hướng. Số liệu kWh toàn quốc không được dùng làm số MW của cụm cơ sở.","Điểm neo đánh dấu mức hạ tải dự kiến ở hai ngày; các ngày còn lại vẫn có thể biến thiên.","So sánh đường nền tăng với quỹ đạo giảm theo bối cảnh. Không có số đo độ chính xác vì chưa chạy mô hình trên dữ liệu vận hành thực."]
+      "id": "energy",
+      "number": "03",
+      "domain": "Energy",
+      "brand": "United States / Time-MMD",
+      "title": "When supply risk\nreaches the pump.",
+      "shortTitle": "A price shock",
+      "source": "U.S. EIA",
+      "published": "4 March 2022",
+      "url": "https://www.eia.gov/todayinenergy/detail.php?id=51498",
+      "dataUrl": "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+      "sourceTitle": "Crude oil rises above $100",
+      "stat": "$100+",
+      "statUnit": "crude oil futures / barrel",
+      "fact": "EIA reported crude prices above $100 per barrel following Russia’s invasion of Ukraine, with increased volatility.",
+      "factSecondary": "Crude market disruption creates upward pressure on retail fuel prices.",
+      "cutoff": "January–April / 2022",
+      "metric": "U.S. retail gasoline price",
+      "unit": "USD / gallon · all grades",
+      "history": [
+        3.381,
+        3.394,
+        3.404,
+        3.421,
+        3.464,
+        3.538,
+        3.581,
+        3.624,
+        3.701
+      ],
+      "groundTruth": [
+        4.196,
+        4.414,
+        4.343,
+        4.334,
+        4.274,
+        4.196
+      ],
+      "historyDates": [
+        "Jan 3",
+        "Jan 10",
+        "Jan 17",
+        "Jan 24",
+        "Jan 31",
+        "Feb 7",
+        "Feb 14",
+        "Feb 21",
+        "Feb 28"
+      ],
+      "futureDates": [
+        "Mar 7",
+        "Mar 14",
+        "Mar 21",
+        "Mar 28",
+        "Apr 4",
+        "Apr 11"
+      ],
+      "baseline": [
+        3.75,
+        3.8,
+        3.85,
+        3.9,
+        3.95,
+        4.0
+      ],
+      "guided": [
+        4.03,
+        4.25,
+        4.38,
+        4.4,
+        4.33,
+        4.25
+      ],
+      "anchors": [
+        {
+          "i": 1,
+          "lo": 4.1,
+          "hi": 4.4,
+          "label": "March 14 / $4.10–4.40"
+        },
+        {
+          "i": 5,
+          "lo": 4.1,
+          "hi": 4.4,
+          "label": "April 11 / $4.10–4.40"
+        }
+      ],
+      "range": [
+        3.0,
+        4.9
+      ],
+      "ticks": [
+        3,
+        3.5,
+        4,
+        4.5
+      ],
+      "direction": "A sudden price jump",
+      "context": "The crude-oil report arrives before the March 7 retail observation. Supply risk suggests a jump beyond the recent trend.",
+      "scenario": "Retail gasoline prices rise quickly, remain elevated, then ease as the initial shock moderates.",
+      "action": "Anticipate the jump.\nCompare the timing.",
+      "assumption": "The observed peak arrives earlier than the scenario. Both the jump and the easing phase matter for planning.",
+      "observationSources": [
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv"
+      ],
+      "observationDates": [
+        "2022-01-03",
+        "2022-01-10",
+        "2022-01-17",
+        "2022-01-24",
+        "2022-01-31",
+        "2022-02-07",
+        "2022-02-14",
+        "2022-02-21",
+        "2022-02-28",
+        "2022-03-07",
+        "2022-03-14",
+        "2022-03-21",
+        "2022-03-28",
+        "2022-04-04",
+        "2022-04-11"
+      ]
     }
-  ]
+  ],
+  "provenance": "Published observations; authored scenario, anchor and forecast paths. Retrospective examples, not model evaluation or a point-in-time backtest."
 };

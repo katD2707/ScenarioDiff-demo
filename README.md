@@ -1,55 +1,50 @@
 # ScenarioDiff research demo
 
-A static project page for [ScenarioDiff](https://arxiv.org/abs/2608.17164), organized as an academic article: original abstract, method, video, illustrative applications, interactive demo, and results. The Paper button links to the PDF. The Vietnamese demo includes a 170-second, 1920×1080 film with on-screen explanations, three 31-second clips, chapter navigation, and an interactive explorer.
+An academic project page with the original abstract, paper figures, method, results, an English presentation and three animated event examples.
 
-The examples reference **real, dated public reports** from HCDC, the Government news portal (PC08 road-closure information), and EVN. The FPT Long Châu, FPT Smart City, and FPT × E.ON contexts are potential applications. **All business operating histories, scenarios, anchor bands and forecast paths are authored simulations**, not customer data, trained-model outputs, calibrated intervals, or deployment claims. The complete paper is available at [`assets/scenariodiff-paper.pdf`](assets/scenariodiff-paper.pdf).
+Live page: https://katd2707.github.io/ScenarioDiff-demo/
 
-The abstract is copied verbatim from that PDF. Method prose uses three complete original paragraphs from the Introduction; Results reproduces the complete Main Results subsection (V-B). Figure 2 (page 4) and Table I (page 7) are cropped from the original PDF at 4× resolution. Table II is transcribed in full as an HTML table. Visitors can open the source crops at full size, and mobile users can scroll across them.
+## Examples and observations
 
-## Preview
+- **Healthcare:** Ho Chi Minh City weekly dengue reports, weeks 30-35 of 2024. HCDC reports and linked coverage provide the counts. These are reported disease cases, not pharmacy sales.
+- **Mobility:** U.S. monthly vehicle miles traveled, August 2019-July 2020, from the Traffic series in [Time-MMD](https://github.com/AdityaLab/Time-MMD). Original units (million vehicle miles) are divided by 1,000 for display as billions. Federal travel guidance supplies the event context.
+- **Energy:** U.S. weekly all-grades retail gasoline prices, January-April 2022, from the Energy series in Time-MMD. EIA's March 4, 2022 report supplies the crude-oil event context.
 
-```bash
-python -m http.server 8000
-```
+History and ground truth contain published observations. Scenarios, anchor intervals, baselines and forecast paths are authored illustrations. The animations do not run the paper's checkpoint or reproduce its numerical results. Ground truth is read only by the comparison renderer, never by the authored trajectory function. The examples are retrospective and do not reconstruct publication lags or a point-in-time evaluation. No customer operating data or company deployment is claimed.
 
-Open `http://localhost:8000`.
+Each example shows initial noise, context-conditioned denoising, local anchor guidance and then the observed outcome. MP4 loops run only when visible; reduced-motion users initially see the final comparison. Play/pause and Show outcome controls are available. GIF downloads provide the same 16-second animation for presentations.
 
-## GitHub Pages
+## Run locally
 
-In repository **Settings → Pages**, select **Deploy from a branch**, then choose `main` and `/(root)`. Once GitHub finishes building, the expected URL is:
+    python -m http.server 8000
 
-<https://katD2707.github.io/ScenarioDiff-demo/>
+Open http://localhost:8000. The site is static and uses relative paths for GitHub Pages.
 
-This site uses relative paths and needs no build step.
+## Rebuild media
 
-## Video source
+    pip install pillow numpy imageio-ffmpeg requests
+    python demo_tools/editorial_video.py --preview
+    python demo_tools/render_video.py
 
-The MP4 and three loop clips are in `assets/`. To regenerate them on Windows:
+The 170-second film is 1920 x 1080 at 24 fps, with English on-screen narration, captions and a transcript. Three 31-second walkthrough clips and three 16-second denoising loops are generated from the same data snapshot. The film is silent for live presenter narration.
 
-```bash
-pip install pillow numpy imageio-ffmpeg requests
-python demo_tools/render_video.py
-```
+To refresh the source snapshots intentionally:
 
-The current renderer is `demo_tools/editorial_video.py`; `render_video.py` invokes it. Add `--preview` to render the storyboard only. Rendering uses local assets and does not call an LLM or forecasting checkpoint. The silent film is designed for presenter narration and includes Vietnamese explanations on screen, a VTT caption track, and a downloadable transcript.
+    python demo_tools/build_observed_demo.py
 
-The shared scenario data is [`assets/demo-data.js`](assets/demo-data.js). The browser's anchor-strength slider uses a deterministic local blend to illustrate the role of anchors; it is not the paper's sampling implementation. The film shows stylized denoising and anchor guidance. Numeric curves are illustrative throughout.
+This retrieves public reports and numerical CSVs, verifies expected tokens, and records retrieval timestamps and response hashes. It does not redistribute full articles. The committed snapshot supports offline rendering.
 
-## Evidence and reproducibility
+## Files
 
-- [`assets/demo-sources.json`](assets/demo-sources.json): original URLs, publication times, actual reported facts, retrieval timestamps and response hashes.
-- [`assets/demo-series.csv`](assets/demo-series.csv): all synthetic operating histories, baselines and authored scenario targets.
-- [`assets/demo-transcript-vi.md`](assets/demo-transcript-vi.md): timed Vietnamese presentation script.
-- `demo_tools/prepare_demo.py`: retrieve the three public pages, verify numeric/date tokens, and download the open-license fonts. It also extracts the unmodified gradient background from the user's original PPTX in the parent directory. It does not republish entire articles.
-- `demo_tools/demo_sections.html`: source markup for the video, examples and explorer sections in `index.html`.
+- `assets/demo-data.js`: shared observed series, authored trajectories, context and point-level source URLs.
+- `assets/demo-series.csv`: observations and authored forecasts, explicitly distinguished in the provenance column.
+- `assets/demo-sources.json`: source retrieval records, units and interpretation.
+- `assets/demo-transcript-en.md` and `assets/demo-en.vtt`: English narration and captions.
+- `demo_tools/demo_sections.html`: active video and example section markup.
+- `demo_tools/check_demo.mjs`: Chrome checks for playback controls, chapter seeking, reduced motion and responsive layout.
 
-Each source was published before its example's forecast cutoff. Source metrics are kept separate from synthetic business units: disease cases are not converted directly to orders, national kWh are not converted into facility MW, and a road-closure schedule is not presented as measured travel time.
+The original abstract, the three complete Introduction paragraphs in Method, the complete Main Results subsection, Figure 2, Table I and Table II are preserved. The Paper link opens the full PDF.
 
 ## Visual attribution
 
-The demo uses the gradient background and editorial layout vocabulary of the user-supplied **Cosmetics PPT Template by EaTemp**. Playfair Display replaces DM Serif Display in Vietnamese text to ensure complete accent support. Inter supplies the body text. Font licenses are included under `assets/fonts/`. The surrounding research article retains its academic layout.
-
-## Research links
-
-- [Paper](https://arxiv.org/abs/2608.17164)
-- [ScenarioDiff model code](https://github.com/ttb06/ScenarioDiff)
+The demo uses the gradient asset and editorial visual style of the user-supplied Cosmetics PPT Template by EaTemp. Playfair Display and Inter fonts are self-hosted with their licenses. The surrounding article follows the Block Diffusion project-page style. Work stays in this repository; previously supplied files and unused older assets are retained.

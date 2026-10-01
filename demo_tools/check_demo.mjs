@@ -26,43 +26,49 @@ try {
  await send('Page.navigate',{url:pathToFileURL(resolve('index.html')).href});
  for(let i=0;i<100;i++){if(await js('document.readyState')==='complete')break;await wait(100);}
  await js('document.fonts.ready');await wait(300);
+
  assert.equal(await js('document.querySelectorAll(".event-example").length'),3);
- assert.equal(await js('document.querySelectorAll("#source-register a").length'),3);
- assert.equal(await js('document.querySelectorAll("#guided-path").length'),0);
+ assert.equal(await js('document.querySelectorAll("#interactive, #demo-sources").length'),0);
+ assert.equal(await js('document.querySelectorAll("[lang=vi]").length'),0);
+ assert.equal(await js('[...document.querySelectorAll(".denoising-loop")].every(v=>v.paused)'),true,'Reduced motion should pause animations');
  const screenshots=[];
  const shot=async(name,selector)=>{await js(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({behavior:'instant',block:'start'})`);await wait(250);const r=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});const p=join(tmpdir(),name+'.png');writeFileSync(p,Buffer.from(r.data,'base64'));screenshots.push(p);};
- await shot('scenariodiff-new-video-desktop','#video');
- await shot('scenariodiff-new-examples-desktop','#examples');
+ await shot('scenariodiff-english-video-desktop','#video');
+ await shot('scenariodiff-english-examples-desktop','#examples');
  const results=[];
  for(const c of ['pharmacy','traffic','energy']) {
-  await js(`document.querySelector('#tab-${c}').click()`);
-  assert.equal(await js('document.querySelectorAll("#guided-path").length'),0);
-  for(let step=1;step<=4;step++) {
-   await js(`document.querySelector('[data-step="${step}"]').click()`);
-   assert.equal(await js('document.querySelectorAll("#guided-path").length'),step===4?1:0);
-  }
-  const setStrength=async value=>{await js(`{const e=document.querySelector('#anchor-strength');e.value=${value};e.dispatchEvent(new Event('input',{bubbles:true}));}`);return js('document.querySelector("#guided-path").getAttribute("d")');};
-  const weak=await setStrength(0),strong=await setStrength(100);assert.notEqual(weak,strong,'Anchor slider must change the path');
-  await setStrength(70);
-  await js('document.querySelector("#show-context").click()');assert.equal(await js('document.querySelectorAll("#guided-path").length'),0);
-  await js('document.querySelector("#show-context").click()');assert.equal(await js('document.querySelectorAll("#guided-path").length'),1);
-  results.push(await js('({title:document.querySelector("#case-title").textContent,stage:document.querySelector("#step-tag").textContent,source:document.querySelector("#source-link").href})'));
+  const select=`document.querySelector('[data-example="${c}"]')`;
+  await js(`${select}.querySelector('.toggle-loop').click()`);await wait(500);
+  assert.equal(await js(`${select}.querySelector('video').paused`),false,'Animation play failed');
+  await js(`${select}.querySelector('.toggle-loop').click()`);
+  assert.equal(await js(`${select}.querySelector('video').paused`),true,'Animation pause failed');
+  await js(`${select}.querySelector('[data-outcome]').click()`);await wait(300);
+  assert.equal(await js(`${select}.querySelector('video').currentTime`),15);
+  assert.equal(await js(`${select}.querySelector('video').paused`),true);
+  assert.equal(await js(`${select}.querySelector('.toggle-loop').getAttribute('aria-pressed')`),'false');
+  const data=await js(`window.SCENARIO_DEMO.cases.find(c=>c.id==='${c}')`);
+  assert.equal(data.groundTruth.length,data.futureDates.length);
+  results.push({case:c,history:data.history,groundTruth:data.groundTruth});
  }
- await js('document.querySelector("#tab-traffic").click();document.querySelector("[data-step=\\"4\\"]").click()');
- await shot('scenariodiff-new-lab-desktop','#case-panel');
- await js('document.querySelector("[data-seek=\\"68\\"]").click()');await wait(1000);
+ await js('document.querySelectorAll("[data-seek]")[3].click()');await wait(1200);
  const media=await js('({duration:document.querySelector("#presentation-video").duration,time:document.querySelector("#presentation-video").currentTime,width:document.querySelector("#presentation-video").videoWidth,height:document.querySelector("#presentation-video").videoHeight})');
  assert(media.time>=68&&media.time<73,'Chapter seek failed');assert.equal(Math.round(media.duration),170);assert.equal(media.width,1920);assert.equal(media.height,1080);
- await js('document.querySelector("#presentation-video").pause();document.querySelector(".event-actions .text-button").click()');
- for(let i=0;i<30;i++){if(await js('Number.isFinite(document.querySelector("#clip-video").duration)'))break;await wait(100);}
+ await js('document.querySelector("#presentation-video").pause();document.querySelector("[data-clip]").click()');
+ for(let i=0;i<40;i++){if(await js('Number.isFinite(document.querySelector("#clip-video").duration)'))break;await wait(100);}
  assert.equal(await js('document.querySelector("#clip-dialog").open'),true);
  assert.equal(Math.round(await js('document.querySelector("#clip-video").duration')),31);
- await js('document.querySelector("#close-clip").click()');assert.equal(await js('document.querySelector("#clip-dialog").open'),false);
+ await js('document.querySelector("#close-clip").click()');await wait(150);assert.equal(await js('document.querySelector("#clip-dialog").open'),false);
+ assert.equal(await js('document.activeElement.hasAttribute("data-clip")'),true,'Dialog should restore focus');
  await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
  const mobile=await js('({width:innerWidth,scrollWidth:document.documentElement.scrollWidth})');assert.equal(mobile.scrollWidth,mobile.width,'Page overflows on mobile');
- await shot('scenariodiff-new-examples-mobile','#examples');
- await shot('scenariodiff-new-lab-mobile','#case-panel');
- await shot('scenariodiff-new-chart-mobile','.lab-chart-panel');
+ await shot('scenariodiff-english-example-mobile','.event-example');
+ await shot('scenariodiff-english-chart-mobile','.event-visual');
+ await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'no-preference'}]});
+ await js('document.querySelectorAll(".denoising-loop").forEach(v=>delete v.dataset.manual);document.querySelector("#video").scrollIntoView({behavior:"instant"})');await wait(200);
+ await js('document.querySelector(".denoising-loop").scrollIntoView({behavior:"instant"})');await wait(600);
+ assert.equal(await js('document.querySelector(".denoising-loop").paused'),false,'Visible muted loop should autoplay');
+ await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});await wait(200);
+ assert.equal(await js('document.querySelector(".denoising-loop").paused'),true,'Motion preference should stop playback');
  assert.equal(errors.length,0,'Browser runtime errors');
  console.log(JSON.stringify({passed:true,results,media,mobile,screenshots},null,2));socket.close();
 } finally {browser.kill();}
