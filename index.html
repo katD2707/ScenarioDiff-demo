@@ -96,11 +96,38 @@
         <h3>Main results on Time-MMD</h3>
         <p>Table I reports average MSE and MAE over prediction horizons across the five Time-MMD domains. Overall, SCENARIODIFF achieves the strongest horizon-level performance, with the largest number of MSE/MAE wins across horizons and domains. The gains are most evident in event-driven domains, especially Economy and Security, while SCENARIODIFF also shows competitive performance on Traffic. These results suggest that noisy documents become more effective for forecasting when transformed into explicit scenario-level signals, rather than fused as unstructured text. Compared with numerical-only and LLM-prior baselines, SCENARIODIFF benefits from using LLM agents for contextual reasoning instead of direct numerical prediction. The agents extract historical evidence, generate scenario descriptions, and produce anchor points that guide a dedicated probabilistic forecaster. This separation of historical context, scenario-level guidance, and anchor-based refinement leads to stronger performance when text contains actionable event signals.</p>
       </div>
-      <div class="wide-container">
-        <figure class="source-figure results-figure">
-          <a href="assets/scenariodiff-results.png" target="_blank" rel="noopener noreferrer" aria-label="Open the complete original Table I at full resolution"><img src="assets/scenariodiff-results.png" alt="Complete Table I from the paper: MSE and MAE for all 20 models across Economy, Energy, Security, Social Good, and Traffic. ScenarioDiff records 13 horizon-level first-place results and four first places after averaging over horizons." loading="lazy" width="1792" height="964"></a>
-          <figcaption>Table I: Overall results on Time-MMD. The best, runner-up, and third-best mean results are highlighted in red, blue, and bold, respectively. Hor. 1st counts the number of first-place results over all horizon-domain-metric entries, while Ovr. 1st counts first-place results after averaging over horizons within each domain and metric. <a href="assets/scenariodiff-results.png" target="_blank" rel="noopener noreferrer">Open full-resolution table</a>.</figcaption>
-        </figure>
+      <div class="wide-container results-table-container">
+        <div class="table-scroll" role="region" aria-label="Table I: overall forecasting results" tabindex="0">
+          <table class="paper-results-table paper-overall-table">
+            <caption>Table I: Overall results on Time-MMD. The best, runner-up, and third-best mean results are highlighted in red, blue, and bold, respectively. Hor. 1st counts the number of first-place results over all horizon-domain-metric entries, while Ovr. 1st counts first-place results after averaging over horizons within each domain and metric.</caption>
+            <thead>
+              <tr><th scope="col" rowspan="2">Models</th><th scope="col" rowspan="2">Hor. 1st</th><th scope="col" rowspan="2">Ovr. 1st</th><th scope="colgroup" colspan="2">Economy</th><th scope="colgroup" colspan="2">Energy</th><th scope="colgroup" colspan="2">Security</th><th scope="colgroup" colspan="2">Social Good</th><th scope="colgroup" colspan="2">Traffic</th></tr>
+              <tr><th scope="col">MSE</th><th scope="col">MAE</th><th scope="col">MSE</th><th scope="col">MAE</th><th scope="col">MSE</th><th scope="col">MAE</th><th scope="col">MSE</th><th scope="col">MAE</th><th scope="col">MSE</th><th scope="col">MAE</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Informer</th><td>0</td><td>0</td><td>0.891</td><td>0.774</td><td>0.456</td><td>0.525</td><td>127.556</td><td>6.595</td><td>0.973</td><td>0.599</td><td>0.248</td><td>0.405</td></tr>
+              <tr><th scope="row">Reformer</th><td>0</td><td>0</td><td>1.036</td><td>0.853</td><td>0.676</td><td>0.632</td><td>122.835</td><td>6.285</td><td>1.046</td><td>0.647</td><td>0.292</td><td>0.443</td></tr>
+              <tr><th scope="row">Autoformer</th><td>0</td><td>0</td><td>0.340</td><td>0.465</td><td>0.478</td><td>0.527</td><td>112.782</td><td>5.314</td><td>1.618</td><td>0.810</td><td>0.240</td><td>0.301</td></tr>
+              <tr><th scope="row">FEDformer</th><td>2</td><td>0</td><td>0.286</td><td>0.410</td><td>0.394</td><td>0.457</td><td>113.725</td><td>5.382</td><td>1.238</td><td>0.666</td><td>0.231</td><td>0.271</td></tr>
+              <tr><th scope="row">PatchTST</th><td>5</td><td>3</td><td class="rank-third">0.255</td><td class="rank-third">0.387</td><td class="rank-first">0.203</td><td class="rank-first">0.326</td><td>91.734</td><td>5.429</td><td>1.100</td><td class="rank-third">0.559</td><td class="rank-second">0.102</td><td class="rank-first">0.178</td></tr>
+              <tr><th scope="row">iTransformer</th><td>5</td><td>2</td><td>0.280</td><td>0.398</td><td>0.227</td><td class="rank-third">0.344</td><td>113.248</td><td>5.432</td><td>1.235</td><td>0.568</td><td>0.208</td><td>0.238</td></tr>
+              <tr><th scope="row">PAttn</th><td>3</td><td>0</td><td class="rank-second">0.237</td><td class="rank-second">0.376</td><td>0.267</td><td>0.388</td><td>83.117</td><td>4.956</td><td>1.196</td><td>0.569</td><td>0.104</td><td class="rank-second">0.181</td></tr>
+              <tr><th scope="row">DLinear</th><td>0</td><td>0</td><td>0.579</td><td>0.636</td><td>0.391</td><td>0.448</td><td>106.504</td><td>4.665</td><td>1.524</td><td>0.935</td><td>0.284</td><td>0.415</td></tr>
+              <tr><th scope="row">FiLM</th><td>0</td><td>0</td><td>0.460</td><td>0.556</td><td>0.375</td><td>0.469</td><td>108.179</td><td>5.158</td><td>1.608</td><td>0.949</td><td>0.236</td><td>0.326</td></tr>
+              <tr><th scope="row">TSMixer</th><td>1</td><td>0</td><td>1.973</td><td>1.155</td><td>0.410</td><td>0.482</td><td>94.503</td><td>5.735</td><td>1.301</td><td>0.796</td><td>0.818</td><td>0.714</td></tr>
+              <tr><th scope="row">TiDE</th><td>0</td><td>0</td><td>0.463</td><td>0.548</td><td>0.484</td><td>0.518</td><td>91.498</td><td>5.548</td><td>1.939</td><td>1.045</td><td>0.230</td><td>0.378</td></tr>
+              <tr class="model-group-start"><th scope="row">Time-LLM</th><td>0</td><td>0</td><td>0.346</td><td>0.469</td><td>0.464</td><td>0.491</td><td>79.945</td><td>4.785</td><td>1.924</td><td>1.071</td><td>0.195</td><td>0.330</td></tr>
+              <tr><th scope="row">S2IP-LLM</th><td>4</td><td>0</td><td>0.273</td><td>0.417</td><td class="rank-second">0.224</td><td class="rank-second">0.343</td><td class="rank-second">76.184</td><td class="rank-third">4.381</td><td>1.025</td><td>0.594</td><td>0.191</td><td>0.310</td></tr>
+              <tr class="model-group-start"><th scope="row">TaTS</th><td>7</td><td>3</td><td>0.924</td><td>0.732</td><td>0.457</td><td>0.540</td><td>124.457</td><td>6.368</td><td class="rank-first">0.886</td><td class="rank-second">0.541</td><td>0.184</td><td>0.312</td></tr>
+              <tr><th scope="row">MM-TSF</th><td>0</td><td>0</td><td>0.816</td><td>0.737</td><td>0.397</td><td>0.481</td><td>127.460</td><td>6.573</td><td class="rank-third">0.959</td><td>0.580</td><td>0.229</td><td>0.382</td></tr>
+              <tr class="model-group-start"><th scope="row">CSDI</th><td>4</td><td>3</td><td>1.396</td><td>0.943</td><td>0.545</td><td>0.531</td><td>96.372</td><td>6.092</td><td class="rank-second">0.908</td><td class="rank-first">0.491</td><td>0.124</td><td>0.256</td></tr>
+              <tr><th scope="row">TMDM</th><td>3</td><td>1</td><td>1.038</td><td>0.765</td><td>0.320</td><td>0.398</td><td class="rank-third">76.270</td><td class="rank-first">4.177</td><td>1.305</td><td>0.673</td><td class="rank-third">0.103</td><td>0.187</td></tr>
+              <tr><th scope="row">NsDiff</th><td>1</td><td>0</td><td>1.781</td><td>1.200</td><td>0.245</td><td>0.403</td><td>100.422</td><td>6.356</td><td>3.109</td><td>1.527</td><td>0.255</td><td>0.437</td></tr>
+              <tr><th scope="row">TimeDiff</th><td>0</td><td>0</td><td>3.372</td><td>1.718</td><td>1.015</td><td>0.799</td><td>102.157</td><td>6.541</td><td>2.234</td><td>1.188</td><td>2.488</td><td>1.521</td></tr>
+              <tr class="our-method"><th scope="row">SCENARIODIFF</th><td>13</td><td>4</td><td class="rank-first">0.216</td><td class="rank-first">0.353</td><td class="rank-third">0.225</td><td>0.367</td><td class="rank-first">74.802</td><td class="rank-second">4.261</td><td>1.313</td><td>0.707</td><td class="rank-first">0.099</td><td class="rank-third">0.183</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="article-container research-copy">
         <h3>Probabilistic forecasting</h3>
@@ -110,11 +137,11 @@
             <caption>Table II: Average CRPS over prediction horizons for representative diffusion-based probabilistic forecasting models. We additionally report the average over event-driven domains, where textual scenarios provide actionable future signals.</caption>
             <thead><tr><th scope="col">Model</th><th scope="col">Econ.</th><th scope="col">Ener.</th><th scope="col">Sec.</th><th scope="col">Soc.</th><th scope="col">Traf.</th><th scope="col">Event Avg.</th></tr></thead>
             <tbody>
-              <tr><th scope="row">CSDI</th><td>0.231</td><td>0.138</td><td>0.805</td><td>0.109</td><td>0.043</td><td>0.392</td></tr>
-              <tr><th scope="row">TMDM</th><td>0.190</td><td>0.099</td><td>0.511</td><td>0.156</td><td>0.030</td><td>0.267</td></tr>
-              <tr><th scope="row">NSDiff</th><td>0.317</td><td>0.104</td><td>0.852</td><td>0.375</td><td>0.064</td><td>0.424</td></tr>
+              <tr><th scope="row">CSDI</th><td class="rank-third">0.231</td><td>0.138</td><td class="rank-third">0.805</td><td class="rank-first">0.109</td><td class="rank-third">0.043</td><td class="rank-third">0.392</td></tr>
+              <tr><th scope="row">TMDM</th><td class="rank-second">0.190</td><td class="rank-first">0.099</td><td class="rank-first">0.511</td><td class="rank-second">0.156</td><td class="rank-first">0.030</td><td class="rank-second">0.267</td></tr>
+              <tr><th scope="row">NSDiff</th><td>0.317</td><td class="rank-second">0.104</td><td>0.852</td><td>0.375</td><td>0.064</td><td>0.424</td></tr>
               <tr><th scope="row">TimeDiff</th><td>0.436</td><td>0.197</td><td>0.883</td><td>0.266</td><td>0.251</td><td>0.506</td></tr>
-              <tr class="our-method"><th scope="row">SCENARIODIFF</th><td>0.094</td><td>0.112</td><td>0.584</td><td>0.189</td><td>0.036</td><td>0.263</td></tr>
+              <tr class="our-method"><th scope="row">SCENARIODIFF</th><td class="rank-first">0.094</td><td class="rank-third">0.112</td><td class="rank-second">0.584</td><td class="rank-third">0.189</td><td class="rank-second">0.036</td><td class="rank-first">0.263</td></tr>
             </tbody>
           </table>
         </div>

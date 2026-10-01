@@ -26,6 +26,15 @@ try {
  await send('Page.navigate',{url:pathToFileURL(resolve('index.html')).href});
  for(let i=0;i<100;i++){if(await js('document.readyState')==='complete')break;await wait(100);}
  await js('document.fonts.ready');await wait(300);
+ assert.equal(await js('document.querySelectorAll(".paper-overall-table tbody tr").length'),20);
+ assert.equal(await js('document.querySelectorAll(".paper-overall-table .rank-first").length'),10);
+ assert.equal(await js('document.querySelectorAll(".paper-overall-table .rank-second").length'),10);
+ assert.equal(await js('document.querySelectorAll(".paper-overall-table .rank-third").length'),10);
+ assert.equal(await js('document.querySelectorAll(".paper-results-table:not(.paper-overall-table) .rank-first").length'),6);
+ assert.equal(await js('document.querySelectorAll(".paper-results-table:not(.paper-overall-table) .rank-second").length'),6);
+ assert.equal(await js('document.querySelectorAll(".paper-results-table:not(.paper-overall-table) .rank-third").length'),6);
+ assert.equal(await js('[...document.querySelectorAll(".paper-overall-table tbody th")].some(e=>/\\[\\d+\\]/.test(e.textContent))'),false);
+ assert.equal(await js('getComputedStyle(document.querySelector(".paper-overall-table .rank-first")).color'),'rgb(192, 0, 0)');
 
  assert.equal(await js('document.querySelectorAll(".event-example").length'),3);
  const positions=await js('[...document.querySelectorAll(".event-example")].map(e=>({top:e.getBoundingClientRect().top,left:e.getBoundingClientRect().left,height:e.getBoundingClientRect().height}))');
@@ -42,6 +51,8 @@ try {
  const shot=async(name,selector)=>{await js(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({behavior:'instant',block:'start'})`);await wait(250);const r=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});const p=join(tmpdir(),name+'.png');writeFileSync(p,Buffer.from(r.data,'base64'));screenshots.push(p);};
  await shot('scenariodiff-english-video-desktop','#video');
  await shot('scenariodiff-english-examples-desktop','#examples');
+ await shot('scenariodiff-table-i-desktop','.paper-overall-table');
+ await shot('scenariodiff-table-ii-desktop','.paper-results-table:not(.paper-overall-table)');
  const results=[];
  for(const c of ['pharmacy','traffic','energy']) {
   const select=`document.querySelector('[data-example="${c}"]')`;
@@ -65,6 +76,7 @@ try {
  assert.equal(await js('document.activeElement.hasAttribute("data-clip")'),true,'Dialog should restore focus');
  await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
  const mobile=await js('({width:innerWidth,scrollWidth:document.documentElement.scrollWidth})');assert.equal(mobile.scrollWidth,mobile.width,'Page overflows on mobile');
+ assert.equal(await js('document.querySelector(".paper-overall-table").scrollWidth>document.querySelector(".paper-overall-table").closest(".table-scroll").clientWidth'),true,'Table I should scroll within its region on mobile');
  await shot('scenariodiff-english-example-mobile','.event-example');
  await shot('scenariodiff-english-chart-mobile','.event-visual');
  await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'no-preference'}]});

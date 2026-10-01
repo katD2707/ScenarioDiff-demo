@@ -77,4 +77,13 @@ p{margin:0 0 1.15em}h1,h2,h3{margin-top:0}
 .paper-results-table tbody th{font-weight:400}
 .paper-results-table .our-method{border-top:1px solid #aaa;border-bottom:2px solid #555;background:#f5f5f5}
 .paper-results-table .our-method th{font-weight:700}
+.results-table-container{width:min(100% - 40px,1260px)}
+.paper-overall-table{min-width:1080px;font-size:12px}
+.paper-overall-table th,.paper-overall-table td{padding:7px 6px}
+.paper-overall-table thead tr:first-child th[colspan]{text-align:center}
+.paper-overall-table thead th[rowspan]{vertical-align:bottom}
+.paper-overall-table .model-group-start{border-top:1px solid #aaa}
+.paper-results-table .rank-first{color:#c00000;font-weight:700}
+.paper-results-table .rank-second{color:#005ab4;font-weight:700}
+.paper-results-table .rank-third{font-weight:700}
 @media(max-width:700px){.results-figure figcaption:after{content:"Swipe to read all columns, or open the full-resolution table."}.research-copy h3{font-size:20px}.paper-results-table{font-size:12px}}

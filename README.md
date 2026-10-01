@@ -44,7 +44,7 @@ The 170-second film is 1920 x 1080 at 24 fps, with English on-screen narration, 
 
 `build_observed_demo.py` belongs to the previous public-observation examples and is not used for this version. The current renderer reads the committed data snapshot without network access. Older GIF/CSV/transcript assets are retained, but the current page does not offer downloads or exports.
 
-The original abstract, three complete Introduction paragraphs in Method, complete Main Results subsection, Figure 2, Table I and Table II are preserved. The Paper link opens the full PDF.
+The original abstract, three complete Introduction paragraphs in Method, and complete Main Results subsection are preserved. Figure 2 remains a crop from the paper. Tables I and II are full HTML transcriptions with the paper's red, blue, and bold top-three highlighting. Table I retains all 20 models and both first-place counts; model names omit bracketed citation numbers. The Paper link opens the full PDF.
 
 ## Visual attribution
 
