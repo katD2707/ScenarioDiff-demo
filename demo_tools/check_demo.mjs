@@ -28,6 +28,12 @@ try {
  await js('document.fonts.ready');await wait(300);
 
  assert.equal(await js('document.querySelectorAll(".event-example").length'),3);
+ const positions=await js('[...document.querySelectorAll(".event-example")].map(e=>({top:e.getBoundingClientRect().top,left:e.getBoundingClientRect().left,height:e.getBoundingClientRect().height}))');
+ assert(positions.every(p=>Math.abs(p.top-positions[0].top)<1),'Desktop examples must share one row');
+ assert(positions[0].left<positions[1].left&&positions[1].left<positions[2].left);
+ assert(positions.every(p=>p.height<620),'Example cards should remain compact');
+ assert.equal(await js('document.querySelectorAll(".examples-legend span").length'),5);
+
  assert.equal(await js('document.querySelectorAll("#interactive, #demo-sources").length'),0);
  assert.equal(await js('document.querySelectorAll("[lang=vi]").length'),0);
  assert.equal(await js('document.querySelectorAll("a[download], .event-downloads, .demo-resource-links, [data-outcome]").length'),0);

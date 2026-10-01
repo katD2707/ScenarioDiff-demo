@@ -93,33 +93,34 @@ def trajectory(c,amount=1):
     return [before+amount*(after-before) for before,after in zip(c['preAnchor'],c['guided'])]
 
 
-def chart(d,c,box,stage=4,sampling=1,anchor_strength=1,truth=True):
+def chart(d,c,box,stage=4,sampling=1,anchor_strength=1,truth=True,compact=False):
     x0,y0,x1,y1=box
     d.rounded_rectangle(box,radius=5,fill='#f7f8fb',outline='#cad0d9',width=1)
-    txt(d,(x0+30,y0+20),c['metric'],27,'serif')
-    txt(d,(x0+30,y0+63),c['unit'],19,fill=MUTED)
-    left,top,right,bottom=x0+83,y0+139,x1-44,y1-133
+    txt(d,(x0+30,y0+20),c['metric'],38 if compact else 27,'serif')
+    txt(d,(x0+30,y0+73 if compact else y0+63),c['unit'],30 if compact else 19,fill=MUTED)
+    left,top,right,bottom=x0+95,y0+(175 if compact else 139),x1-50,y1-(65 if compact else 133)
     origin=left+(right-left)*.43
     d.rectangle((origin,top,right,bottom),fill='#ecedf5')
     lo,hi=c['range'];yy=lambda v:bottom-(v-lo)/(hi-lo)*(bottom-top)
     hx=lambda i:left+(origin-left)*i/(len(c['history'])-1)
     fx=lambda i:origin+(right-origin)*(i+1)/len(c['baseline'])
-    for v in c['ticks']:
+    for v in (c['ticks'][::2] if compact else c['ticks']):
         d.line((left,yy(v),right,yy(v)),fill='#dce0e7',width=1)
-        txt(d,(left-64,yy(v)-12),f'{v:g}',19,'mono',MUTED)
+        txt(d,(left-75,yy(v)-16),f'{v:g}',30 if compact else 19,'mono',MUTED)
     d.line((origin,top,origin,bottom),fill='#a3aeba',width=2)
     hist=[(hx(i),yy(v)) for i,v in enumerate(c['history'])]
     path(d,hist,INK,4)
     for x,y in hist:d.ellipse((x-4,y-4,x+4,y+4),fill=INK)
     path(d,[hist[-1]]+[(fx(i),yy(v)) for i,v in enumerate(c['baseline'])],'#929ba7',3,dashed=True)
-    for i in sorted(set([0,(len(hist)-1)//2,len(hist)-1])):
-        label=c['historyDates'][i];width=d.textlength(label,font=font(18))
-        txt(d,(hx(i)-width/2,bottom+18),label,18,fill=MUTED)
+    label_size=30 if compact else 18
+    for i in ([0,len(hist)-1] if compact else sorted(set([0,(len(hist)-1)//2,len(hist)-1]))):
+        label=c['historyDates'][i];width=d.textlength(label,font=font(label_size))
+        txt(d,(hx(i)-width/2,bottom+18),label,label_size,fill=MUTED)
     for i in sorted(set([len(c['futureDates'])//2,len(c['futureDates'])-1])):
-        label=c['futureDates'][i];width=d.textlength(label,font=font(18))
-        txt(d,(fx(i)-width/2,bottom+18),label,18,fill=MUTED)
-    txt(d,(left,top-34),'HISTORY',17,'mono',MUTED)
-    txt(d,(origin+18,top-34),'EVENT WINDOW',17,'mono',BLUE)
+        label=c['futureDates'][i];width=d.textlength(label,font=font(label_size))
+        txt(d,(fx(i)-width/2,bottom+18),label,label_size,fill=MUTED)
+    txt(d,(left,top-38),'HISTORY',26 if compact else 17,'mono',MUTED)
+    txt(d,(origin+18,top-38),'FORECAST',26 if compact else 17,'mono',BLUE)
     if stage>=3 and anchor_strength>0:
         for a in c['anchors']:
             x=fx(a['i']);d.rounded_rectangle((x-18,yy(a['hi']),x+18,yy(a['lo'])),radius=6,fill='#ebccda',outline=PINK,width=2)
@@ -131,12 +132,22 @@ def chart(d,c,box,stage=4,sampling=1,anchor_strength=1,truth=True):
                 noise=(hi-lo)*(.16*(1-sampling)+.012)*math.sin((i+1)*(j+1)*1.47+j)
                 pts.append((fx(i),yy(v+noise)))
             path(d,pts,'#b7c4d7',2)
-        path(d,[hist[-1]]+[(fx(i),yy(v+(hi-lo)*.12*(1-sampling)*math.sin((i+1)*2.1))) for i,v in enumerate(vals)],BLUE,5)
+        path(d,[hist[-1]]+[(fx(i),yy(v+(hi-lo)*.12*(1-sampling)*math.sin((i+1)*2.1))) for i,v in enumerate(vals)],BLUE,7 if compact else 5)
     if truth:
         gt=[hist[-1]]+[(fx(i),yy(v)) for i,v in enumerate(c['groundTruth'])]
-        path(d,gt,GREEN,4,dashed=True)
+        path(d,gt,GREEN,6 if compact else 4,dashed=True)
         for x,y in gt[1:]:d.ellipse((x-5,y-5,x+5,y+5),fill=GREEN)
-    labels=[('History',INK),('Baseline','#929ba7'),('Forecast',BLUE),('Ground truth',GREEN),('Anchors',PINK)]
+    event=c['plotEvent'];i=event['i']
+    values=c['history'] if event['location']=='history' else c['groundTruth']
+    j=int(i);fraction=i-j;value=values[j]*(1-fraction)+values[min(j+1,len(values)-1)]*fraction
+    px=(hx(i) if event['location']=='history' else fx(i));py=yy(value)
+    bx,by=left+8,top+10;bw=465 if compact else 325;bh=95 if compact else 66
+    event_color='#936137'
+    d.line((bx+bw-20,by+bh,px,py),fill=event_color,width=3 if compact else 2)
+    d.rounded_rectangle((bx,by,bx+bw,by+bh),radius=7,fill='#fffaf2',outline='#cebba4',width=1)
+    wrap(d,(bx+14,by+8),event['label'],bw-28,33 if compact else 22,fill=event_color,leading=1.12)
+    d.ellipse((px-7,py-7,px+7,py+7),fill='#fffaf2',outline=event_color,width=3)
+    labels=[] if compact else [('History',INK),('Baseline','#929ba7'),('Forecast',BLUE),('Ground truth',GREEN),('Anchors',PINK)]
     for i,(label,color) in enumerate(labels):
         x=x0+27+i*(x1-x0-45)/5;y=y1-48
         d.line((x,y+9,x+24,y+9),fill=color,width=4)
@@ -231,8 +242,9 @@ def frame(idx,local,global_t):
 
 def loop_frame(c,t):
     im=Image.new('RGB',(1120,780),'#f7f8fb');d=ImageDraw.Draw(im)
-    animate_chart(d,c,(0,0,1120,705),t)
-    txt(d,(28,730),phase(t),24,fill=BLUE)
+    chart(d,c,(0,0,1120,705),sampling=min(1,t/7),anchor_strength=max(0,min(1,(t-8)/4)),compact=True)
+    label='01 / Noise' if t<3 else '02 / Denoising' if t<8 else '03 / Anchor guidance' if t<12 else '04 / Refined forecast'
+    txt(d,(28,730),label,34,fill=BLUE)
     return im
 
 def stamp(t):return f'{int(t)//3600:02d}:{int(t)//60%60:02d}:{int(t)%60:02d}.000'

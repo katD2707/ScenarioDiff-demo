@@ -14,7 +14,9 @@ The original three Vietnamese use cases are presented in English:
 
 The event reports are real. Operating histories, ground-truth reference curves, scenarios, anchors and forecast paths are authored illustrations, not customer measurements, trained-model output or evaluation results. These restore the original application stories; the intervening U.S. Time-MMD examples are no longer active.
 
-The green ground-truth reference and the gray baseline stay visible from the start. The blue trajectory denoises, then receives local anchor corrections. The authored examples show the corrected trajectory closer to the reference than the pre-anchor path. Guidance never reads the ground-truth array. This visual behavior is illustrative, not an empirical accuracy claim.
+The three examples share one compact desktop row, with a common legend. Event callouts connect directly to the relevant point on each plot. Cards stack on small screens.
+
+The green ground-truth reference and the gray baseline stay visible from the start. The blue trajectory denoises, then receives local anchor corrections. The authored examples show the corrected trajectory closer to the reference than the pre-anchor path, with a clearly visible residual error rather than an exact match. Guidance never reads the ground-truth array. This visual behavior is illustrative, not an empirical accuracy claim.
 
 Animations play when visible and respect reduced-motion preferences. The page has play/pause and walkthrough controls; download/export links and the outcome-reveal control are removed. Previously created files remain on disk.
 

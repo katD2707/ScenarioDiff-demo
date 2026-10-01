@@ -1,5 +1,5 @@
 window.SCENARIO_DEMO = {
-  "version": 4,
+  "version": 5,
   "cases": [
     {
       "id": "pharmacy",
@@ -45,12 +45,12 @@ window.SCENARIO_DEMO = {
         613
       ],
       "guided": [
-        620,
-        700,
-        790,
-        825,
-        785,
-        730
+        618.26,
+        681.87,
+        750.4,
+        806.87,
+        745.4,
+        711.87
       ],
       "anchors": [
         {
@@ -96,7 +96,7 @@ window.SCENARIO_DEMO = {
       "context": "A health bulletin signals rising local pressure. A pharmacy cluster may need to review inventory and replenishment lead times.",
       "scenario": "Demand for healthcare supplies rises over the next few weeks, then eases as replenishment catches up.",
       "action": "Anticipate demand.\nPlan replenishment.",
-      "assumption": "The anchors lift the forecast around weeks 36 and 38, bringing it closer to the ground-truth reference while preserving the overall demand pattern.",
+      "assumption": "The anchors lift the forecast around weeks 36 and 38, bringing it closer to the ground-truth reference while preserving the overall demand pattern. A visible forecast error remains after refinement.",
       "groundTruth": [
         625,
         708,
@@ -113,7 +113,12 @@ window.SCENARIO_DEMO = {
         784.711,
         697.0,
         689.711
-      ]
+      ],
+      "plotEvent": {
+        "location": "history",
+        "i": 7,
+        "label": "HCDC bulletin\n272 cases / +18.8%"
+      }
     },
     {
       "id": "traffic",
@@ -167,16 +172,16 @@ window.SCENARIO_DEMO = {
         16
       ],
       "guided": [
-        26,
-        30,
-        41,
-        48,
-        46,
-        42,
-        37,
-        32,
-        26,
-        21
+        25.997,
+        29.842,
+        39.352,
+        44.4,
+        44.352,
+        41.842,
+        35.352,
+        28.4,
+        24.352,
+        20.842
       ],
       "anchors": [
         {
@@ -222,7 +227,7 @@ window.SCENARIO_DEMO = {
       "context": "The announcement gives the start, end and location of the restrictions. The example follows diverted traffic on a nearby route that remains open.",
       "scenario": "Diverted traffic increases travel time after 17:30, followed by a gradual decline toward the end of the night.",
       "action": "Anticipate the peak.\nAdjust delivery times.",
-      "assumption": "Guidance raises the peak near 19:00 and refines the easing phase near 23:00. The forecast moves closer to the ground-truth reference at both anchor regions.",
+      "assumption": "Guidance raises the peak near 19:00 and refines the easing phase near 23:00. The forecast moves closer to the ground-truth reference at both anchor regions. A visible forecast error remains after refinement.",
       "groundTruth": [
         27,
         31,
@@ -247,7 +252,12 @@ window.SCENARIO_DEMO = {
         24.0,
         22.337,
         20.649
-      ]
+      ],
+      "plotEvent": {
+        "location": "future",
+        "i": 1.5,
+        "label": "Road closure\n22 Apr / 17:30"
+      }
     },
     {
       "id": "energy",
@@ -295,13 +305,13 @@ window.SCENARIO_DEMO = {
         59
       ],
       "guided": [
-        52,
-        51,
-        48,
-        45,
-        43,
-        42,
-        42
+        52.003,
+        51.126,
+        49.319,
+        47.88,
+        44.319,
+        43.319,
+        44.88
       ],
       "anchors": [
         {
@@ -346,7 +356,7 @@ window.SCENARIO_DEMO = {
       "context": "The report combines high recent consumption with an outlook for easing heat. Lower cooling demand can change the direction of a facility-load forecast.",
       "scenario": "As the heat eases, cooling demand falls and the facility cluster load declines instead of extending its recent upward trend.",
       "action": "Follow the weather.\nAdjust capacity plans.",
-      "assumption": "The anchors lower the trajectory around May 3 and May 6, aligning it more closely with the ground-truth reference during the easing phase.",
+      "assumption": "The anchors lower the trajectory around May 3 and May 6, aligning it more closely with the ground-truth reference during the easing phase. A visible forecast error remains after refinement.",
       "groundTruth": [
         51.8,
         50.7,
@@ -365,7 +375,12 @@ window.SCENARIO_DEMO = {
         45.93,
         44.93,
         48.4
-      ]
+      ],
+      "plotEvent": {
+        "location": "history",
+        "i": 7,
+        "label": "Heat-easing outlook\n29 Apr / EVN"
+      }
     }
   ],
   "provenance": "Event reports are sourced. Operating histories, ground-truth references and forecast paths are illustrative; they are not customer measurements or model evaluation."
