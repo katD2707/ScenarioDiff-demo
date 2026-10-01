@@ -1,0 +1,72 @@
+{
+  "note": "Public event evidence only. Operational histories, scenarios, anchors and forecast paths are authored simulations, not company measurements or trained-model outputs.",
+  "sources": [
+    {
+      "id": "hcdc-2024-w32",
+      "publisher": "HCDC",
+      "title": "Tình hình dịch bệnh sốt xuất huyết, tay chân miệng và sởi tại TP. Hồ Chí Minh tính đến tuần 32/2024",
+      "url": "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-tay-chan-mieng-va-soi-tai-tp-ho-chi-minh-tinh-den-tuan-322024-39XFah.html",
+      "published_at": "2024-08-13T18:17:00+07:00",
+      "event_period": "2024-08-05/2024-08-11",
+      "facts": {
+        "dengue_weekly_cases": 272,
+        "increase_vs_prior_four_week_mean_percent": 18.8,
+        "location": "TP. Hồ Chí Minh"
+      },
+      "paraphrase_vi": "Tuần 32: TP.HCM báo cáo 272 ca sốt xuất huyết; cao hơn 18,8% so với trung bình bốn tuần trước.",
+      "verify_tokens": [
+        "272",
+        "18,8%",
+        "5/8/2024",
+        "11/8/2024"
+      ],
+      "retrieved_at": "2026-09-30T10:00:03.363486+00:00",
+      "response_sha256": "f222a02af056922c066199985a0ec909e3b0f6ffcd6132e49c746071b077b0f3",
+      "resolved_url": "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-tay-chan-mieng-va-soi-tai-tp-ho-chi-minh-tinh-den-tuan-322024-39XFah.html"
+    },
+    {
+      "id": "pc08-2025-04-21",
+      "publisher": "Báo Điện tử Chính phủ / thông tin PC08",
+      "title": "Lịch cấm đường phục vụ lễ kỷ niệm 50 năm Ngày Giải phóng miền Nam",
+      "url": "https://tphcm.chinhphu.vn/lich-cam-duong-phuc-vu-le-ky-niem-50-nam-ngay-giai-phong-mien-nam-101250421153314319.htm",
+      "published_at": "2025-04-21T15:43:00+07:00",
+      "event_period": "2025-04-22T17:30:00+07:00/2025-04-23T01:00:00+07:00",
+      "facts": {
+        "closure_start": "22/04/2025 17:30",
+        "closure_end": "23/04/2025 01:00",
+        "location": "Một số tuyến đường trung tâm TP.HCM"
+      },
+      "paraphrase_vi": "Thông báo ngày 21/4: một số tuyến trung tâm hạn chế lưu thông từ 17:30 ngày 22/4 đến 01:00 ngày 23/4.",
+      "verify_tokens": [
+        "21/04/2025",
+        "17h30' ngày 22/4",
+        "1h ngày 23/4"
+      ],
+      "retrieved_at": "2026-09-30T10:00:03.687207+00:00",
+      "response_sha256": "abb26b57283ec344f829ab70fe15d9d9fecb8ea950a0b5d7ad2613e40bcb7b4f",
+      "resolved_url": "https://tphcm.chinhphu.vn/lich-cam-duong-phuc-vu-le-ky-niem-50-nam-ngay-giai-phong-mien-nam-101250421153314319.htm"
+    },
+    {
+      "id": "evn-2024-w17",
+      "publisher": "EVN / thông tin Cục Điều tiết Điện lực",
+      "title": "Tuần từ 22-28/4/2024: Đảm bảo điện khi phụ tải tăng kỷ lục",
+      "url": "https://www.evn.com.vn/d6/news/Tuan-tu-22-2842024-Dam-bao-dien-khi-phu-tai-tang-ky-luc-0-0-124167.aspx",
+      "published_at": "2024-04-29T08:00:00+07:00",
+      "event_period": "2024-04-22/2024-04-28",
+      "facts": {
+        "national_daily_mean_million_kwh": 946.6,
+        "increase_vs_previous_week_million_kwh": 65.4,
+        "outlook": "Nắng nóng có thể suy giảm trong 10 ngày tới; nhu cầu điện có thể giảm."
+      },
+      "paraphrase_vi": "Tuần 22–28/4 đạt bình quân 946,6 triệu kWh/ngày. Bản tin nhận định nắng nóng có thể dịu đi trong 10 ngày tới.",
+      "verify_tokens": [
+        "946,6",
+        "65,4",
+        "10 ngày tới"
+      ],
+      "retrieved_at": "2026-09-30T10:00:04.417724+00:00",
+      "response_sha256": "005b3deef928de1721f771a3e980a6540d0ce35db283b1f723df48e756084218",
+      "resolved_url": "https://www.evn.com.vn/d6/news/Tuan-tu-22-2842024-Dam-bao-dien-khi-phu-tai-tang-ky-luc-0-0-124167.aspx"
+    }
+  ]
+}

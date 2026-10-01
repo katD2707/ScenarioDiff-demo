@@ -1,0 +1,53 @@
+{
+  "duration": 170,
+  "chapters": [
+    {
+      "start": 0,
+      "title": "intro"
+    },
+    {
+      "start": 9,
+      "title": "method"
+    },
+    {
+      "start": 23,
+      "title": "Y tế & bán lẻ / source"
+    },
+    {
+      "start": 37,
+      "title": "Y tế & bán lẻ / scenario"
+    },
+    {
+      "start": 52,
+      "title": "Y tế & bán lẻ / forecast"
+    },
+    {
+      "start": 68,
+      "title": "Đô thị thông minh / source"
+    },
+    {
+      "start": 82,
+      "title": "Đô thị thông minh / scenario"
+    },
+    {
+      "start": 97,
+      "title": "Đô thị thông minh / forecast"
+    },
+    {
+      "start": 113,
+      "title": "Năng lượng / source"
+    },
+    {
+      "start": 127,
+      "title": "Năng lượng / scenario"
+    },
+    {
+      "start": 142,
+      "title": "Năng lượng / forecast"
+    },
+    {
+      "start": 158,
+      "title": "outro"
+    }
+  ]
+}

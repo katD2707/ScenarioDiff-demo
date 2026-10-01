@@ -10,7 +10,9 @@
   <title>ScenarioDiff: Scenario-level Guidance for Time Series Forecasting</title>
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="demo.css">
+  <script src="assets/demo-data.js" defer></script>
+  <script src="demo.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#abstract">Skip to content</a>
@@ -63,41 +65,49 @@
       </div>
     </section>
 
-    <section id="video" class="article-section">
-      <div class="wide-container">
-        <h2 class="section-title center">Video</h2>
-        <p class="section-intro">A short, text-led explanation of the method across healthcare, traffic, and energy examples.</p>
-        <figure class="video-figure"><video controls playsinline preload="metadata" poster="assets/poster.jpg" aria-label="ScenarioDiff illustrative research demo video"><source src="assets/scenariodiff-demo.mp4" type="video/mp4">Your browser does not support video. <a href="assets/scenariodiff-demo.mp4">Download the MP4</a>.</video><figcaption>86-second presentation film. All three business situations and numerical forecasts are fictional illustrations.</figcaption></figure>
-        <p class="video-download"><a href="assets/scenariodiff-demo.mp4" download>Download MP4</a></p>
+    <section id="video" class="editorial-demo demo-film" lang="vi">
+      <div class="demo-container">
+        <p class="demo-eyebrow">SCENARIODIFF / PHIM MINH HỌA</p>
+        <div class="demo-section-heading"><h2>Khi một bản tin<br>thay đổi dự báo.</h2><p>Ba sự kiện có thật tại Việt Nam.<br>Theo dõi cách bằng chứng trở thành kịch bản, điểm neo và một đường dự báo khác.</p></div>
+        <figure class="presentation-film">
+          <video id="presentation-video" controls playsinline preload="metadata" poster="assets/poster.jpg" aria-label="Phim minh họa ScenarioDiff bằng tiếng Việt"><source src="assets/scenariodiff-demo.mp4" type="video/mp4"><track kind="captions" src="assets/demo-vi.vtt" srclang="vi" label="Tiếng Việt">Trình duyệt không hỗ trợ video. <a href="assets/scenariodiff-demo.mp4">Tải video MP4</a>.</video>
+          <figcaption><span>02:50 / 1080p / diễn giải bằng chữ</span><span>Sự kiện thật · dữ liệu vận hành và dự báo giả lập</span></figcaption>
+        </figure>
+        <nav class="film-chapters" aria-label="Chương video"><button type="button" data-seek="0"><span>00:00</span> Mở đầu</button><button type="button" data-seek="9"><span>00:09</span> Cơ chế</button><button type="button" data-seek="23"><span>00:23</span> Y tế</button><button type="button" data-seek="68"><span>01:08</span> Giao thông</button><button type="button" data-seek="113"><span>01:53</span> Năng lượng</button></nav>
+        <div class="demo-resource-links"><a href="assets/scenariodiff-demo.mp4" download>Tải phim MP4 ↗</a><a href="assets/demo-transcript-vi.md" download>Đọc lời dẫn ↗</a><a href="#demo-sources">Nguồn sự kiện ↓</a></div>
       </div>
     </section>
 
-    <section class="article-section section-shaded" id="examples">
-      <div class="wide-container">
-        <h2 class="section-title center">Illustrative applications</h2>
-        <p class="section-intro">These three presentation examples use fictional briefs and synthetic forecast values.</p>
-        <div class="example-grid">
-          <figure><video autoplay muted loop playsinline preload="metadata" aria-label="Illustrative FPT Long Châu pharmacy demand forecast"><source src="assets/pharmacy-loop.mp4" type="video/mp4"></video><figcaption><strong>FPT Long Châu</strong><br>Pharmacy demand following a fictional local health signal.</figcaption></figure>
-          <figure><video autoplay muted loop playsinline preload="metadata" aria-label="Illustrative FPT Smart City traffic forecast"><source src="assets/traffic-loop.mp4" type="video/mp4"></video><figcaption><strong>FPT Smart City</strong><br>Traffic around a fictional corridor closure.</figcaption></figure>
-          <figure><video autoplay muted loop playsinline preload="metadata" aria-label="Illustrative FPT and E.ON energy load forecast"><source src="assets/energy-loop.mp4" type="video/mp4"></video><figcaption><strong>FPT × E.ON</strong><br>Energy load during a fictional heatwave.</figcaption></figure>
-        </div>
+    <section id="examples" class="editorial-demo demo-examples" lang="vi">
+      <div class="demo-container">
+        <p class="demo-eyebrow">03 SỰ KIỆN / 03 KIỂU TÁC ĐỘNG</p>
+        <div class="demo-section-heading"><h2>Bối cảnh thật.<br>Tình huống cụ thể.</h2><p>Các bản tin lưu trữ từ 2024–2025 có ngày công bố và nguồn kiểm tra được. Tác động kinh doanh dưới đây là giả thuyết minh họa.</p></div>
+        <div class="event-examples" id="event-examples"></div>
       </div>
     </section>
 
-    <section id="interactive" class="article-section">
-      <div class="wide-container">
-        <h2 class="section-title center">Interactive demo</h2>
-        <p class="section-intro">Choose an application and click through the five stages. The curves explain the mechanism; they are not trained-model outputs.</p>
-        <div class="demo-notice"><strong>Illustrative simulation:</strong> every brief and forecast value in this explorer is fictional.</div>
-        <div class="case-tabs" role="tablist" aria-label="Illustrative applications"><button class="case-tab active" type="button" role="tab" id="tab-pharmacy" aria-controls="case-panel" aria-selected="true" data-case="pharmacy">FPT Long Châu</button><button class="case-tab" type="button" role="tab" id="tab-traffic" aria-controls="case-panel" aria-selected="false" tabindex="-1" data-case="traffic">FPT Smart City</button><button class="case-tab" type="button" role="tab" id="tab-energy" aria-controls="case-panel" aria-selected="false" tabindex="-1" data-case="energy">FPT × E.ON</button></div>
+    <section id="interactive" class="editorial-demo demo-lab" lang="vi">
+      <div class="demo-container">
+        <p class="demo-eyebrow">PHÒNG DEMO / TƯƠNG TÁC</p>
+        <div class="demo-section-heading"><h2>Theo dõi<br>từng quyết định.</h2><p>Chọn tình huống, đi qua năm bước, rồi thử thay đổi độ mạnh của điểm neo để quan sát tác động lên quỹ đạo.</p></div>
+        <div class="case-tabs" role="tablist" aria-label="Tình huống minh họa"><button class="case-tab active" type="button" role="tab" id="tab-pharmacy" aria-controls="case-panel" aria-selected="true" data-case="pharmacy">01 / Y tế</button><button class="case-tab" type="button" role="tab" id="tab-traffic" aria-controls="case-panel" aria-selected="false" tabindex="-1" data-case="traffic">02 / Giao thông</button><button class="case-tab" type="button" role="tab" id="tab-energy" aria-controls="case-panel" aria-selected="false" tabindex="-1" data-case="energy">03 / Năng lượng</button></div>
         <div id="case-panel" role="tabpanel" aria-labelledby="tab-pharmacy" class="case-content">
-          <div class="case-intro"><div><div class="case-kicker" id="case-kicker">ILLUSTRATIVE / HEALTHCARE</div><h3 id="case-title">A local demand surge is coming.</h3><p id="case-description">The sales curve looks routine. Early context suggests a change before it shows up at the pharmacy counter.</p></div><span class="case-icon" id="case-icon" aria-hidden="true">✚</span></div>
-          <div class="demo-stage"><div class="chart-header"><span id="chart-label">WEEKLY MEDICINE DEMAND INDEX</span><span>PAST <i class="chart-divider"></i> FUTURE</span></div><svg id="demo-chart" viewBox="0 0 760 328" role="img" aria-label="Illustrative time series forecast chart"></svg><div class="chart-legend"><span><i class="legend-history"></i> Observed</span><span><i class="legend-baseline"></i> History-only illustration</span><span><i class="legend-guided"></i> Scenario-guided illustration</span><span><i class="legend-anchor"></i> Anchor interval</span></div></div>
-          <div class="step-controls" role="group" aria-label="Demo stage"><button type="button" class="step-button active" data-step="0" aria-pressed="true"><i>01</i> History</button><button type="button" class="step-button" data-step="1" aria-pressed="false"><i>02</i> Evidence</button><button type="button" class="step-button" data-step="2" aria-pressed="false"><i>03</i> Scenario</button><button type="button" class="step-button" data-step="3" aria-pressed="false"><i>04</i> Anchors</button><button type="button" class="step-button" data-step="4" aria-pressed="false"><i>05</i> Forecast</button></div>
-          <div class="step-narrative"><div class="step-tag" id="step-tag">01 / NUMERICAL HISTORY</div><p id="step-text">A familiar pattern. The historical values alone do not reveal the upcoming event.</p><button class="next-button" id="next-step" type="button">Next: evidence <span aria-hidden="true">→</span></button></div>
+          <header class="lab-case-header"><div><p class="demo-eyebrow" id="case-kicker"></p><h3 id="case-title"></h3></div><p class="forecast-cutoff">Mốc dự báo<strong id="case-cutoff"></strong><span id="case-period"></span></p></header>
+          <div class="lab-toolbar"><div class="step-controls" role="group" aria-label="Bước minh họa"><button type="button" class="step-button active" data-step="0" aria-pressed="true"><i>01</i> Lịch sử</button><button type="button" class="step-button" data-step="1" aria-pressed="false"><i>02</i> Bằng chứng</button><button type="button" class="step-button" data-step="2" aria-pressed="false"><i>03</i> Kịch bản</button><button type="button" class="step-button" data-step="3" aria-pressed="false"><i>04</i> Điểm neo</button><button type="button" class="step-button" data-step="4" aria-pressed="false"><i>05</i> Dự báo</button></div><button type="button" id="auto-demo" class="text-button" aria-pressed="false">▶ Tự chạy</button></div>
+          <div class="lab-grid">
+            <aside class="lab-evidence" aria-label="Nguồn bằng chứng"><div class="source-tag">Bản tin thật</div><time id="source-date"></time><h4 id="source-title"></h4><div class="source-stat" id="source-stat"></div><p class="source-stat-unit" id="source-stat-unit"></p><p class="source-fact" id="source-fact"></p><a id="source-link" target="_blank" rel="noopener noreferrer"></a><p class="source-timing">✓ Đã công bố trước mốc dự báo</p></aside>
+            <div class="lab-chart-panel"><div class="lab-chart-top"><div><h4 id="chart-label"></h4><p id="chart-unit"></p></div><span class="simulation-label">Chuỗi giả lập</span></div><div class="chart-scroll" tabindex="0" role="region" aria-label="Biểu đồ dự báo minh họa; cuộn ngang trên màn hình nhỏ"><svg id="demo-chart" viewBox="0 0 920 430" role="img" aria-label="Biểu đồ minh họa"></svg></div><div class="chart-legend"><span><i class="legend-history"></i> Lịch sử giả lập</span><span><i class="legend-baseline"></i> Đường nền</span><span><i class="legend-guided"></i> Có bối cảnh</span><span><i class="legend-anchor"></i> Khoảng neo</span></div><p class="chart-explanation" id="chart-explanation"></p><div class="forecast-controls"><label class="context-toggle"><input type="checkbox" id="show-context" checked> Hiện đường có bối cảnh</label><label class="anchor-slider" for="anchor-strength">Độ mạnh điểm neo <output id="anchor-value" for="anchor-strength">70%</output><input id="anchor-strength" type="range" min="0" max="100" value="70" step="5" disabled></label><button type="button" id="replay-forecast" class="text-button" disabled>↻ Xem khử nhiễu</button></div></div>
+          </div>
+          <div class="reasoning-panel" aria-live="polite"><div><p class="demo-eyebrow" id="step-tag"></p><h4 id="step-heading"></h4></div><div><p id="step-text"></p><p class="step-detail" id="step-detail"></p></div><button id="next-step" class="demo-button" type="button">Tiếp theo →</button></div>
+          <div class="anchor-readout" id="anchor-readout" hidden></div>
+          <details class="data-notes"><summary>Dữ liệu, giả định và phạm vi minh họa</summary><p id="case-assumption"></p><p>Các nhận định agent được soạn sẵn. Đường nền, đường theo kịch bản và các quỹ đạo đều là minh họa; không chạy LLM hay checkpoint ScenarioDiff. Vùng quỹ đạo không phải khoảng tin cậy đã hiệu chuẩn. Các doanh nghiệp được nêu như bối cảnh ứng dụng tiềm năng.</p><p><a href="assets/demo-series.csv" download>Tải chuỗi giả lập CSV</a> · <a href="assets/demo-sources.json" download>Tải dữ liệu nguồn JSON</a></p></details>
         </div>
       </div>
     </section>
+
+    <section id="demo-sources" class="editorial-demo demo-sources" lang="vi"><div class="demo-container"><p class="demo-eyebrow">NGUỒN & PHƯƠNG PHÁP</p><h2>Có thể lần về từng bản tin.</h2><div id="source-register"></div><p class="provenance-note">Bản tin được truy xuất và kiểm tra theo nội dung công khai. Demo chỉ dùng thông tin đã công bố trước mốc dự báo tương ứng. Nền chuyển sắc và bố cục lấy cảm hứng từ “Cosmetics PPT Template” của EaTemp; phông serif được điều chỉnh để hỗ trợ đầy đủ tiếng Việt.</p></div></section>
+
+    <dialog id="clip-dialog" class="editorial-demo clip-dialog" lang="vi"><div class="clip-dialog-header"><h2 id="clip-title">Video tình huống</h2><button type="button" id="close-clip" aria-label="Đóng video">Đóng ×</button></div><video id="clip-video" controls playsinline preload="none"></video><p>Sự kiện có thật; dữ liệu vận hành và dự báo giả lập.</p></dialog>
 
     <section id="results" class="article-section">
       <div class="article-container research-copy">
@@ -131,6 +141,6 @@
     </section>
   </main>
 
-  <footer class="site-footer"><div class="article-container"><p>Research by VinUniversity, FPT Software AI Center, VNU University of Engineering and Technology, and Aalborg University. Company application stories are fictional illustrations.</p><p>Page layout inspired by the <a href="https://m-arriola.com/bd3lms/" target="_blank" rel="noopener noreferrer">Block Diffusion project page</a> and the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener noreferrer">Academic Project Page Template</a>.</p></div></footer>
+  <footer class="site-footer"><div class="article-container"><p>Research by VinUniversity, FPT Software AI Center, VNU University of Engineering and Technology, and Aalborg University. Demo event reports are sourced; business operating data and forecasts are illustrative simulations.</p><p>Page layout inspired by the <a href="https://m-arriola.com/bd3lms/" target="_blank" rel="noopener noreferrer">Block Diffusion project page</a> and the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener noreferrer">Academic Project Page Template</a>.</p></div></footer>
 </body>
 </html>

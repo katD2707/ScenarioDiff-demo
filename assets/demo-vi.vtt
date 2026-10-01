@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:09.000
+Một thông báo có thể xuất hiện trước khi dữ liệu vận hành thay đổi. ScenarioDiff tổ chức bằng chứng đó thành hướng dẫn cho dự báo.
+
+2
+00:00:09.000 --> 00:00:23.000
+Historical Context Agent lọc bằng chứng. Scenario Agent mô tả tương lai. Anchor Guidance Agent đặt khoảng neo; mô hình diffusion tạo và hiệu chỉnh quỹ đạo.
+
+3
+00:00:23.000 --> 00:00:37.000
+Bản tin HCDC là dữ liệu thật. Số ca bệnh giúp nhận diện bối cảnh; không được quy đổi trực tiếp thành đơn hàng hoặc lượng thuốc.
+
+4
+00:00:37.000 --> 00:00:52.000
+Giả thuyết cho cụm nhà thuốc: nhu cầu vật tư chăm sóc tăng ngắn hạn. Hai khoảng neo là giả định của demo, không phải số liệu HCDC.
+
+5
+00:00:52.000 --> 00:01:08.000
+Quan sát đường nền, các quỹ đạo minh họa và hai vùng neo. Bối cảnh giúp người vận hành xem xét phương án bổ sung hàng sớm hơn.
+
+6
+00:01:08.000 --> 00:01:22.000
+Thông báo công bố trước một ngày: hạn chế giao thông từ 17:30 ngày 22/4 đến 01:00 ngày 23/4. Đây là sự kiện có thời gian rõ ràng.
+
+7
+00:01:22.000 --> 00:01:37.000
+Ví dụ xét tuyến lân cận còn mở: xe chuyển hướng có thể làm tăng thời gian di chuyển. Các giá trị phút và khoảng neo đều được giả lập.
+
+8
+00:01:37.000 --> 00:01:53.000
+Neo tập trung vào đỉnh và giai đoạn hạ nhiệt. Có thể thử đổi giờ giao hàng trước khi sự kiện bắt đầu; đây chưa phải dự báo giao thông thực.
+
+9
+00:01:53.000 --> 00:02:07.000
+EVN báo cáo mức tiêu thụ cao trong tuần 22–28/4, đồng thời nêu triển vọng nắng nóng dịu đi. Bản tin có trước mốc dự báo.
+
+10
+00:02:07.000 --> 00:02:22.000
+Kịch bản có thể đảo chiều xu hướng: nhu cầu làm mát giảm. Chuỗi MW của cụm cơ sở được giả lập, tách biệt với số kWh toàn quốc.
+
+11
+00:02:22.000 --> 00:02:38.000
+Đường nền kéo dài xu hướng tăng; bối cảnh gợi ý hạ phụ tải. Các quỹ đạo được minh họa quanh khoảng neo, không có tuyên bố về độ chính xác.
+
+12
+00:02:38.000 --> 00:02:50.000
+Ba ngành, cùng một quy trình: bằng chứng, kịch bản, điểm neo, dự báo. Mở demo tương tác để kiểm tra nguồn và thay đổi độ mạnh điểm neo.
