@@ -1,75 +1,85 @@
 {
-  "note": "Event reports are sourced. Operating histories, ground-truth references and forecast paths are illustrative; they are not customer measurements or model evaluation.",
-  "eventReportRecords": {
-    "note": "Public event evidence only. Operational histories, scenarios, anchors and forecast paths are authored simulations, not company measurements or trained-model outputs.",
-    "sources": [
-      {
-        "id": "hcdc-2024-w32",
-        "publisher": "HCDC",
-        "title": "Tình hình dịch bệnh sốt xuất huyết, tay chân miệng và sởi tại TP. Hồ Chí Minh tính đến tuần 32/2024",
-        "url": "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-tay-chan-mieng-va-soi-tai-tp-ho-chi-minh-tinh-den-tuan-322024-39XFah.html",
-        "published_at": "2024-08-13T18:17:00+07:00",
-        "event_period": "2024-08-05/2024-08-11",
-        "facts": {
-          "dengue_weekly_cases": 272,
-          "increase_vs_prior_four_week_mean_percent": 18.8,
-          "location": "TP. Hồ Chí Minh"
-        },
-        "paraphrase_vi": "Tuần 32: TP.HCM báo cáo 272 ca sốt xuất huyết; cao hơn 18,8% so với trung bình bốn tuần trước.",
-        "verify_tokens": [
-          "272",
-          "18,8%",
-          "5/8/2024",
-          "11/8/2024"
-        ],
-        "retrieved_at": "2026-09-30T10:00:03.363486+00:00",
-        "response_sha256": "f222a02af056922c066199985a0ec909e3b0f6ffcd6132e49c746071b077b0f3",
-        "resolved_url": "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-tay-chan-mieng-va-soi-tai-tp-ho-chi-minh-tinh-den-tuan-322024-39XFah.html"
-      },
-      {
-        "id": "pc08-2025-04-21",
-        "publisher": "Báo Điện tử Chính phủ / thông tin PC08",
-        "title": "Lịch cấm đường phục vụ lễ kỷ niệm 50 năm Ngày Giải phóng miền Nam",
-        "url": "https://tphcm.chinhphu.vn/lich-cam-duong-phuc-vu-le-ky-niem-50-nam-ngay-giai-phong-mien-nam-101250421153314319.htm",
-        "published_at": "2025-04-21T15:43:00+07:00",
-        "event_period": "2025-04-22T17:30:00+07:00/2025-04-23T01:00:00+07:00",
-        "facts": {
-          "closure_start": "22/04/2025 17:30",
-          "closure_end": "23/04/2025 01:00",
-          "location": "Một số tuyến đường trung tâm TP.HCM"
-        },
-        "paraphrase_vi": "Thông báo ngày 21/4: một số tuyến trung tâm hạn chế lưu thông từ 17:30 ngày 22/4 đến 01:00 ngày 23/4.",
-        "verify_tokens": [
-          "21/04/2025",
-          "17h30' ngày 22/4",
-          "1h ngày 23/4"
-        ],
-        "retrieved_at": "2026-09-30T10:00:03.687207+00:00",
-        "response_sha256": "abb26b57283ec344f829ab70fe15d9d9fecb8ea950a0b5d7ad2613e40bcb7b4f",
-        "resolved_url": "https://tphcm.chinhphu.vn/lich-cam-duong-phuc-vu-le-ky-niem-50-nam-ngay-giai-phong-mien-nam-101250421153314319.htm"
-      },
-      {
-        "id": "evn-2024-w17",
-        "publisher": "EVN / thông tin Cục Điều tiết Điện lực",
-        "title": "Tuần từ 22-28/4/2024: Đảm bảo điện khi phụ tải tăng kỷ lục",
-        "url": "https://www.evn.com.vn/d6/news/Tuan-tu-22-2842024-Dam-bao-dien-khi-phu-tai-tang-ky-luc-0-0-124167.aspx",
-        "published_at": "2024-04-29T08:00:00+07:00",
-        "event_period": "2024-04-22/2024-04-28",
-        "facts": {
-          "national_daily_mean_million_kwh": 946.6,
-          "increase_vs_previous_week_million_kwh": 65.4,
-          "outlook": "Nắng nóng có thể suy giảm trong 10 ngày tới; nhu cầu điện có thể giảm."
-        },
-        "paraphrase_vi": "Tuần 22–28/4 đạt bình quân 946,6 triệu kWh/ngày. Bản tin nhận định nắng nóng có thể dịu đi trong 10 ngày tới.",
-        "verify_tokens": [
-          "946,6",
-          "65,4",
-          "10 ngày tới"
-        ],
-        "retrieved_at": "2026-09-30T10:00:04.417724+00:00",
-        "response_sha256": "005b3deef928de1721f771a3e980a6540d0ce35db283b1f723df48e756084218",
-        "resolved_url": "https://www.evn.com.vn/d6/news/Tuan-tu-22-2842024-Dam-bao-dien-khi-phu-tai-tang-ky-luc-0-0-124167.aspx"
-      }
-    ]
-  }
+  "note": "History and ground truth are published observations. Event reports are sourced. Forecasts and anchor intervals are illustrative retrospective examples, not ScenarioDiff model predictions or a point-in-time evaluation.",
+  "healthReporting": "HCDC surveillance counts as reported in linked bulletins and news reports; week labels follow those reports.",
+  "trafficUnitConversion": "Time-MMD OT (million vehicle miles) divided by 1000.",
+  "energySeries": "Weekly U.S. all-grades, all-formulations retail gasoline price, USD/gallon.",
+  "snapshots": [
+    {
+      "url": "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-va-tay-chan-mieng-tai-tp-ho-chi-minh-tinh-den-tuan-302024-x6HEAv.html",
+      "retrievedUTC": "2026-10-01T03:31:30.263433+00:00",
+      "sha256": "ec21c344c8d35e4dfa25802f22f1f0c8f9638069ef43a5e85277ad57ae64ebeb",
+      "verifiedTokens": [
+        "232"
+      ]
+    },
+    {
+      "url": "https://tuoitre.vn/nld/tp-hcm-phat-hien-60-ca-nghi-sot-phat-ban-soi-trong-1-tuan-196240810151904281.htm",
+      "retrievedUTC": "2026-10-01T03:31:30.780288+00:00",
+      "sha256": "fd850bf8bf813cb5c916a594191b7b2837dd7ecbcc15e4769c931845dd1b92ad",
+      "verifiedTokens": [
+        "254"
+      ]
+    },
+    {
+      "url": "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-tay-chan-mieng-va-soi-tai-tp-ho-chi-minh-tinh-den-tuan-322024-39XFah.html",
+      "retrievedUTC": "2026-10-01T03:31:31.245629+00:00",
+      "sha256": "31a2859b52118c42d25dfb22f4c8efe08910af279c50e070931c4228b35fdf81",
+      "verifiedTokens": [
+        "272"
+      ]
+    },
+    {
+      "url": "https://thanhnien.vn/tinh-hinh-dich-benh-soi-moi-nhat-tai-tphcm-185240824095909048.htm",
+      "retrievedUTC": "2026-10-01T03:31:31.998559+00:00",
+      "sha256": "fc16622f4b79bb9267ab3f92713c4db2144251a5361fe999197723c843955933",
+      "verifiedTokens": [
+        "299"
+      ]
+    },
+    {
+      "url": "https://alobacsi.com/hcdc-benh-truyen-nhiem-o-tphcm-tang-cao.html",
+      "retrievedUTC": "2026-10-01T03:31:32.639184+00:00",
+      "sha256": "7d4a576a103bcb23afacae7bf9bca533a09d6629ec20a547fe24bbf9aa5d1816",
+      "verifiedTokens": [
+        "301"
+      ]
+    },
+    {
+      "url": "https://vtv.vn/suc-khoe/tp-ho-chi-minh-ghi-nhan-118-ca-sot-phat-ban-nghi-soi-trong-tuan-qua-20240903112903123.htm",
+      "retrievedUTC": "2026-10-01T03:31:34.213763+00:00",
+      "sha256": "3c56543c76f391e4ed29460c44a4f9da7f903a59371dd6a7fc8149545e58858a",
+      "verifiedTokens": [
+        "243"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+      "retrievedUTC": "2026-10-01T03:31:34.996106+00:00",
+      "sha256": "1b014c153fb2d0d88bb2e455b67aa34b83d733872b119f0062ac932d7a443335",
+      "verifiedTokens": []
+    },
+    {
+      "url": "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+      "retrievedUTC": "2026-10-01T03:31:35.793253+00:00",
+      "sha256": "94313cefb3459f04b58ec814da5d817a694e767cc52de0ce09d4de4efdad02ee",
+      "verifiedTokens": []
+    },
+    {
+      "url": "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-vice-president-pence-members-coronavirus-task-force-press-briefing-3/",
+      "retrievedUTC": "2026-10-01T03:31:36.641529+00:00",
+      "sha256": "2a1c1fae6cacb4b899dcdcfeeb4ed2513bb7b4228d32820859ef9f98b5418cc4",
+      "verifiedTokens": [
+        "discretionary travel"
+      ]
+    },
+    {
+      "url": "https://www.eia.gov/todayinenergy/detail.php?id=51498",
+      "retrievedUTC": "2026-10-01T03:31:37.468170+00:00",
+      "sha256": "9f8849021514e0f645421d091e1a2a31d833e5111c651133cab141d4c2e52778",
+      "verifiedTokens": [
+        "March 4, 2022",
+        "$100"
+      ]
+    }
+  ]
 }

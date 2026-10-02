@@ -1,4 +1,4 @@
-"""English presentation of the original three Vietnam use cases.
+"""English presentation of three public events with social impact.
 Forecast targets and animation are authored; no model checkpoint is evaluated.
 """
 from pathlib import Path
@@ -23,7 +23,7 @@ for i,c in enumerate(CASES):
     SCENES.extend([dict(kind='source',case=i,duration=14,caption=c['fact']),
                    dict(kind='scenario',case=i,duration=15,caption=c['scenario']),
                    dict(kind='forecast',case=i,duration=16,caption=c['assumption'])])
-SCENES.append(dict(kind='outro',duration=12,caption='The event reports are sourced. Operating histories, ground-truth references and forecast paths illustrate the mechanism; these are not customer measurements or model results.'))
+SCENES.append(dict(kind='outro',duration=12,caption='History and ground truth are published observations. Forecast and anchor paths illustrate the method; they are not measured model results.'))
 TOTAL=sum(s['duration'] for s in SCENES)
 
 @lru_cache(maxsize=100)
@@ -167,7 +167,7 @@ def static_scene(idx):
         rule(d,577)
         txt(d,(95,635),'03',98,'serif');txt(d,(290,648),'events. Three patterns of change.',47,'serif')
         txt(d,(290,729),'HEALTHCARE / MOBILITY / ENERGY',25,'mono',MUTED)
-        txt(d,(95,852),'Vietnamese events. Scenario-guided trajectories.',30,fill=MUTED)
+        txt(d,(95,852),'Published observations. Scenario-guided trajectories.',30,fill=MUTED)
     elif kind=='method':
         heading(d,'The mechanism','From evidence to a future trajectory.')
         labels=['Read the past','Describe the future','Locate the change','Generate & refine']

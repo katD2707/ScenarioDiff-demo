@@ -37,6 +37,9 @@ try {
  assert.equal(await js('getComputedStyle(document.querySelector(".paper-overall-table .rank-first")).color'),'rgb(192, 0, 0)');
 
  assert.equal(await js('document.querySelectorAll(".event-example").length'),3);
+ assert.equal(await js('document.querySelectorAll(".event-impact").length'),3);
+ assert.equal(await js('/FPT|Long Chau|Smart City|E\\.ON/i.test(document.querySelector("#examples").textContent)'),false);
+ assert.equal(await js('document.querySelector(".provenance-note").textContent.includes("published observations")'),true);
  const positions=await js('[...document.querySelectorAll(".event-example")].map(e=>({top:e.getBoundingClientRect().top,left:e.getBoundingClientRect().left,height:e.getBoundingClientRect().height}))');
  assert(positions.every(p=>Math.abs(p.top-positions[0].top)<1),'Desktop examples must share one row');
  assert(positions[0].left<positions[1].left&&positions[1].left<positions[2].left);
@@ -63,6 +66,7 @@ try {
   await js(`${select}.querySelector('video').currentTime = 15`);await wait(250);
   const data=await js(`window.SCENARIO_DEMO.cases.find(c=>c.id==='${c}')`);
   assert.equal(data.groundTruth.length,data.futureDates.length);
+  assert(data.guided.every((v,i)=>Math.abs(v-data.groundTruth[i])<Math.abs(data.preAnchor[i]-data.groundTruth[i])&&v!==data.groundTruth[i]),'Illustrative anchor correction should approach the observed outcome without matching it exactly');
   results.push({case:c,history:data.history,groundTruth:data.groundTruth});
  }
  await js('document.querySelectorAll("[data-seek]")[3].click()');await wait(1200);

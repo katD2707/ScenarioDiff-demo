@@ -14,36 +14,36 @@ HCDC reported 272 dengue cases in week 32, 18.8% above the preceding four-week a
 
 4
 00:00:37.000 --> 00:00:52.000
-Demand for healthcare supplies rises over the next few weeks, then eases as replenishment catches up.
+Reported cases stay elevated briefly and then ease.
 
 5
 00:00:52.000 --> 00:01:08.000
-The anchors lift the forecast around weeks 36 and 38, bringing it closer to the ground-truth reference while preserving the overall demand pattern. A visible forecast error remains after refinement.
+Guidance follows the rise and then turns down. The reported week-35 decline is sharper than the illustrative forecast.
 
 6
 00:01:08.000 --> 00:01:22.000
-Selected central Ho Chi Minh City roads were scheduled to close from 17:30 on April 22 until 01:00 on April 23.
+Federal guidance called for avoiding discretionary travel as the COVID-19 response intensified.
 
 7
 00:01:22.000 --> 00:01:37.000
-Diverted traffic increases travel time after 17:30, followed by a gradual decline toward the end of the night.
+Travel falls abruptly and then recovers as conditions change.
 
 8
 00:01:37.000 --> 00:01:53.000
-Guidance raises the peak near 19:00 and refines the easing phase near 23:00. The forecast moves closer to the ground-truth reference at both anchor regions. A visible forecast error remains after refinement.
+Guidance captures the mobility drop and recovery. The observed April low is deeper than the illustrative forecast.
 
 9
 00:01:53.000 --> 00:02:07.000
-EVN reported average national consumption of 946.6 million kWh per day and an outlook for easing heat over the following ten days.
+EIA reported crude prices above $100 per barrel following Russia’s invasion of Ukraine, with increased volatility.
 
 10
 00:02:07.000 --> 00:02:22.000
-As the heat eases, cooling demand falls and the facility cluster load declines instead of extending its recent upward trend.
+Retail prices rise rapidly, peak, and then ease while remaining elevated.
 
 11
 00:02:22.000 --> 00:02:38.000
-The anchors lower the trajectory around May 3 and May 6, aligning it more closely with the ground-truth reference during the easing phase. A visible forecast error remains after refinement.
+Guidance captures the rise in retail prices. The observed March peak is higher and earlier than the illustrative path.
 
 12
 00:02:38.000 --> 00:02:50.000
-The event reports are sourced. Operating histories, ground-truth references and forecast paths illustrate the mechanism; these are not customer measurements or model results.
+History and ground truth are published observations. Forecast and anchor paths illustrate the method; they are not measured model results.

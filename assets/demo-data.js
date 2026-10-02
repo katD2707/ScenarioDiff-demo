@@ -1,387 +1,399 @@
 window.SCENARIO_DEMO = {
-  "version": 5,
+  "version": 6,
   "cases": [
     {
       "id": "pharmacy",
       "number": "01",
-      "sourceId": "hcdc-2024-w32",
+      "domain": "Public health",
+      "brand": "Ho Chi Minh City / Vietnam",
+      "title": "Dengue cases rise.\nCare planning changes.",
+      "shortTitle": "Dengue cases and care planning",
+      "source": "HCDC",
+      "published": "13 August 2024",
       "url": "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-tay-chan-mieng-va-soi-tai-tp-ho-chi-minh-tinh-den-tuan-322024-39XFah.html",
-      "publishedISO": "2024-08-13T18:17:00+07:00",
-      "cutoffISO": "2024-08-18T23:59:00+07:00",
+      "dataUrl": "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-tay-chan-mieng-va-soi-tai-tp-ho-chi-minh-tinh-den-tuan-322024-39XFah.html",
+      "sourceTitle": "Dengue surveillance: week 32",
+      "stat": "272",
+      "statUnit": "reported dengue cases in week 32",
+      "fact": "HCDC reported 272 dengue cases in week 32, 18.8% above the preceding four-week average.",
+      "factSecondary": "18.8% above the preceding four-week average.",
+      "cutoff": "Weeks 30-35 / 2024",
+      "metric": "Reported dengue cases",
+      "unit": "Cases / week",
       "history": [
-        510,
-        525,
-        518,
-        542,
-        536,
-        558,
-        565,
-        580
+        232,
+        254,
+        272
+      ],
+      "groundTruth": [
+        299,
+        301,
+        243
       ],
       "historyDates": [
-        "W26",
-        "W27",
-        "W28",
-        "W29",
         "W30",
         "W31",
-        "W32",
-        "W33"
+        "W32"
       ],
       "futureDates": [
+        "W33",
         "W34",
-        "W35",
-        "W36",
-        "W37",
-        "W38",
-        "W39"
+        "W35"
       ],
       "baseline": [
-        585,
-        591,
-        596,
-        602,
-        608,
-        613
+        291,
+        310,
+        329
       ],
       "guided": [
-        618.26,
-        681.87,
-        750.4,
-        806.87,
-        745.4,
-        711.87
+        293,
+        308,
+        260
       ],
       "anchors": [
         {
-          "i": 2,
-          "lo": 750,
-          "hi": 840,
-          "label": "W36 / 750-840 units"
+          "i": 1,
+          "lo": 295,
+          "hi": 320,
+          "label": "Week 34 / 295-320 cases"
         },
         {
-          "i": 4,
-          "lo": 740,
-          "hi": 820,
-          "label": "W38 / 740-820 units"
+          "i": 2,
+          "lo": 238,
+          "hi": 280,
+          "label": "Week 35 / 238-280 cases"
         }
       ],
       "range": [
-        400,
-        950
+        180,
+        380
       ],
       "ticks": [
-        400,
-        500,
-        600,
-        700,
-        800,
-        900
+        200,
+        250,
+        300,
+        350
       ],
-      "domain": "Healthcare & retail",
-      "brand": "FPT Long Chau",
-      "title": "An outbreak bulletin.\nA different stock plan.",
-      "shortTitle": "Demand for healthcare supplies",
-      "source": "HCDC",
-      "published": "13 August 2024 / 18:17",
-      "sourceTitle": "Ho Chi Minh City health bulletin / week 32",
-      "fact": "HCDC reported 272 dengue cases in week 32, 18.8% above the preceding four-week average.",
-      "stat": "272",
-      "statUnit": "reported cases / week 32",
-      "factSecondary": "18.8% above the preceding four-week average.",
-      "cutoff": "18 August 2024 / weeks 34-39 ahead",
-      "metric": "Healthcare supply demand",
-      "unit": "Units / week",
-      "direction": "A short-term demand rise",
-      "context": "A health bulletin signals rising local pressure. A pharmacy cluster may need to review inventory and replenishment lead times.",
-      "scenario": "Demand for healthcare supplies rises over the next few weeks, then eases as replenishment catches up.",
-      "action": "Anticipate demand.\nPlan replenishment.",
-      "assumption": "The anchors lift the forecast around weeks 36 and 38, bringing it closer to the ground-truth reference while preserving the overall demand pattern. A visible forecast error remains after refinement.",
-      "groundTruth": [
-        625,
-        708,
-        800,
-        830,
-        790,
-        735
+      "direction": "Pressure on local care",
+      "context": "HCDC reported rising dengue cases in Ho Chi Minh City. Weekly case counts help health services anticipate near-term pressure.",
+      "scenario": "Reported cases stay elevated briefly and then ease.",
+      "action": "Prepare care capacity.\nTrack the decline.",
+      "assumption": "Guidance follows the rise and then turns down. The reported week-35 decline is sharper than the illustrative forecast.",
+      "observationSources": [
+        "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-va-tay-chan-mieng-tai-tp-ho-chi-minh-tinh-den-tuan-302024-x6HEAv.html",
+        "https://tuoitre.vn/nld/tp-hcm-phat-hien-60-ca-nghi-sot-phat-ban-soi-trong-1-tuan-196240810151904281.htm",
+        "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-tay-chan-mieng-va-soi-tai-tp-ho-chi-minh-tinh-den-tuan-322024-39XFah.html",
+        "https://thanhnien.vn/tinh-hinh-dich-benh-soi-moi-nhat-tai-tphcm-185240824095909048.htm",
+        "https://alobacsi.com/hcdc-benh-truyen-nhiem-o-tphcm-tang-cao.html",
+        "https://vtv.vn/suc-khoe/tp-ho-chi-minh-ghi-nhan-118-ca-sot-phat-ban-nghi-soi-trong-tuan-qua-20240903112903123.htm"
       ],
-      "seriesProvenance": "authored_illustration",
+      "observationDates": [
+        "2024-07-22",
+        "2024-07-29",
+        "2024-08-05",
+        "2024-08-12",
+        "2024-08-19",
+        "2024-08-26"
+      ],
+      "impact": "Rising cases increase pressure on local care services.",
       "preAnchor": [
-        616.134,
-        659.711,
-        702.0,
-        784.711,
-        697.0,
-        689.711
+        282,
+        326,
+        326
       ],
       "plotEvent": {
         "location": "history",
-        "i": 7,
-        "label": "HCDC bulletin\n272 cases / +18.8%"
+        "i": 2,
+        "label": "HCDC bulletin\n13 Aug / 272 cases"
       }
     },
     {
       "id": "traffic",
       "number": "02",
-      "sourceId": "pc08-2025-04-21",
-      "url": "https://tphcm.chinhphu.vn/lich-cam-duong-phuc-vu-le-ky-niem-50-nam-ngay-giai-phong-mien-nam-101250421153314319.htm",
-      "publishedISO": "2025-04-21T15:43:00+07:00",
-      "cutoffISO": "2025-04-22T15:00:00+07:00",
+      "domain": "Mobility",
+      "brand": "United States / national travel",
+      "title": "Travel guidance changes.\nMobility drops.",
+      "shortTitle": "Travel restrictions and mobility",
+      "source": "White House archive",
+      "published": "16 March 2020",
+      "url": "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-vice-president-pence-members-coronavirus-task-force-press-briefing-3/",
+      "dataUrl": "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+      "sourceTitle": "National guidance to reduce travel",
+      "stat": "15 days",
+      "statUnit": "initial federal guidance period",
+      "fact": "Federal guidance called for avoiding discretionary travel as the COVID-19 response intensified.",
+      "factSecondary": "Avoid discretionary travel and reduce in-person activity.",
+      "cutoff": "August 2019-July 2020",
+      "metric": "U.S. vehicle miles traveled",
+      "unit": "Billion vehicle miles / month",
       "history": [
-        24,
-        22,
-        20,
-        19,
-        21,
-        20,
-        22,
-        24
+        288.116,
+        267.747,
+        283.961,
+        260.326,
+        261.757,
+        260.847,
+        242.695
+      ],
+      "groundTruth": [
+        226.638,
+        167.617,
+        221.006,
+        250.33,
+        265.55
       ],
       "historyDates": [
-        "08:00",
-        "09:00",
-        "10:00",
-        "11:00",
-        "12:00",
-        "13:00",
-        "14:00",
-        "15:00"
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+        "Jan",
+        "Feb"
       ],
       "futureDates": [
-        "16:00",
-        "17:00",
-        "18:00",
-        "19:00",
-        "20:00",
-        "21:00",
-        "22:00",
-        "23:00",
-        "00:00",
-        "01:00"
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul"
       ],
       "baseline": [
-        25,
-        27,
-        29,
-        27,
-        24,
-        22,
-        20,
-        18,
-        17,
-        16
+        268,
+        275,
+        282,
+        286,
+        288
       ],
       "guided": [
-        25.997,
-        29.842,
-        39.352,
-        44.4,
-        44.352,
-        41.842,
-        35.352,
-        28.4,
-        24.352,
-        20.842
+        225,
+        189,
+        216,
+        246,
+        261
       ],
       "anchors": [
         {
-          "i": 3,
-          "lo": 43,
-          "hi": 52,
-          "label": "19:00 / 43-52 min"
+          "i": 1,
+          "lo": 175,
+          "hi": 205,
+          "label": "April / 175-205 billion"
         },
         {
-          "i": 7,
-          "lo": 28,
-          "hi": 36,
-          "label": "23:00 / 28-36 min"
+          "i": 4,
+          "lo": 245,
+          "hi": 275,
+          "label": "July / 245-275 billion"
         }
       ],
       "range": [
-        10,
-        60
+        130,
+        330
       ],
       "ticks": [
-        10,
-        20,
-        30,
-        40,
-        50,
-        60
+        150,
+        200,
+        250,
+        300
       ],
-      "domain": "Smart city",
-      "brand": "FPT Smart City",
-      "title": "Traffic is still light.\nThe closure is scheduled.",
-      "shortTitle": "Travel around restricted roads",
-      "source": "Government News / PC08",
-      "published": "21 April 2025 / 15:43",
-      "sourceTitle": "Road closures for the April 30 celebrations",
-      "fact": "Selected central Ho Chi Minh City roads were scheduled to close from 17:30 on April 22 until 01:00 on April 23.",
-      "stat": "17:30",
-      "statUnit": "22 April 2025 / restrictions begin",
-      "factSecondary": "Restrictions end at 01:00 on April 23.",
-      "cutoff": "22-23 April 2025 / hourly travel time",
-      "metric": "Travel time on a nearby open route",
-      "unit": "Minutes / trip",
-      "direction": "An event-time traffic peak",
-      "context": "The announcement gives the start, end and location of the restrictions. The example follows diverted traffic on a nearby route that remains open.",
-      "scenario": "Diverted traffic increases travel time after 17:30, followed by a gradual decline toward the end of the night.",
-      "action": "Anticipate the peak.\nAdjust delivery times.",
-      "assumption": "Guidance raises the peak near 19:00 and refines the easing phase near 23:00. The forecast moves closer to the ground-truth reference at both anchor regions. A visible forecast error remains after refinement.",
-      "groundTruth": [
-        27,
-        31,
-        42,
-        49,
-        47,
-        43,
-        38,
-        33,
-        27,
-        22
+      "direction": "A sharp mobility disruption",
+      "context": "Federal pandemic guidance called for less discretionary travel. Monthly vehicle miles show the subsequent national mobility shock.",
+      "scenario": "Travel falls abruptly and then recovers as conditions change.",
+      "action": "Plan essential travel.\nWatch the recovery.",
+      "assumption": "Guidance captures the mobility drop and recovery. The observed April low is deeper than the illustrative forecast.",
+      "observationSources": [
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv"
       ],
-      "seriesProvenance": "authored_illustration",
+      "observationDates": [
+        "2019-08-01",
+        "2019-09-01",
+        "2019-10-01",
+        "2019-11-01",
+        "2019-12-01",
+        "2020-01-01",
+        "2020-02-01",
+        "2020-03-01",
+        "2020-04-01",
+        "2020-05-01",
+        "2020-06-01",
+        "2020-07-01"
+      ],
+      "impact": "Mobility affects work, daily journeys, and access to services.",
       "preAnchor": [
-        25.993,
-        29.649,
-        37.337,
-        40.0,
-        42.337,
-        41.649,
-        33.337,
-        24.0,
-        22.337,
-        20.649
+        249,
+        249,
+        245,
+        268,
+        279
       ],
       "plotEvent": {
         "location": "future",
-        "i": 1.5,
-        "label": "Road closure\n22 Apr / 17:30"
+        "i": 0,
+        "label": "Reduce travel\n16 Mar 2020"
       }
     },
     {
       "id": "energy",
       "number": "03",
-      "sourceId": "evn-2024-w17",
-      "url": "https://www.evn.com.vn/d6/news/Tuan-tu-22-2842024-Dam-bao-dien-khi-phu-tai-tang-ky-luc-0-0-124167.aspx",
-      "publishedISO": "2024-04-29T08:00:00+07:00",
-      "cutoffISO": "2024-04-29T23:59:00+07:00",
+      "domain": "Energy",
+      "brand": "United States / retail fuel",
+      "title": "Crude oil jumps.\nFuel costs follow.",
+      "shortTitle": "Fuel prices and household costs",
+      "source": "U.S. EIA",
+      "published": "4 March 2022",
+      "url": "https://www.eia.gov/todayinenergy/detail.php?id=51498",
+      "dataUrl": "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+      "sourceTitle": "Crude oil rises above $100",
+      "stat": "$100+",
+      "statUnit": "crude oil futures / barrel",
+      "fact": "EIA reported crude prices above $100 per barrel following Russia’s invasion of Ukraine, with increased volatility.",
+      "factSecondary": "Crude market disruption creates upward pressure on retail fuel prices.",
+      "cutoff": "January-April 2022",
+      "metric": "U.S. retail gasoline price",
+      "unit": "USD / gallon · all grades",
       "history": [
-        42,
-        44,
-        43,
-        46,
-        49,
-        51,
-        50,
-        52
+        3.381,
+        3.394,
+        3.404,
+        3.421,
+        3.464,
+        3.538,
+        3.581,
+        3.624,
+        3.701
+      ],
+      "groundTruth": [
+        4.196,
+        4.414,
+        4.343,
+        4.334,
+        4.274,
+        4.196
       ],
       "historyDates": [
-        "Apr 22",
-        "Apr 23",
-        "Apr 24",
-        "Apr 25",
-        "Apr 26",
-        "Apr 27",
-        "Apr 28",
-        "Apr 29"
+        "Jan 3",
+        "Jan 10",
+        "Jan 17",
+        "Jan 24",
+        "Jan 31",
+        "Feb 7",
+        "Feb 14",
+        "Feb 21",
+        "Feb 28"
       ],
       "futureDates": [
-        "Apr 30",
-        "May 1",
-        "May 2",
-        "May 3",
-        "May 4",
-        "May 5",
-        "May 6"
+        "Mar 7",
+        "Mar 14",
+        "Mar 21",
+        "Mar 28",
+        "Apr 4",
+        "Apr 11"
       ],
       "baseline": [
-        53,
-        54,
-        55,
-        56,
-        57,
-        58,
-        59
+        3.75,
+        3.8,
+        3.85,
+        3.9,
+        3.95,
+        4.0
       ],
       "guided": [
-        52.003,
-        51.126,
-        49.319,
-        47.88,
-        44.319,
-        43.319,
-        44.88
+        4.08,
+        4.34,
+        4.36,
+        4.31,
+        4.26,
+        4.22
       ],
       "anchors": [
         {
-          "i": 3,
-          "lo": 43,
-          "hi": 48,
-          "label": "May 3 / 43-48 MW"
+          "i": 1,
+          "lo": 4.1,
+          "hi": 4.5,
+          "label": "March 14 / $4.10-4.50"
         },
         {
-          "i": 6,
-          "lo": 40,
-          "hi": 45,
-          "label": "May 6 / 40-45 MW"
+          "i": 5,
+          "lo": 4.1,
+          "hi": 4.4,
+          "label": "April 11 / $4.10-4.40"
         }
       ],
       "range": [
-        30,
-        70
+        3.0,
+        4.9
       ],
       "ticks": [
-        30,
-        40,
-        50,
-        60,
-        70
+        3,
+        3.5,
+        4,
+        4.5
       ],
-      "domain": "Energy",
-      "brand": "FPT x E.ON",
-      "title": "After the heat peak,\ndemand may ease.",
-      "shortTitle": "Electricity demand as heat eases",
-      "source": "EVN / Electricity Regulatory Authority",
-      "published": "29 April 2024 / 08:00",
-      "sourceTitle": "Power system update / April 22-28",
-      "fact": "EVN reported average national consumption of 946.6 million kWh per day and an outlook for easing heat over the following ten days.",
-      "stat": "946.6",
-      "statUnit": "million kWh / day / nationwide",
-      "factSecondary": "Outlook: the heat may ease over the next ten days.",
-      "cutoff": "30 April-6 May 2024 / daily peak load",
-      "metric": "Peak load of a facility cluster",
-      "unit": "MW",
-      "direction": "A weather-driven reversal",
-      "context": "The report combines high recent consumption with an outlook for easing heat. Lower cooling demand can change the direction of a facility-load forecast.",
-      "scenario": "As the heat eases, cooling demand falls and the facility cluster load declines instead of extending its recent upward trend.",
-      "action": "Follow the weather.\nAdjust capacity plans.",
-      "assumption": "The anchors lower the trajectory around May 3 and May 6, aligning it more closely with the ground-truth reference during the easing phase. A visible forecast error remains after refinement.",
-      "groundTruth": [
-        51.8,
-        50.7,
-        47.7,
-        44.5,
-        42.7,
-        41.6,
-        41.8
+      "direction": "Pressure on household budgets",
+      "context": "EIA described crude oil above $100 per barrel after Russia's invasion of Ukraine. Weekly retail gasoline prices show the price shock that followed.",
+      "scenario": "Retail prices rise rapidly, peak, and then ease while remaining elevated.",
+      "action": "Prepare for higher costs.\nWatch the peak.",
+      "assumption": "Guidance captures the rise in retail prices. The observed March peak is higher and earlier than the illustrative path.",
+      "observationSources": [
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
+        "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv"
       ],
-      "seriesProvenance": "authored_illustration",
+      "observationDates": [
+        "2022-01-03",
+        "2022-01-10",
+        "2022-01-17",
+        "2022-01-24",
+        "2022-01-31",
+        "2022-02-07",
+        "2022-02-14",
+        "2022-02-21",
+        "2022-02-28",
+        "2022-03-07",
+        "2022-03-14",
+        "2022-03-21",
+        "2022-03-28",
+        "2022-04-04",
+        "2022-04-11"
+      ],
+      "impact": "Pump prices directly affect household transport budgets.",
       "preAnchor": [
-        52.006,
-        51.281,
-        50.93,
-        51.4,
-        45.93,
-        44.93,
-        48.4
+        3.82,
+        3.96,
+        4.05,
+        4.08,
+        4.06,
+        4.06
       ],
       "plotEvent": {
-        "location": "history",
-        "i": 7,
-        "label": "Heat-easing outlook\n29 Apr / EVN"
+        "location": "future",
+        "i": 0,
+        "label": "Crude above $100\nEIA / 4 Mar"
       }
     }
   ],
-  "provenance": "Event reports are sourced. Operating histories, ground-truth references and forecast paths are illustrative; they are not customer measurements or model evaluation."
+  "provenance": "History and ground truth are published observations. Event reports are sourced. Forecasts and anchor intervals are illustrative retrospective examples, not ScenarioDiff model predictions or a point-in-time evaluation."
 };

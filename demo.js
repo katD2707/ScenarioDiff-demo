@@ -7,7 +7,7 @@
   container.innerHTML = cases.map(c => `<article class="event-example" data-example="${c.id}">
     <div class="event-copy"><div class="event-number">${c.number}<span>${esc(c.domain.toUpperCase())}</span></div>
     <h3>${esc(c.shortTitle)}</h3>
-    <p class="event-location">${esc(c.brand)}</p></div>
+    <p class="event-location">${esc(c.brand)}</p><p class="event-impact">${esc(c.impact)}</p></div>
     <div class="event-visual"><figure class="denoising-figure">
       <video class="denoising-loop" muted loop playsinline preload="metadata" poster="assets/${c.id}-denoising.jpg" aria-label="${esc(c.domain)}: denoising, anchor guidance with a persistent ground-truth reference"><source src="assets/${c.id}-denoising.mp4" type="video/mp4"></video>
       <figcaption>${esc(c.cutoff)}</figcaption>
