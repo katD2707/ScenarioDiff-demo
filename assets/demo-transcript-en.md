@@ -15,7 +15,7 @@ HCDC reported 272 dengue cases in week 32, 18.8% above the preceding four-week a
 Reported cases stay elevated briefly and then ease.
 
 ## 00:00:52.000 — Public health / forecast
-Guidance follows the rise and then turns down. The reported week-35 decline is sharper than the illustrative forecast.
+Anchors suggest a gentler decline than the observed one. The forecast shifts partway toward them and remains above both intervals.
 
 ## 00:01:08.000 — Mobility / source
 Federal guidance called for avoiding discretionary travel as the COVID-19 response intensified.
@@ -24,7 +24,7 @@ Federal guidance called for avoiding discretionary travel as the COVID-19 respon
 Travel falls abruptly and then recovers as conditions change.
 
 ## 00:01:37.000 — Mobility / forecast
-Guidance captures the mobility drop and recovery. The observed April low is deeper than the illustrative forecast.
+The April forecast moves toward its anchor interval but stays above it. July already lies inside its interval, while observed travel remains lower.
 
 ## 00:01:53.000 — Energy / source
 EIA reported crude prices above $100 per barrel following Russia’s invasion of Ukraine, with increased volatility.
@@ -33,7 +33,7 @@ EIA reported crude prices above $100 per barrel following Russia’s invasion of
 Retail prices rise rapidly, peak, and then ease while remaining elevated.
 
 ## 00:02:22.000 — Energy / forecast
-Guidance captures the rise in retail prices. The observed March peak is higher and earlier than the illustrative path.
+The early anchor understates the observed peak; the later anchor overstates the outcome. Guidance nudges the forecast upward without reaching either interval.
 
 ## 00:02:38.000 — outro
 History and ground truth are published observations. Forecast and anchor paths illustrate the method; they are not measured model results.

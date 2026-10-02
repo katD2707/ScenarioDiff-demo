@@ -16,7 +16,7 @@ The black history and green ground-truth curves use published observations. The 
 
 The three examples share one compact desktop row, with a common legend. Event callouts connect directly to the relevant point on each plot. Cards stack on small screens.
 
-The green ground-truth reference and the gray baseline stay visible from the start. The blue trajectory denoises, then receives local anchor corrections. The authored examples show the corrected trajectory closer to the reference than the pre-anchor path, with a clearly visible residual error rather than an exact match. The observed outcome is displayed for retrospective comparison; it is not a claimed model input. This visual behavior is illustrative, not an empirical accuracy claim.
+The green ground-truth reference and the gray baseline stay visible from the start. The blue trajectory denoises, then receives partial local anchor corrections. The anchor intervals are approximate and can sit above or below the observed outcome. Refinement can stop outside an interval; an already satisfied interval may leave the forecast unchanged. The examples retain substantial forecast error and illustrate soft guidance, without implying that anchors reveal ground truth or guarantee accuracy. The observed outcome is displayed for retrospective comparison, not used as a model input.
 
 Animations play when visible and respect reduced-motion preferences. The page has play/pause and walkthrough controls; download/export links and the outcome-reveal control are removed. Previously created files remain on disk.
 

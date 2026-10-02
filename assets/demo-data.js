@@ -1,5 +1,5 @@
 window.SCENARIO_DEMO = {
-  "version": 6,
+  "version": 7,
   "cases": [
     {
       "id": "pharmacy",
@@ -46,22 +46,22 @@ window.SCENARIO_DEMO = {
         329
       ],
       "guided": [
-        293,
-        308,
-        260
+        285,
+        322,
+        298
       ],
       "anchors": [
         {
           "i": 1,
-          "lo": 295,
+          "lo": 310,
           "hi": 320,
-          "label": "Week 34 / 295-320 cases"
+          "label": "Week 34 / 310-320 cases"
         },
         {
           "i": 2,
-          "lo": 238,
-          "hi": 280,
-          "label": "Week 35 / 238-280 cases"
+          "lo": 265,
+          "hi": 285,
+          "label": "Week 35 / 265-285 cases"
         }
       ],
       "range": [
@@ -78,7 +78,7 @@ window.SCENARIO_DEMO = {
       "context": "HCDC reported rising dengue cases in Ho Chi Minh City. Weekly case counts help health services anticipate near-term pressure.",
       "scenario": "Reported cases stay elevated briefly and then ease.",
       "action": "Prepare care capacity.\nTrack the decline.",
-      "assumption": "Guidance follows the rise and then turns down. The reported week-35 decline is sharper than the illustrative forecast.",
+      "assumption": "Anchors suggest a gentler decline than the observed one. The forecast shifts partway toward them and remains above both intervals.",
       "observationSources": [
         "https://hcdc.vn/tinh-hinh-dich-benh-sot-xuat-huyet-va-tay-chan-mieng-tai-tp-ho-chi-minh-tinh-den-tuan-302024-x6HEAv.html",
         "https://tuoitre.vn/nld/tp-hcm-phat-hien-60-ca-nghi-sot-phat-ban-soi-trong-1-tuan-196240810151904281.htm",
@@ -166,24 +166,24 @@ window.SCENARIO_DEMO = {
         288
       ],
       "guided": [
-        225,
-        189,
-        216,
-        246,
-        261
+        242,
+        226,
+        239,
+        268,
+        279
       ],
       "anchors": [
         {
           "i": 1,
-          "lo": 175,
-          "hi": 205,
-          "label": "April / 175-205 billion"
+          "lo": 195,
+          "hi": 215,
+          "label": "April / 195-215 billion"
         },
         {
           "i": 4,
-          "lo": 245,
-          "hi": 275,
-          "label": "July / 245-275 billion"
+          "lo": 275,
+          "hi": 290,
+          "label": "July / 275-290 billion"
         }
       ],
       "range": [
@@ -200,7 +200,7 @@ window.SCENARIO_DEMO = {
       "context": "Federal pandemic guidance called for less discretionary travel. Monthly vehicle miles show the subsequent national mobility shock.",
       "scenario": "Travel falls abruptly and then recovers as conditions change.",
       "action": "Plan essential travel.\nWatch the recovery.",
-      "assumption": "Guidance captures the mobility drop and recovery. The observed April low is deeper than the illustrative forecast.",
+      "assumption": "The April forecast moves toward its anchor interval but stays above it. July already lies inside its interval, while observed travel remains lower.",
       "observationSources": [
         "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
         "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Traffic/Traffic.csv",
@@ -309,25 +309,25 @@ window.SCENARIO_DEMO = {
         4.0
       ],
       "guided": [
+        3.94,
         4.08,
-        4.34,
-        4.36,
-        4.31,
-        4.26,
-        4.22
+        4.16,
+        4.17,
+        4.13,
+        4.11
       ],
       "anchors": [
         {
           "i": 1,
-          "lo": 4.1,
-          "hi": 4.5,
-          "label": "March 14 / $4.10-4.50"
+          "lo": 4.15,
+          "hi": 4.3,
+          "label": "March 14 / $4.15-4.30"
         },
         {
           "i": 5,
-          "lo": 4.1,
-          "hi": 4.4,
-          "label": "April 11 / $4.10-4.40"
+          "lo": 4.3,
+          "hi": 4.45,
+          "label": "April 11 / $4.30-4.45"
         }
       ],
       "range": [
@@ -344,7 +344,7 @@ window.SCENARIO_DEMO = {
       "context": "EIA described crude oil above $100 per barrel after Russia's invasion of Ukraine. Weekly retail gasoline prices show the price shock that followed.",
       "scenario": "Retail prices rise rapidly, peak, and then ease while remaining elevated.",
       "action": "Prepare for higher costs.\nWatch the peak.",
-      "assumption": "Guidance captures the rise in retail prices. The observed March peak is higher and earlier than the illustrative path.",
+      "assumption": "The early anchor understates the observed peak; the later anchor overstates the outcome. Guidance nudges the forecast upward without reaching either interval.",
       "observationSources": [
         "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",
         "https://raw.githubusercontent.com/AdityaLab/Time-MMD/main/numerical/Energy/Energy.csv",

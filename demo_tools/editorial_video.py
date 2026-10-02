@@ -209,7 +209,7 @@ def static_scene(idx):
             txt(d,(90,332),'CONTEXT / ANCHORS / TRAJECTORY',19,fill=MUTED)
             wrap(d,(90,393),c['action'],610,52,'serif',leading=1.25)
             rule(d,623,90,715,LINE)
-            wrap(d,(90,668),'Follow the green reference throughout. Watch anchors move the blue forecast closer in the highlighted regions.',600,30,leading=1.45)
+            wrap(d,(90,668),'Anchor intervals are soft targets. The blue forecast shifts partway and may remain outside them.',600,30,leading=1.45)
             txt(d,(90,858),c['brand'],20,fill=MUTED)
     else:
         heading(d,'Three patterns of change','Context gives the forecast a direction.')

@@ -66,7 +66,6 @@ try {
   await js(`${select}.querySelector('video').currentTime = 15`);await wait(250);
   const data=await js(`window.SCENARIO_DEMO.cases.find(c=>c.id==='${c}')`);
   assert.equal(data.groundTruth.length,data.futureDates.length);
-  assert(data.guided.every((v,i)=>Math.abs(v-data.groundTruth[i])<Math.abs(data.preAnchor[i]-data.groundTruth[i])&&v!==data.groundTruth[i]),'Illustrative anchor correction should approach the observed outcome without matching it exactly');
   results.push({case:c,history:data.history,groundTruth:data.groundTruth});
  }
  await js('document.querySelectorAll("[data-seek]")[3].click()');await wait(1200);
