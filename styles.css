@@ -71,7 +71,7 @@ p{margin:0 0 1.15em}h1,h2,h3{margin-top:0}
 .paper-results-table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
 .paper-results-table caption{text-align:left;color:#666;line-height:1.55;margin-bottom:16px;font-size:14px}
 .paper-results-table th,.paper-results-table td{padding:10px 8px;text-align:right;white-space:nowrap}
-.paper-results-table th:first-child{text-align:left}
+.paper-results-table thead tr:first-child th:first-child,.paper-results-table tbody th[scope="row"]{text-align:left}
 .paper-results-table thead{border-top:2px solid #555;border-bottom:1px solid #aaa}
 .paper-results-table tbody tr{border-bottom:1px solid #e8e8e8}
 .paper-results-table tbody th{font-weight:400}
